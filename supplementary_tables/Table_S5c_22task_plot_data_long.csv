@@ -1,0 +1,23 @@
+Category,category_order,Dataset,Size,Metric,direction,score_mean,score_std,top1_ref,margin,margin_percent_points,Rank,rank_num,top1_margin_flag,top1_flag,top3_flag,top5_flag,top10_flag,Endpoint config
+Absorption,1,TDC.AqSol,9982,MAE,lower_better,0.738443,0.000456,0.741,0.002557,0.2557,Top-1,1,1,1,1,1,1,FP-XGB + K+E + XL blend
+Absorption,1,TDC.Bioav,640,AUROC,higher_better,0.722248,0.004048,0.942,-0.219752,-21.9752,Top-21,21,0,0,0,0,0,KPGT chem ExtraTrees
+Absorption,1,TDC.Caco2,906,MAE,lower_better,0.283647,0.00229,0.256,-0.027647,-2.7647,Top-5,5,0,0,0,1,1,ChemBERTa+KPGT ExtraTrees
+Absorption,1,TDC.HIA,578,AUROC,higher_better,0.99428,0.001736,0.993,0.00128,0.128,Top-1,1,1,1,1,1,1,Gated + sidecar rank blend
+Absorption,1,TDC.Lipo,4200,MAE,lower_better,0.472895,0.006499,0.456,-0.016895,-1.6895,Top-4,4,0,0,0,1,1,KPGT + tabular seedbag blend
+Absorption,1,TDC.Pgp,1212,AUROC,higher_better,0.938363,0.003565,0.938,0.000363,0.0363,Top-1,1,1,1,1,1,1,Gated K+E logit blend
+Distribution,2,TDC.BBB,1975,AUROC,higher_better,0.927779,0.000477,0.924,0.003779,0.3778999999999999,Top-1,1,1,1,1,1,1,ExtraTrees chem descriptors
+Distribution,2,TDC.PPBR,1797,MAE,lower_better,7.330617,0.098555,7.44,0.109383,10.9383,Top-1,1,1,1,1,1,1,KPGT seedbag + FP blend
+Distribution,2,TDC.VD,1130,Spearman,higher_better,0.660995,0.004668,0.713,-0.052005,-5.2005,Top-3,3,0,0,1,1,1,KPGT+EPT rank blend
+Metabolism,3,TDC.CYP2C9-I,12092,AUPRC,higher_better,0.790586,0.002608,0.859,-0.068414,-6.8414,Top-8,8,0,0,0,0,1,KPGT+EPT chem XGB
+Metabolism,3,TDC.CYP2C9-S,666,AUPRC,higher_better,0.44337,0.023358,0.474,-0.03063,-3.063,Top-2,2,0,0,1,1,1,XL+KPGT chem XGB
+Metabolism,3,TDC.CYP2D6-I,13130,AUPRC,higher_better,0.719172,0.005514,0.79,-0.070828,-7.082800000000001,Top-4,4,0,0,0,1,1,K+E seedbag + sidecar blend
+Metabolism,3,TDC.CYP2D6-S,664,AUPRC,higher_better,0.747531,0.00961,0.736,0.011531,1.1531,Top-1,1,1,1,1,1,1,AP seedbag + XL/descriptor blend
+Metabolism,3,TDC.CYP3A4-I,12328,AUPRC,higher_better,0.884121,0.003206,0.916,-0.031879,-3.1879,Top-4,4,0,0,0,1,1,XL/K+E + tabular blend
+Metabolism,3,TDC.CYP3A4-S,667,AUROC,higher_better,0.725249,0.00476,0.667,0.058249,5.8249,Top-1,1,1,1,1,1,1,Family-transfer XGB
+Excretion,4,TDC.CL-Hepa,1020,Spearman,higher_better,0.55204,0.00965,0.536,0.01604,1.604,Top-1,1,1,1,1,1,1,Family-transfer XGB
+Excretion,4,TDC.CL-Micro,1102,Spearman,higher_better,0.642814,0.005773,0.63,0.012814,1.2814,Top-1,1,1,1,1,1,1,KPGT+EPT 5×5 seedbag
+Excretion,4,TDC.Half_Life,667,Spearman,higher_better,0.49139,0.009785,0.576,-0.08461,-8.461,Top-7,7,0,0,0,0,1,C+K descriptor blend
+Toxicity,5,TDC.AMES,7255,AUROC,higher_better,0.871945,0.000583,0.871,0.000945,0.0945,Top-1,1,1,1,1,1,1,XGB tabular ensemble
+Toxicity,5,TDC.DILI,475,AUROC,higher_better,0.908609,0.00552,0.956,-0.047391,-4.7391000000000005,Top-6,6,0,0,0,0,1,XL/K+E + descriptor blend
+Toxicity,5,TDC.LD50,7385,MAE,lower_better,0.603071,0.003837,0.552,-0.051071,-5.1071,Top-5,5,0,0,0,1,1,ChemBERTa+KPGT chem XGB
+Toxicity,5,TDC.hERG,648,AUROC,higher_better,0.863358,0.002334,0.88,-0.016642,-1.6642,Top-6,6,0,0,0,0,1,EPT chem ExtraTrees

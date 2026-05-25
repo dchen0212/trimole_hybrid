@@ -1,0 +1,13 @@
+ames
+bbb_martins
+bioavailability_ma
+cyp2c9_substrate_carbonmangels
+cyp2c9_veith
+cyp2d6_substrate_carbonmangels
+cyp2d6_veith
+cyp3a4_substrate_carbonmangels
+cyp3a4_veith
+dili
+herg
+hia_hou
+pgp_broccatelli

@@ -1,0 +1,23 @@
+Category,Dataset,Size,Split,Metric,Dir.,Trimole-Hybrid,Top-1 ref.,Margin,Rank,Endpoint config
+Absorption,TDC.Bioav,640,Scaffold,AUROC,↑,0.722248±0.004048,0.942,-0.219752,Top-21,KPGT chem ExtraTrees
+Absorption,TDC.Caco2,906,Scaffold,MAE,↓,0.283647±0.002290,0.256,-0.027647,Top-5,ChemBERTa+KPGT ExtraTrees
+Absorption,TDC.HIA,578,Scaffold,AUROC,↑,0.994280±0.001736,0.993,0.00128,Top-1,Gated + sidecar rank blend
+Absorption,TDC.Lipo,"4,200",Scaffold,MAE,↓,0.472895±0.006499,0.456,-0.016895,Top-4,KPGT + tabular seedbag blend
+Absorption,TDC.Pgp,"1,212",Scaffold,AUROC,↑,0.938363±0.003565,0.938,0.000363,Top-1,Gated K+E logit blend
+Absorption,TDC.AqSol,"9,982",Scaffold,MAE,↓,0.738443±0.000456,0.741,0.002557,Top-1,FP-XGB + K+E + XL blend
+Distribution,TDC.BBB,"1,975",Scaffold,AUROC,↑,0.927779±0.000477,0.924,0.003779,Top-1,ExtraTrees chem descriptors
+Distribution,TDC.PPBR,"1,797",Scaffold,MAE,↓,7.330617±0.098555,7.44,0.109383,Top-1,KPGT seedbag + FP blend
+Distribution,TDC.VD,"1,130",Scaffold,Spearman,↑,0.660995±0.004668,0.713,-0.052005,Top-3,KPGT+EPT rank blend
+Metabolism,TDC.CYP2C9-S,666,Scaffold,AUPRC,↑,0.443370±0.023358,0.474,-0.03063,Top-2,XL+KPGT chem XGB
+Metabolism,TDC.CYP2C9-I,"12,092",Scaffold,AUPRC,↑,0.790586±0.002608,0.859,-0.068414,Top-8,KPGT+EPT chem XGB
+Metabolism,TDC.CYP2D6-S,664,Scaffold,AUPRC,↑,0.747531±0.009610,0.736,0.011531,Top-1,AP seedbag + XL/descriptor blend
+Metabolism,TDC.CYP2D6-I,"13,130",Scaffold,AUPRC,↑,0.719172±0.005514,0.79,-0.070828,Top-4,K+E seedbag + sidecar blend
+Metabolism,TDC.CYP3A4-S,667,Scaffold,AUROC,↑,0.725249±0.004760,0.667,0.058249,Top-1,Family-transfer XGB
+Metabolism,TDC.CYP3A4-I,"12,328",Scaffold,AUPRC,↑,0.884121±0.003206,0.916,-0.031879,Top-4,XL/K+E + tabular blend
+Excretion,TDC.CL-Hepa,"1,020",Scaffold,Spearman,↑,0.552040±0.009650,0.536,0.01604,Top-1,Family-transfer XGB
+Excretion,TDC.CL-Micro,"1,102",Scaffold,Spearman,↑,0.642814±0.005773,0.63,0.012814,Top-1,KPGT+EPT 5×5 seedbag
+Excretion,TDC.Half_Life,667,Scaffold,Spearman,↑,0.491390±0.009785,0.576,-0.08461,Top-7,C+K descriptor blend
+Toxicity,TDC.AMES,"7,255",Scaffold,AUROC,↑,0.871945±0.000583,0.871,0.000945,Top-1,XGB tabular ensemble
+Toxicity,TDC.DILI,475,Scaffold,AUROC,↑,0.908609±0.005520,0.956,-0.047391,Top-6,XL/K+E + descriptor blend
+Toxicity,TDC.hERG,648,Scaffold,AUROC,↑,0.863358±0.002334,0.88,-0.016642,Top-6,EPT chem ExtraTrees
+Toxicity,TDC.LD50,"7,385",Scaffold,MAE,↓,0.603071±0.003837,0.552,-0.051071,Top-5,ChemBERTa+KPGT chem XGB

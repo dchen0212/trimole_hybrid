@@ -1,0 +1,23 @@
+Category,Dataset,Metric,Frozen endpoint family,Main evidence streams,Aggregation,Component flags,Chem,Seq,Graph,EPT_3D,Blend,Seed_or_fold_bagging,Full recipe source
+Absorption,TDC.Bioav,AUROC,Fixed chemical-prior ExtraTrees,"chemistry priors, graph embeddings",seed/fold bagging,"Chem, Seedbag",True,False,True,False,False,True,Table S2/S2c
+Absorption,TDC.Caco2,MAE,Fixed chemical-prior ExtraTrees,"chemistry priors, sequence/pretrained embeddings, graph embeddings",seed/fold bagging,"Chem, Seedbag",True,True,True,False,False,True,Table S2/S2c
+Absorption,TDC.HIA,AUROC,Task-specific frozen endpoint,chemistry priors,prediction blend,"Chem, Blend, Seedbag",True,False,False,False,True,True,Table S2/S2c
+Absorption,TDC.Lipo,MAE,XL chemical-prior endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,True,True,True,True,Table S2/S2c
+Absorption,TDC.Pgp,AUROC,KPGT/EPT hybrid endpoint,"graph embeddings, EPT/3D",prediction blend,"EPT/3D, Blend",False,True,True,True,True,False,Table S2/S2c
+Absorption,TDC.AqSol,MAE,KPGT/EPT hybrid endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings, EPT/3D",prediction blend,"Chem, EPT/3D, Blend",True,True,True,True,True,False,Table S2/S2c
+Distribution,TDC.BBB,AUROC,Descriptor/fingerprint ExtraTrees,chemistry priors,single frozen recipe,Chem,True,False,False,False,False,False,Table S2/S2c
+Distribution,TDC.PPBR,MAE,KPGT/fingerprint hybrid endpoint,"chemistry priors, graph embeddings","prediction blend, seed/fold bagging","Chem, Blend, Seedbag",True,False,True,False,True,True,Table S2/S2c
+Distribution,TDC.VD,Spearman,KPGT/EPT hybrid endpoint,"chemistry priors, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,False,True,True,True,True,Table S2/S2c
+Metabolism,TDC.CYP2C9-S,AUPRC,Fixed chemical-prior XGBoost,"chemistry priors, sequence/pretrained embeddings, graph embeddings",seed/fold bagging,"Chem, EPT/3D, Seedbag",True,True,True,True,False,True,Table S2/S2c
+Metabolism,TDC.CYP2C9-I,AUPRC,Fixed chemical-prior XGBoost,"chemistry priors, graph embeddings, EPT/3D",seed/fold bagging,"Chem, EPT/3D, Seedbag",True,False,True,True,False,True,Table S2/S2c
+Metabolism,TDC.CYP2D6-S,AUPRC,XL chemical-prior endpoint,"chemistry priors, sequence/pretrained embeddings","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,False,True,True,True,Table S2/S2c
+Metabolism,TDC.CYP2D6-I,AUPRC,KPGT/EPT hybrid endpoint,"chemistry priors, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,False,True,True,True,True,Table S2/S2c
+Metabolism,TDC.CYP3A4-S,AUROC,Family-transfer fingerprint XGBoost,"chemistry priors, graph embeddings",single frozen recipe,Chem,True,False,True,False,False,False,Table S2/S2c
+Metabolism,TDC.CYP3A4-I,AUPRC,KPGT/EPT hybrid endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,True,True,True,True,Table S2/S2c
+Excretion,TDC.CL-Hepa,Spearman,Family-transfer fingerprint XGBoost,chemistry priors,single frozen recipe,Chem,True,False,False,False,False,False,Table S2/S2c
+Excretion,TDC.CL-Micro,Spearman,KPGT/EPT hybrid endpoint,"graph embeddings, EPT/3D",seed/fold bagging,"EPT/3D, Blend, Seedbag",False,False,True,True,True,True,Table S2/S2c
+Excretion,TDC.Half_Life,Spearman,Task-specific frozen endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings","prediction blend, seed/fold bagging","Chem, Blend, Seedbag",True,True,True,False,True,True,Table S2/S2c
+Toxicity,TDC.AMES,AUROC,Repeated fingerprint XGBoost,chemistry priors,seed/fold bagging,"Chem, Seedbag",True,False,False,False,False,True,Table S2/S2c
+Toxicity,TDC.DILI,AUROC,KPGT/EPT hybrid endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,True,True,True,True,Table S2/S2c
+Toxicity,TDC.hERG,AUROC,Fixed chemical-prior ExtraTrees,"chemistry priors, sequence/pretrained embeddings, EPT/3D",seed/fold bagging,"Chem, EPT/3D, Seedbag",True,True,False,True,False,True,Table S2/S2c
+Toxicity,TDC.LD50,MAE,Fixed chemical-prior XGBoost,"chemistry priors, sequence/pretrained embeddings, graph embeddings",seed/fold bagging,"Chem, EPT/3D, Seedbag",True,True,True,True,False,True,Table S2/S2c

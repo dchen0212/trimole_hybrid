@@ -1,0 +1,8 @@
+metric,direction,formal_margin,unit_or_scale,single_molecule_interpretation
+AUROC,higher is better,model_score - frozen_reference_score,unitless area under the receiver operating characteristic curve,"classification score/probability can be visualized for an individual molecule, but AUROC is a task-level ranking metric"
+AUPRC,higher is better,model_score - frozen_reference_score,unitless area under the precision-recall curve,"classification score/probability can be visualized for an individual molecule, but AUPRC is a task-level ranking metric"
+MAE,lower is better,frozen_reference_score - model_score,same transformed label scale used by the corresponding TDC endpoint,absolute prediction error is meaningful on the endpoint's reported label scale
+Spearman,higher is better,model_score - frozen_reference_score,unitless rank correlation,single molecules do not define a Spearman score; molecule-level continuous values are visualization only
+AqSol endpoint label,MAE lower is better,frozen_reference_MAE - model_MAE,"TDC AqSolDB solubility label scale, conventionally reported as log mol/L",absolute error is in the transformed solubility scale
+PPBR endpoint label,MAE lower is better,frozen_reference_MAE - model_MAE,percent plasma protein binding on the TDC PPBR label scale,absolute error is approximately percentage-point error on the reported label scale
+Clearance endpoints,Spearman higher is better,model_Spearman - frozen_reference_Spearman,TDC clearance label scale; official metric is rank correlation,"single-molecule values are qualitative continuous-score examples, not single-molecule Spearman errors"

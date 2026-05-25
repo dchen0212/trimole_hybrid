@@ -1,0 +1,8 @@
+task,strict_alignment_status,replay_max_abs_diff,recommendation
+bbb_martins,exact_reconstruction_pass,1.1102230246251563e-16,Exact pass; 25 PDF BBB candidates screened; no MiniMol-wrong/Trimole-correct case.
+ppbr_az,reconstruction_numeric_mismatch_review_needed,1.7695877523108263,"External labels strong, but replay mismatch remains; cannot use as strict main-text case."
+pgp_broccatelli,reconstruction_numeric_mismatch_review_needed,0.2945497639536272,Full endpoint replay mismatch from layerwise gated branch; cannot use strict external case.
+solubility_aqsoldb,blocked_numeric_mismatch,,AqSol reconstruction previously numeric mismatch; not strict.
+hia_hou,blocked_rank_transform_external_scale,,Rank-transformed endpoint; arbitrary-SMILES exact score not naturally defined on same rank scale.
+ames,no_pdf_external_label,,PDF text has no explicit AMES/mutagenicity labels for candidate molecules; not useful for external case.
+cyp3a4_substrate_carbonmangels,exact_reconstruction_pass,,"Exact pass and one strict case exists, but user asked to stop CYP3A4 expansion."

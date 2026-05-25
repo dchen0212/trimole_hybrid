@@ -1,0 +1,13 @@
+drug,split,n_checked,any_overlap,overlap_count
+Deutivacaftor,test,6,False,0
+Deutivacaftor,train,6,False,0
+Deutivacaftor,valid,6,False,0
+Mavorixafor,test,4,False,0
+Mavorixafor,train,4,False,0
+Mavorixafor,valid,4,False,0
+Tezacaftor,test,12,False,0
+Tezacaftor,train,12,False,0
+Tezacaftor,valid,12,False,0
+Vanzacaftor,test,11,False,0
+Vanzacaftor,train,11,False,0
+Vanzacaftor,valid,11,False,0

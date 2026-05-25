@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environments
+.venv/
+venv/
+env/
+miniconda*/
+conda*/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+# Large ML artifacts
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.pickle
+*.joblib
+*.bin
+*.h5
+*.onnx
+
+# Cached arrays / embeddings
+*.npy
+*.npz
+*.parquet
+*.feather
+
+# Local datasets and non-formal exploratory data
+data/
+data_new/
+data_benchmark*/
+admet_group/
+external_predictions/
+
+# Archive artifacts should be uploaded as GitHub Release assets, not committed.
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+
+# Large generated figures / manuscripts can be added deliberately if needed.
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz

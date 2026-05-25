@@ -1,0 +1,8 @@
+candidate,decision,task,case_source,label,minimol_score_mean,trimole_score_mean,sensitivity_status,interpretation_scope
+Figure4a_AMES_test297,shown_in_main_figure,TDC.AMES,official TDC test split,1.0,0.293194,0.894085,reconstruction_based_not_exact_full_ensemble,prediction-level sensitivity only; not exact full-ensemble attribution and not causal pharmacophore evidence
+Figure4b_Deutivacaftor_Pgp,shown_in_main_figure,TDC.Pgp,external drug-label-inspired curated molecule,1.0,0.7469786,0.914545372174849,exact_replay_pass,exact replayed P-gp prediction-level sensitivity; not causal pharmacophore evidence
+BBB external candidates,Not promoted to main-text case,BBB,Some matched replacements changed BBB scores,,,,reconstruction_mismatch,Saved exact model trajectory unavailable after sklearn environment drift; no MiniMol-wrong / Trimole-correct external candidate found
+Ritlecitinib,Not promoted,CYP3A4-S,MiniMol boundary/wrong and Trimole exact replay correct in external comparison,,,,exact external replay for original prediction; perturbation not compelling,Matched replacement did not yield a stable strong sensitivity signal
+Mavorixafor,Not promoted,P-gp,Boundary example with some Trimole-vs-MiniMol separation,,,,P-gp exact replay available,Original Trimole score remained near/below 0.5 in some runs; perturbation evidence weak
+AqSol external candidates,Not promoted,AqSol,Potential regression cases from external drug labels,,,,unavailable_or_proxy_required,Arbitrary-SMILES exact v36 external inference was not fully recovered
+PPBR external candidates,Not promoted,PPBR,Revumenib and other high-binding candidates showed potential,,,,near_reconstruction_or_proxy,External prediction remained near-reconstruction/proxy rather than exact enough for main-text case

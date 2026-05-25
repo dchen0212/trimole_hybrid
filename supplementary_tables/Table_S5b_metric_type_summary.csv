@@ -1,0 +1,5 @@
+Metric,n_tasks,total_size,mean_margin,median_margin,mean_margin_percent_points,median_margin_percent_points,top1_count,top3_count,top5_count,top10_count,mean_rank,median_rank,top1_rate,top3_rate,top5_rate,top10_rate,metric_order
+AUROC,8,13450,-0.027396125,0.000654,-2.7396125,0.0654,5,5,5,7,4.75,1.0,0.625,0.625,0.625,0.875,1
+AUPRC,5,38880,-0.038044,-0.031879,-3.8044,-3.1879,1,2,4,5,3.8,4.0,0.2,0.4,0.8,1.0,2
+MAE,5,24270,0.0032654,-0.016895,0.3265399999999999,-1.6895,2,2,5,5,3.2,4.0,0.4,0.4,1.0,1.0,3
+Spearman,4,3919,-0.02694025,-0.0195955,-2.694025,-1.95955,2,3,3,4,3.0,2.0,0.5,0.75,0.75,1.0,4

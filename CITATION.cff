@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this code or audit package, please cite the associated manuscript."
+title: "Task-Adaptive Molecular Evidence Selection for Multimodal ADMET Prediction"
+authors:
+  - family-names: "Huang"
+    given-names: "Dachen"
+year: 2026
+repository-code: "https://github.com/dchen0212/trimole_hybird"
+type: software
+license: "NOASSERTION"

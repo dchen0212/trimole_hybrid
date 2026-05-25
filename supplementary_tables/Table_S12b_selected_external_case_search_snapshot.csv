@@ -1,0 +1,2 @@
+task,drug,external_label,minimol_pred,trimole_pred,case_type,status
+cyp3a4_substrate_carbonmangels,Ritlecitinib,1.0,0.49522677,0.5859176,strict_wrong_vs_correct,existing_cyp3a4_strict_reference
