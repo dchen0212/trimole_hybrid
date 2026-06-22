@@ -1,0 +1,23 @@
+Dataset,task_dir,n_test_molecules,n_valid_mw,n_invalid_smiles,median_mw,mean_mw,mw_group,rank_num,rank_bucket
+TDC.AqSol,solubility_aqsoldb,2940,2940,0,169.093,205.959,Median MW <300 Da,1,Top-1
+TDC.Bioav,bioavailability_ma,171,171,0,299.802,321.345,Median MW <300 Da,21,Rank >10
+TDC.Caco2,caco2_wang,243,243,0,363.502,390.323,Median MW >=300 Da,5,Top-5
+TDC.HIA,hia_hou,154,154,0,284.344,324.000,Median MW <300 Da,1,Top-1
+TDC.Lipo,lipophilicity_astrazeneca,1120,1120,0,375.934,371.157,Median MW >=300 Da,4,Top-5
+TDC.Pgp,pgp_broccatelli,325,325,0,347.798,359.606,Median MW >=300 Da,1,Top-1
+TDC.BBB,bbb_martins,542,542,0,306.408,333.553,Median MW >=300 Da,1,Top-1
+TDC.PPBR,ppbr_az,744,744,0,402.966,401.809,Median MW >=300 Da,1,Top-1
+TDC.VD,vdss_lombardo,302,302,0,346.945,411.133,Median MW >=300 Da,3,Top-5
+TDC.CYP2C9-I,cyp2c9_veith,3224,3224,0,339.472,349.005,Median MW >=300 Da,8,Top-10
+TDC.CYP2C9-S,cyp2c9_substrate_carbonmangels,178,178,0,310.437,325.205,Median MW >=300 Da,2,Top-5
+TDC.CYP2D6-I,cyp2d6_veith,3500,3500,0,351.461,360.404,Median MW >=300 Da,4,Top-5
+TDC.CYP2D6-S,cyp2d6_substrate_carbonmangels,178,178,0,307.339,317.735,Median MW >=300 Da,1,Top-1
+TDC.CYP3A4-I,cyp3a4_veith,3287,3287,0,341.316,349.824,Median MW >=300 Da,4,Top-5
+TDC.CYP3A4-S,cyp3a4_substrate_carbonmangels,179,179,0,293.370,314.175,Median MW <300 Da,1,Top-1
+TDC.CL-Hepa,clearance_hepatocyte_az,324,324,0,423.742,424.332,Median MW >=300 Da,1,Top-1
+TDC.CL-Micro,clearance_microsome_az,294,294,0,425.082,424.742,Median MW >=300 Da,1,Top-1
+TDC.Half_Life,half_life_obach,178,178,0,340.423,387.387,Median MW >=300 Da,7,Top-10
+TDC.AMES,ames,1941,1941,0,186.339,214.381,Median MW <300 Da,1,Top-1
+TDC.DILI,dili,127,127,0,290.323,333.968,Median MW <300 Da,6,Top-10
+TDC.LD50,ld50_zhu,1969,1969,0,163.264,185.732,Median MW <300 Da,5,Top-5
+TDC.hERG,herg,175,175,0,343.217,362.959,Median MW >=300 Da,6,Top-10

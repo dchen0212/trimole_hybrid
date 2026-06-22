@@ -3,7 +3,7 @@ import pandas as pd
 import json
 import re
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 RESULTS = ROOT / "results/model_log"
 BENCH_DIR = str((ROOT / "data/data_benchmark").resolve())
 NEW_DIR = str((ROOT / "data/data_new").resolve())

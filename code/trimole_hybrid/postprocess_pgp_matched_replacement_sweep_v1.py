@@ -6,7 +6,7 @@ from rdkit import Chem
 from rdkit.Chem import Crippen, Descriptors, rdMolDescriptors
 
 
-OUT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid/results_strict/pgp_external_matched_replacement_sweep_v1")
+OUT = Path("<PROJECT_ROOT>/trimole_hybrid/results_strict/pgp_external_matched_replacement_sweep_v1")
 
 
 def descriptors(smiles: str) -> dict:

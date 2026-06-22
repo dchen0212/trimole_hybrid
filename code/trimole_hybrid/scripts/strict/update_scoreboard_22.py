@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import math
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
 RESULTS_ROOT = ROOT / "results_strict"
 OUT_CSV = RESULTS_ROOT / "scoreboard_22_tdc.csv"
 

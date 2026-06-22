@@ -17,7 +17,7 @@ import official_sidecar_nested_refit_v1 as nested
 import paper_main_multimodal_prior_taskwise_v1 as v1
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT_ROOT = REPO / "results_strict" / "paper_main_chemical_prior_v2"
 FOCUS_TASKS = [
     "clearance_microsome_az",

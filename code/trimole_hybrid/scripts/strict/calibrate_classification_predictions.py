@@ -5,7 +5,7 @@ from sklearn.isotonic import IsotonicRegression
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_auc_score, average_precision_score
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
 RESULTS_ROOT = ROOT / "results_strict"
 OUT_DIR = RESULTS_ROOT / "calibration_v1"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

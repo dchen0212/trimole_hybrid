@@ -10,7 +10,7 @@ import pandas as pd
 from sklearn.metrics import mean_absolute_error
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASK = "solubility_aqsoldb"
 TOP1_REF = 0.741
 

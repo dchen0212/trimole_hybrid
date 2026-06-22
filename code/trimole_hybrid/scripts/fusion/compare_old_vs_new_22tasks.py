@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 import math
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole/results/model_log")
+ROOT = Path("<PROJECT_ROOT>/trimole/results/model_log")
 
 OLD_P = ROOT / "final_validation_selected_submission" / "final_validation_selected_submission.csv"
 NEW_P = ROOT / "final_tx_router_22tasks" / "final_tx_router_22tasks.csv"

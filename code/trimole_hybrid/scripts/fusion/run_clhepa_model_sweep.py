@@ -3,7 +3,7 @@ import itertools
 import subprocess
 import os
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT = ROOT / "results/model_log/clhepa_model_sweep"
 OUT.mkdir(parents=True, exist_ok=True)
 

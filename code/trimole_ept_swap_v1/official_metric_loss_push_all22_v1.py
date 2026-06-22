@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 MASTER = REPO / "results_strict" / "ept_family_routing_master_v1" / "ept_family_routing_master_v1_patched_v3_5seed.csv"
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 OUT_ROOT = REPO / "results_strict" / "official_metric_loss_push_all22_v1"

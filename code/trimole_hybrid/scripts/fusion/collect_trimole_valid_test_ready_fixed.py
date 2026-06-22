@@ -5,7 +5,7 @@ from pathlib import Path
 import shutil
 import pandas as pd
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 ROOT = PROJECT / "results" / "model_log"
 OUT_DIR = ROOT / "fusion_inputs_trimole_calib_ready_fixed"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

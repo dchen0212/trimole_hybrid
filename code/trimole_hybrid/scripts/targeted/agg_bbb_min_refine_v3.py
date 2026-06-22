@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 
-root = Path("/mnt/afs/250010150/zhensheng/trimole/results/model_log/bbb_min_refine_v3/bbb_martins")
+root = Path("<PROJECT_ROOT>/trimole/results/model_log/bbb_min_refine_v3/bbb_martins")
 rows = []
 bad = []
 

@@ -14,7 +14,7 @@ import official_sidecar_bagged_blend_v1 as bagged
 import official_sidecar_nested_refit_v1 as nested
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 MASTER = (
     REPO

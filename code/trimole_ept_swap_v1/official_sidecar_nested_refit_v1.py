@@ -14,7 +14,7 @@ from rdkit.Chem.Scaffolds import MurckoScaffold
 import descriptor_sidecar_official_v1 as base
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 MASTER = (
     REPO

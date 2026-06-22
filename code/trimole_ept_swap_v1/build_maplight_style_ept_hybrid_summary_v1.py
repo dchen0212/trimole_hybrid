@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT_ROOT = REPO / "results_strict" / "maplight_style_ept_hybrid_final_v1"
 MASTER = (
     REPO

@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import roc_auc_score
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 TASK = "bioavailability_ma"
 OUT = ROOT / "results/model_log/bioava_joint_trimole_fusion"
 OUT.mkdir(parents=True, exist_ok=True)

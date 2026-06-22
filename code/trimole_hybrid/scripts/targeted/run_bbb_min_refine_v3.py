@@ -5,7 +5,7 @@ import os
 import subprocess
 from pathlib import Path
 
-PROJECT_ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT_ROOT = Path("<PROJECT_ROOT>/trimole")
 DATA_DIR = "./data/data_benchmark"
 OUT_ROOT = PROJECT_ROOT / "results/model_log/bbb_min_refine_v3"
 TASK = "bbb_martins"

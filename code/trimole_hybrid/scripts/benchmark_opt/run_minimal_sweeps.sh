@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 
 # ---- env bootstrap: 优先使用当前已激活环境；否则尝试 conda activate ----
-TARGET_ENV="/mnt/afs/250010150/envs/trimole_bench310"
+TARGET_ENV="<ENV_ROOT>/trimole_bench310"
 
 if [ "${CONDA_PREFIX:-}" != "${TARGET_ENV}" ]; then
   if command -v conda >/dev/null 2>&1; then

@@ -8,7 +8,7 @@ from pathlib import Path
 import pandas as pd
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
 OUT = ROOT / "results_strict" / "pgp_external_matched_replacement_sweep_v1"
 TASK = "pgp_broccatelli"
 

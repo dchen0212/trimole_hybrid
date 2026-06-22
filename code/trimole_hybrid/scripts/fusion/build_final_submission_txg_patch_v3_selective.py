@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 
 main_path = ROOT / "results/model_log/final_validation_selected_submission/final_validation_selected_submission_gnn_patch_v1.csv"
 txg_path  = ROOT / "results/model_log/txg_weight_search/txg_weight_search_summary.csv"

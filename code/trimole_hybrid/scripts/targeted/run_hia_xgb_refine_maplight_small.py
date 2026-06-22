@@ -10,7 +10,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score, average_precision_score, accuracy_score
 from xgboost import XGBClassifier
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 DATA_DIR = PROJECT / "data" / "data_benchmark" / "hia_hou"
 OUT_DIR = PROJECT / "results" / "model_log" / "hia_xgb_refine_maplight_small"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

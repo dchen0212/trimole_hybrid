@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 
 OUT_ROOT="results/model_log/caco2_benchmark_multiseed"
 SEEDS=(1 7 42 123 3407)

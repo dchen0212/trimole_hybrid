@@ -14,12 +14,12 @@ import pandas as pd
 import torch
 from sklearn.metrics import roc_auc_score
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
-EPT_SWAP = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
-EPT_REPO = Path("/mnt/afs/250010150/zhensheng/EPT_try_v1")
-EPT_PY = Path("/mnt/afs/250010150/zhensheng/EPT_env_v1/bin/python")
-LOCAL_CHEMBERTA = Path("/mnt/afs/250010150/zhensheng/local_hf_models/ChemBERTa-zinc-base-v1")
-KPGT_PYTHON = Path("/mnt/afs/250010150/envs/kpgt/bin/python")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
+EPT_SWAP = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
+EPT_REPO = Path("<PROJECT_ROOT>/EPT_try_v1")
+EPT_PY = Path("<PROJECT_ROOT>/EPT_env_v1/bin/python")
+LOCAL_CHEMBERTA = Path("<PROJECT_ROOT>/local_hf_models/ChemBERTa-zinc-base-v1")
+KPGT_PYTHON = Path("<ENV_ROOT>/kpgt/bin/python")
 KPGT_LIB = KPGT_PYTHON.parent.parent / "lib"
 TASK = "pgp_broccatelli"
 MAIN_OUT = ROOT / "results_strict" / "alyftrek_minimol_trimole_case_v1"

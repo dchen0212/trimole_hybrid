@@ -8,7 +8,7 @@ import pandas as pd
 import json
 import math
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 OUT_ROOT = PROJECT / "results" / "model_log" / "bbb_dili_targeted_sweep"
 
 TASKS = ["bbb_martins", "dili"]

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-PY=/mnt/afs/250010150/envs/trimole_bench310/bin/python
+PY=<ENV_ROOT>/trimole_bench310/bin/python
 ROOT=results_strict/formal_chemical_prior_v2_microsome_5seed
 mkdir -p "$ROOT"
 for seed in 101 202 303 404 505; do

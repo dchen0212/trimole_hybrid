@@ -12,7 +12,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score, average_precision_score, accuracy_score
 from xgboost import XGBClassifier
 
-MAPLIGHT_ROOT = Path("/mnt/afs/250010150/zhensheng/trimole/external/MapLight-TDC")
+MAPLIGHT_ROOT = Path("<PROJECT_ROOT>/trimole/external/MapLight-TDC")
 sys.path.insert(0, str(MAPLIGHT_ROOT))
 from maplight import get_fingerprints  # noqa
 

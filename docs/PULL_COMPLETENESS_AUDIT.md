@@ -6,9 +6,9 @@ This package is a targeted reviewer/audit pull, not a full mirror of the remote 
 
 ## Remote roots checked
 
-- `/mnt/afs/250010150/zhensheng/trimole_hybrid`
-- `/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1`
-- `/mnt/afs/250010150/zhensheng/KPGT`
+- `<PROJECT_ROOT>/trimole_hybrid`
+- `<PROJECT_ROOT>/trimole_ept_swap_v1`
+- `<PROJECT_ROOT>/KPGT`
 
 ## What was pulled
 

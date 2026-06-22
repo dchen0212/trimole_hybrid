@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 SRC = ROOT / "results/model_log/bbb_min_refine_v3/bbb_martins"
 OUT_DIR = ROOT / "results/model_log/bbb_best_v3_final"
 OUT_DIR.mkdir(parents=True, exist_ok=True)

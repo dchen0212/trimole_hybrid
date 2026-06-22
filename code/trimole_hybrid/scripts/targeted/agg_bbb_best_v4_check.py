@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 
-root = Path("/mnt/afs/250010150/zhensheng/trimole/results/model_log/bbb_best_v4_check/bbb_martins")
+root = Path("<PROJECT_ROOT>/trimole/results/model_log/bbb_best_v4_check/bbb_martins")
 rows = []
 
 def pick_metric(d: dict, cands: list[str]):

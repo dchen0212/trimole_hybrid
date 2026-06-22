@@ -2,7 +2,7 @@
 
 Source code and audit artifacts for the manuscript:
 
-**Task-Adaptive Molecular Evidence Selection for Multimodal ADMET Prediction**
+**A multimodal representation learning platform for accurate molecular ADMET prediction**
 
 Trimole-Hybrid is a task-adaptive ADMET prediction framework that combines sequence, graph, 3D/EPT and chemistry-prior molecular evidence streams. Endpoint configurations are selected using training/validation evidence or scaffold cross-validation only; official TDC test labels are reserved for final reporting.
 
@@ -17,7 +17,10 @@ It is **not** a one-command full rerun bundle. Large files are intentionally exc
 - `code/trimole_hybrid/`: core Trimole-Hybrid package, audit scripts, benchmark utilities and case-study scripts.
 - `code/trimole_ept_swap_v1/`: endpoint construction, EPT/3D routing, chemistry sidecar and prediction-zoo scripts.
 - `code/KPGT/`: KPGT graph-encoder source dependency used by the graph branch.
-- `supplementary_tables/`: supplementary tables used by the manuscript.
+- `supplementary.tex`: LaTeX source for the Supplementary Information.
+- `supplementary/supplementary.pdf`: compiled Supplementary Information PDF.
+- `supplementary_figures/`: supplementary figure source exports, including the vector Supplementary Figure S1.
+- `supplementary_tables/`: supplementary workbook and CSV tables used by the manuscript.
 - `docs/MODEL_FAMILY_INDEX.md`: file-by-file map from manuscript model families to concrete source files.
 - `docs/PULL_COMPLETENESS_AUDIT.md`: audit of what was pulled from the server and what was intentionally excluded.
 
@@ -47,7 +50,7 @@ Included in this public-upload package:
 
 - Source code for model branches, endpoint selection, sidecars, ensembles and audits.
 - Lightweight benchmark, ablation and case-study summaries through `supplementary_tables/`.
-- Supplementary tables used in the manuscript.
+- Supplementary Information source/PDF, supplementary figures and supplementary tables used in the manuscript.
 
 Excluded:
 
@@ -66,8 +69,8 @@ Citation details will be updated after publication.
 
 ```bibtex
 @article{huang2026trimolehybrid,
-  title = {Task-Adaptive Molecular Evidence Selection for Multimodal ADMET Prediction},
-  author = {Huang, Dachen},
+  title = {A multimodal representation learning platform for accurate molecular ADMET prediction},
+  author = {Luo, Zhensheng and Huang, Dachen and Shao, Yanruisheng and Yu, Qinze and Li, Yu},
   journal = {Bioinformatics},
   year = {2026},
   note = {Manuscript under review}

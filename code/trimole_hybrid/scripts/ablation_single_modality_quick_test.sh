@@ -12,9 +12,9 @@ cd "$PROJECT_ROOT"
 # Setup environment
 export UNIMOL_WEIGHT_DIR="$PROJECT_ROOT/data/weights"
 export TOKENIZERS_PARALLELISM=false
-export LD_LIBRARY_PATH=/mnt/afs/250010150/envs/kpgt/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=<ENV_ROOT>/kpgt/lib:$LD_LIBRARY_PATH
 
-PYTHON=/mnt/afs/250010150/envs/trimole/bin/python
+PYTHON=<ENV_ROOT>/trimole/bin/python
 TIMESTAMP=$(date +%Y%m%d_%H%M)
 
 # Output directory for ablation experiments

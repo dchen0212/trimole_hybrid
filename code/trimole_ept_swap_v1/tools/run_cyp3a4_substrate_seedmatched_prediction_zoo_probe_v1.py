@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASK = "cyp3a4_substrate_carbonmangels"
 TOP1_REF = 0.667
 OUT = REPO / "results_strict" / "cyp3a4_substrate_seedmatched_prediction_zoo_probe_v1"

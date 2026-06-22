@@ -9,7 +9,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASK = "hia_hou"
 TOP1_REF = 0.993
 OUT = REPO / "results_strict" / "hia_hou_seedmatched_prediction_zoo_probe_v1"

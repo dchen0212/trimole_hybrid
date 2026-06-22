@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr, rankdata
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT = ROOT / "results/model_log/clhepa_rank_push"
 OUT.mkdir(parents=True, exist_ok=True)
 

@@ -13,7 +13,7 @@ from scipy.stats import spearmanr
 from sklearn.metrics import average_precision_score, mean_absolute_error, roc_auc_score
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 RESULTS = REPO / "results_strict"
 DATA = REPO / "data" / "data_benchmark_official_v1"
 

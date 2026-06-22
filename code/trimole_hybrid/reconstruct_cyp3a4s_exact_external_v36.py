@@ -10,8 +10,8 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
-EPT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
+EPT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT = ROOT / "results_strict" / "alyftrek_minimol_trimole_case_v1" / "exact_reconstructed_cyp3a4s_v36"
 SHEET_FLAT = ROOT / "results_strict" / "alyftrek_minimol_trimole_case_v1" / "sheet_candidates_flat.csv"
 MAIN_OUT = ROOT / "results_strict" / "alyftrek_minimol_trimole_case_v1"

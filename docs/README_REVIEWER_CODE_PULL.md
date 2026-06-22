@@ -5,9 +5,9 @@ This directory is a targeted pull from the server-side Trimole-Hybrid workspaces
 Pull date: 2026-05-24
 
 Remote sources:
-- `/mnt/afs/250010150/zhensheng/trimole_hybrid`
-- `/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1`
-- `/mnt/afs/250010150/zhensheng/KPGT`
+- `<PROJECT_ROOT>/trimole_hybrid`
+- `<PROJECT_ROOT>/trimole_ept_swap_v1`
+- `<PROJECT_ROOT>/KPGT`
 
 Local destination:
 - local reviewer code-pull directory

@@ -17,6 +17,7 @@ The tables are intended to support reproducibility, selection-protocol auditing,
 - S2: Selected endpoint recipes and full ablation candidate ledger. S2d provides the compact endpoint overview used in the PDF supplement. File: `Table_S2_endpoint_recipe_and_variant_ledger.csv`
 - S3: Frozen leaderboard/reference and multibaseline comparison data. File: `Table_S3_frozen_reference_snapshot.csv`
 - S4: Formal ablation summary, long-form ablation scores, deltas, and heatmap-ready data. File: `Table_S4_formal_ablation_long.csv`
+- S4e: Naive MLP late-fusion control scores and losses relative to the final fixed task setups. File: `Table_S4e_naive_mlp_late_fusion_control.csv`
 - S5: Figure 2 stratified analysis data by ADMET category and metric type. File: `Table_S5_ADMET_category_summary.csv`
 - S6: Extended molecule-level official-test case examples retained as supplementary audit material. File: `Table_S6_extended_official_test_case_examples.csv`
 - S7: Main Figure 4 two-case sensitivity audit with exact/proxy status. File: `Table_S7_Figure4_two_case_sensitivity_audit.csv`

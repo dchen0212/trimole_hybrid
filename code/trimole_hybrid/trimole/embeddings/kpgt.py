@@ -21,12 +21,12 @@ def _default_kpgt_python() -> str:
     env_override = os.environ.get("KPGT_PYTHON", "")
     return _pick_first_existing(
         env_override,
-        "/mnt/afs/250010150/envs/kpgt/bin/python",
+        "<ENV_ROOT>/kpgt/bin/python",
     )
 
 
 def _default_kpgt_path() -> str:
-    return os.environ.get("KPGT_PATH", "/mnt/afs/250010150/zhensheng/KPGT")
+    return os.environ.get("KPGT_PATH", "<PROJECT_ROOT>/KPGT")
 
 
 DEFAULT_KPGT_PYTHON = _default_kpgt_python()

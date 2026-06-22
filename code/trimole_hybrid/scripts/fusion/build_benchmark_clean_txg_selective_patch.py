@@ -3,7 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 
 base_csv = ROOT / "results/model_log/benchmark_clean_rerun/run_20260415_2016/results_official_metrics.csv"
 search_csv = ROOT / "results/model_log/txg_weight_search_benchmark_clean/txg_weight_search_benchmark_clean_summary.csv"

@@ -7,7 +7,7 @@ import subprocess
 import pandas as pd
 import math
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 OUT_ROOT = PROJECT / "results" / "model_log" / "bbb_dili_refine_v2"
 OUT_ROOT.mkdir(parents=True, exist_ok=True)
 

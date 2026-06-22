@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-root = Path("/mnt/afs/250010150/zhensheng/trimole")
+root = Path("<PROJECT_ROOT>/trimole")
 
 gnn_path = root / "results/model_log/gnn_v2_22tasks/gnn_v2_22tasks_agg.csv"
 main_path = root / "results/model_log/final_validation_selected_submission/final_validation_selected_submission.csv"

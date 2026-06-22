@@ -1,0 +1,23 @@
+Dataset,name,median_mw,mw_group,rank_num,rank_bucket
+TDC.LD50,LD50,163.264,Median MW <300 Da,5,Top-5
+TDC.AqSol,AqSol,169.093,Median MW <300 Da,1,Top-1
+TDC.AMES,AMES,186.339,Median MW <300 Da,1,Top-1
+TDC.HIA,HIA,284.344,Median MW <300 Da,1,Top-1
+TDC.DILI,DILI,290.323,Median MW <300 Da,6,Top-10
+TDC.CYP3A4-S,CYP3A4-S,293.37,Median MW <300 Da,1,Top-1
+TDC.Bioav,Bioav,299.802,Median MW <300 Da,21,Rank >10
+TDC.BBB,BBB,306.408,Median MW >=300 Da,1,Top-1
+TDC.CYP2D6-S,CYP2D6-S,307.339,Median MW >=300 Da,1,Top-1
+TDC.CYP2C9-S,CYP2C9-S,310.437,Median MW >=300 Da,2,Top-5
+TDC.CYP2C9-I,CYP2C9-I,339.472,Median MW >=300 Da,8,Top-10
+TDC.Half_Life,Half-Life,340.423,Median MW >=300 Da,7,Top-10
+TDC.CYP3A4-I,CYP3A4-I,341.316,Median MW >=300 Da,4,Top-5
+TDC.hERG,hERG,343.217,Median MW >=300 Da,6,Top-10
+TDC.VD,VD,346.945,Median MW >=300 Da,3,Top-5
+TDC.Pgp,Pgp,347.798,Median MW >=300 Da,1,Top-1
+TDC.CYP2D6-I,CYP2D6-I,351.461,Median MW >=300 Da,4,Top-5
+TDC.Caco2,Caco2,363.502,Median MW >=300 Da,5,Top-5
+TDC.Lipo,Lipo,375.934,Median MW >=300 Da,4,Top-5
+TDC.PPBR,PPBR,402.966,Median MW >=300 Da,1,Top-1
+TDC.CL-Hepa,CL-Hepa,423.742,Median MW >=300 Da,1,Top-1
+TDC.CL-Micro,CL-Micro,425.082,Median MW >=300 Da,1,Top-1

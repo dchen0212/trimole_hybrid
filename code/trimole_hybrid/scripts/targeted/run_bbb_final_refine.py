@@ -7,7 +7,7 @@ import subprocess
 import pandas as pd
 import math
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 OUT_ROOT = PROJECT / "results" / "model_log" / "bbb_final_refine"
 
 TASK = "bbb_martins"

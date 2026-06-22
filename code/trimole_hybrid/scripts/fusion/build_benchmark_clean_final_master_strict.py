@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT_DIR = ROOT / "results/model_log/benchmark_clean_rerun"
 
 BASE_PATH = OUT_DIR / "run_20260415_2016/results_official_metrics.csv"

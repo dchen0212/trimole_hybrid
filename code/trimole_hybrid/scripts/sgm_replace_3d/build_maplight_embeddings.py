@@ -8,7 +8,7 @@ import pandas as pd
 import sys
 
 # 用官方 MapLight 仓库里的特征构造
-MAPLIGHT_ROOT = Path("/mnt/afs/250010150/zhensheng/trimole/external/MapLight-TDC")
+MAPLIGHT_ROOT = Path("<PROJECT_ROOT>/trimole/external/MapLight-TDC")
 sys.path.insert(0, str(MAPLIGHT_ROOT))
 
 from maplight import get_fingerprints  # noqa

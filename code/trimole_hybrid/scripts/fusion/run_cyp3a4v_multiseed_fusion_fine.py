@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics import average_precision_score
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 TASK = "cyp3a4_veith"
 OUT = ROOT / "results/model_log/cyp3a4v_multiseed_fusion_fine"
 OUT.mkdir(parents=True, exist_ok=True)

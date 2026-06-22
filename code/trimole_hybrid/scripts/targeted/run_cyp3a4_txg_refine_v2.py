@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import average_precision_score
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT_DIR = ROOT / "results/model_log/cyp3a4_txg_refine_v2"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 

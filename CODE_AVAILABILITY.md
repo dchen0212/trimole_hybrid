@@ -1,6 +1,6 @@
 # Code and Artifact Availability
 
-This repository contains the source code, supplementary tables and lightweight audit material supporting the Trimole-Hybrid ADMET manuscript.
+This repository contains the source code, Supplementary Information files, supplementary tables and lightweight audit material supporting the Trimole-Hybrid ADMET manuscript.
 
 ## Public repository
 
@@ -14,7 +14,7 @@ The repository is currently private and can be made public after license and art
 
 - Source code for molecular representation wrappers, fusion models, endpoint heads, prediction-level ensembles and audit scripts.
 - Supplementary tables and summary-level formal benchmark, ablation, endpoint-selection and case-study audits.
-- Supplementary tables used by the manuscript.
+- Supplementary Information source/PDF, supplementary figures and supplementary tables used by the manuscript.
 
 ## External dependencies
 

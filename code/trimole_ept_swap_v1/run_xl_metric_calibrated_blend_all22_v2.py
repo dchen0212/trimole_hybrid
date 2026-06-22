@@ -13,7 +13,7 @@ from sklearn.isotonic import IsotonicRegression
 import cv_selected_prediction_ensemble_builder_fast_v2 as base
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 RESULTS = REPO / "results_strict"
 OUT_ROOT = RESULTS / "xl_v4_metric_calibrated_blend_all22_v2"
 

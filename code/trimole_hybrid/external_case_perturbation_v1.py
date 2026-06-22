@@ -13,8 +13,8 @@ import numpy as np
 import pandas as pd
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
-EPT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
+EPT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 MAIN_OUT = ROOT / "results_strict" / "external_case_perturbation_v1"
 ALY_OUT = ROOT / "results_strict" / "alyftrek_minimol_trimole_case_v1"
 PGP_RECON_OUT = ALY_OUT / "exact_reconstructed_pgp_v36"

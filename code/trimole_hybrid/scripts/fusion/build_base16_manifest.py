@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 final_p = ROOT / "results/model_log/benchmark_clean_rerun/benchmark_clean_final_master_strict.csv"
 out_p = ROOT / "results/model_log/benchmark_clean_rerun/base16_manifest.csv"
 

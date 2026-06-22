@@ -12,7 +12,7 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score, average_precision_score, accuracy_score, mean_absolute_error, mean_squared_error
 from scipy.stats import spearmanr
 
-PROJECT_ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT_ROOT = Path("<PROJECT_ROOT>/trimole")
 DATA_ROOT = PROJECT_ROOT / "data/data_benchmark"
 RUN_ROOT = PROJECT_ROOT / "results/model_log/boost_round2"
 BASELINE_FILE = PROJECT_ROOT / "results/model_log/final_best_of_all_22_v5_selected_with_config.csv"

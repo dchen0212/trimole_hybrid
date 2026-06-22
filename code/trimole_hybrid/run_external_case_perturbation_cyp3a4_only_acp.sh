@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/afs/250010150/zhensheng/trimole_hybrid
+cd <PROJECT_ROOT>/trimole_hybrid
 
-PY="${PY:-/mnt/afs/250010150/envs/trimole/bin/python}"
+PY="${PY:-<ENV_ROOT>/trimole/bin/python}"
 OUT="results_strict/external_case_perturbation_v1"
 
 echo "[start-cyp3a4-only] $(date)"

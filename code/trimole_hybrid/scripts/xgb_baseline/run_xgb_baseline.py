@@ -20,7 +20,7 @@ from sklearn.metrics import (
 from scipy.stats import spearmanr
 from xgboost import XGBClassifier, XGBRegressor
 
-MAPLIGHT_ROOT = Path("/mnt/afs/250010150/zhensheng/trimole/external/MapLight-TDC")
+MAPLIGHT_ROOT = Path("<PROJECT_ROOT>/trimole/external/MapLight-TDC")
 sys.path.insert(0, str(MAPLIGHT_ROOT))
 from maplight import get_fingerprints  # noqa
 

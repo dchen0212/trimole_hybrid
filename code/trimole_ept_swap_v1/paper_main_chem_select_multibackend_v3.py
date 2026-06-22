@@ -30,7 +30,7 @@ except Exception:
     HAS_CATBOOST = False
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT_ROOT = REPO / "results_strict" / "paper_main_chem_select_multibackend_v3"
 FOCUS_TASKS = [
     "clearance_microsome_az",

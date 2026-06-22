@@ -9,7 +9,7 @@ import numpy as np
 import run_strict_5run_seedwise_prediction_zoo_v1 as zoo
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 STATUS = REPO / "results_strict" / "ept_family_routing_master_v1" / "tdc_current_22_status_v27_from_v10_v23.csv"
 OUT = REPO / "results_strict" / "top1_method_transfer_prediction_zoo_v1"
 

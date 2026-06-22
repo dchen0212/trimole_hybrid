@@ -9,8 +9,8 @@ import numpy as np
 import pandas as pd
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
-EPT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
+EPT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT = ROOT / "results_strict" / "ritlecitinib_matched_replacement_cyp3a4s_v1"
 TASK = "cyp3a4_substrate_carbonmangels"
 SEEDS = [1, 2, 3, 4, 5]

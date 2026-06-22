@@ -10,8 +10,8 @@ import pandas as pd
 from sklearn.metrics import roc_auc_score
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
-EPT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
+EPT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT = ROOT / "results_strict" / "bbb_external_matched_replacement_sweep_v1"
 TASK = "bbb_martins"
 SEEDS = [1, 2, 3, 4, 5]

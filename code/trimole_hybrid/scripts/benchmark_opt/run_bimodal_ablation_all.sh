@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 
-TARGET_ENV="/mnt/afs/250010150/envs/trimole_bench310"
+TARGET_ENV="<ENV_ROOT>/trimole_bench310"
 if [ "${CONDA_PREFIX:-}" != "${TARGET_ENV}" ]; then
   if command -v conda >/dev/null 2>&1; then
     eval "$(conda shell.bash hook)"
@@ -48,7 +48,7 @@ import math
 import subprocess
 import os
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 OUT_ROOT = PROJECT / "results/model_log/ablation_bimodal"
 CFG_CANDIDATES = [
     PROJECT / "results/model_log/final_best_of_all_22_v6_selected_with_config.csv",

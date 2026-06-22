@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASK = "clearance_hepatocyte_az"
 TOP1_REF = 0.536
 

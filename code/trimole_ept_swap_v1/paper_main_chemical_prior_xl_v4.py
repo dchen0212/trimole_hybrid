@@ -16,7 +16,7 @@ import descriptor_sidecar_official_v1 as base
 import paper_main_chem_select_multibackend_v3 as v3
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 OUT_ROOT = REPO / "results_strict" / "paper_main_chemical_prior_xl_v4"
 XL_FOCUS_TASKS = [
     "ames",

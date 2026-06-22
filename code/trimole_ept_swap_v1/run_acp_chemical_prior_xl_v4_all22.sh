@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd /mnt/afs/250010150/zhensheng/trimole_ept_swap_v1
+cd <PROJECT_ROOT>/trimole_ept_swap_v1
 
-PY=/mnt/afs/250010150/envs/trimole_bench310/bin/python
+PY=<ENV_ROOT>/trimole_bench310/bin/python
 OUT=results_strict/paper_main_chemical_prior_xl_v4_all22_32core
 mkdir -p "$OUT"
 

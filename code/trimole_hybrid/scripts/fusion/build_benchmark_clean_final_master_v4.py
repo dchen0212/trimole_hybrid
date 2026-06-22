@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 RERUN_DIR = ROOT / "results/model_log/benchmark_clean_rerun"
 
 SRC = RERUN_DIR / "benchmark_clean_v3_patch.csv"

@@ -5,7 +5,7 @@ from scipy.stats import spearmanr
 from sklearn.linear_model import Ridge, LinearRegression, HuberRegressor
 from sklearn.isotonic import IsotonicRegression
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT = ROOT / "results/model_log/clhepa_stack_push"
 OUT.mkdir(parents=True, exist_ok=True)
 TASK = "clearance_hepatocyte_az"

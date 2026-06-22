@@ -13,7 +13,7 @@ from sklearn.metrics import mean_absolute_error
 import cv_selected_prediction_ensemble_builder_fast_v2 as zoo
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 RESULTS = REPO / "results_strict"
 
 TASKS = {

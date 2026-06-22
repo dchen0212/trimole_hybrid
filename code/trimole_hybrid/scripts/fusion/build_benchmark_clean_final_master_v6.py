@@ -2,7 +2,7 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 RERUN_DIR = ROOT / "results/model_log/benchmark_clean_rerun"
 SPRINT_DIR = ROOT / "results/model_log/txg_weight_search_top1_sprint"
 

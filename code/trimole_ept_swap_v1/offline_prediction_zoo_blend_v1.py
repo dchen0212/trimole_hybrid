@@ -13,7 +13,7 @@ import pandas as pd
 import descriptor_sidecar_official_v1 as base
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 OUT_ROOT = REPO / "results_strict" / "offline_prediction_zoo_blend_v1"
 TASKS = ["clearance_microsome_az", "hia_hou", "pgp_broccatelli"]

@@ -16,7 +16,7 @@ from sklearn.metrics import average_precision_score
 from xgboost import XGBClassifier
 
 
-DEFAULT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+DEFAULT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASK = "cyp2c9_substrate_carbonmangels"
 TOP1_REF = 0.474
 SEEDS = [1, 2, 3, 4, 5]

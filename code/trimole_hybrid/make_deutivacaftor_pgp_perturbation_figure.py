@@ -11,7 +11,7 @@ from rdkit.Chem import AllChem
 from rdkit.Chem.Draw import rdMolDraw2D
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
 INFILE = ROOT / "results_strict" / "pgp_external_matched_replacement_sweep_v1" / "matched_replacement_case_ranking.csv"
 OUTDIR = ROOT / "results_strict" / "pgp_external_matched_replacement_sweep_v1" / "figure"
 

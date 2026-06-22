@@ -13,7 +13,7 @@ import pandas as pd
 from xgboost import XGBRegressor
 
 
-DEFAULT_REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+DEFAULT_REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 TASKS = [
     "clearance_hepatocyte_az",
     "clearance_microsome_az",

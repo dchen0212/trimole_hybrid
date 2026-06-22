@@ -4,7 +4,7 @@ from pathlib import Path
 import re
 import pandas as pd
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 FINAL_CSV = ROOT / "results/model_log/final_validation_selected_submission/final_validation_selected_submission.csv"
 OUT_CSV = ROOT / "results/model_log/final_validation_selected_submission/final_submission_provenance_audit.csv"
 

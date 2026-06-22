@@ -30,7 +30,7 @@ from trimole.training.trainer import (
 )
 
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole_hybrid")
+ROOT = Path("<PROJECT_ROOT>/trimole_hybrid")
 MASTER = ROOT / "results_strict" / "tdc_aligned_22task_table_strict_v1" / "strict_master_writable.csv"
 RUN_ROOT = ROOT / "results_strict" / "task_prior_v1_batch22_seed42" / "run_20260418_1521"
 OUT_ROOT = ROOT / "results_strict" / "trimole_inference_ablation_all22_v1"

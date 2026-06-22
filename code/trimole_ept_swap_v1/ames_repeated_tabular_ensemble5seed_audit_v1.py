@@ -14,7 +14,7 @@ import descriptor_sidecar_official_v1 as base
 import official_sidecar_nested_refit_v1 as nested
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 TASK = "ames"
 TOP1_REF = 0.871

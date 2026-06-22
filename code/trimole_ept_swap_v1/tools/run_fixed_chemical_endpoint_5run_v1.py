@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 for _path in (REPO, REPO / "tools", REPO / "results_strict"):
     if str(_path) not in sys.path:
         sys.path.insert(0, str(_path))

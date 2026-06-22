@@ -7,7 +7,7 @@ from sklearn.metrics import roc_auc_score
 from scipy.stats import spearmanr
 import itertools
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT = ROOT / "results/model_log/top1_calibrated_only"
 OUT.mkdir(parents=True, exist_ok=True)
 

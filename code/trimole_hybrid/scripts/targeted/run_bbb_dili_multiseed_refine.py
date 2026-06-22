@@ -6,7 +6,7 @@ import subprocess
 import pandas as pd
 import math
 
-PROJECT = Path("/mnt/afs/250010150/zhensheng/trimole")
+PROJECT = Path("<PROJECT_ROOT>/trimole")
 OUT_ROOT = PROJECT / "results" / "model_log" / "bbb_dili_multiseed_refine"
 
 # 只保留最值得试的几组

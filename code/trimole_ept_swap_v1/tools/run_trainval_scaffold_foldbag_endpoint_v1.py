@@ -11,7 +11,7 @@ import numpy as np
 import pandas as pd
 
 
-REPO = Path("/mnt/afs/250010150/zhensheng/trimole_ept_swap_v1")
+REPO = Path("<PROJECT_ROOT>/trimole_ept_swap_v1")
 DATA_ROOT = REPO / "data" / "data_benchmark_official_v1"
 MASTER = REPO / "results_strict" / "ept_family_routing_master_v1" / "ept_family_routing_master_v1_patched_v3_5seed.csv"
 OUT_ROOT = REPO / "results_strict" / "trainval_scaffold_foldbag_endpoint_v1"

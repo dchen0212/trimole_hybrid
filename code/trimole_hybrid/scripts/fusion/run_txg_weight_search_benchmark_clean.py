@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics import roc_auc_score, average_precision_score, mean_absolute_error
 
-ROOT = Path("/mnt/afs/250010150/zhensheng/trimole")
+ROOT = Path("<PROJECT_ROOT>/trimole")
 OUT_DIR = ROOT / "results/model_log/txg_weight_search_benchmark_clean"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 

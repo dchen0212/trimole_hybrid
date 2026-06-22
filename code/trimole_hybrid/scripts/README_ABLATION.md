@@ -13,7 +13,7 @@
 ### 运行完整消融实验
 
 ```bash
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 
 # 一键运行所有三个单模态实验
 bash scripts/ablation_single_modality.sh
@@ -29,7 +29,7 @@ bash scripts/ablation_single_modality.sh
 因为实验需要较长时间，建议后台运行：
 
 ```bash
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 nohup bash scripts/ablation_single_modality.sh > ablation.log 2>&1 &
 
 # 查看运行状态
@@ -82,14 +82,14 @@ results/ablation_single_modality/
 如果只想测试某一个模态，可以手动运行：
 
 ```bash
-cd /mnt/afs/250010150/zhensheng/trimole
+cd <PROJECT_ROOT>/trimole
 
-export UNIMOL_WEIGHT_DIR=/mnt/afs/250010150/zhensheng/trimole/data/weights
+export UNIMOL_WEIGHT_DIR=<PROJECT_ROOT>/trimole/data/weights
 export TOKENIZERS_PARALLELISM=false
-export LD_LIBRARY_PATH=/mnt/afs/250010150/envs/kpgt/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=<ENV_ROOT>/kpgt/lib:$LD_LIBRARY_PATH
 
 # 只用ChemBERTa (SMILES)
-/mnt/afs/250010150/envs/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
+<ENV_ROOT>/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
   --data-new ./data/data_new \
   --out ./results/test_chemberta \
   --modalities chemberta \
@@ -98,7 +98,7 @@ export LD_LIBRARY_PATH=/mnt/afs/250010150/envs/kpgt/lib:$LD_LIBRARY_PATH
   --baselines-dir ./results/baselines
 
 # 只用KPGT (Graph)
-/mnt/afs/250010150/envs/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
+<ENV_ROOT>/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
   --data-new ./data/data_new \
   --out ./results/test_kpgt \
   --modalities kpgt \
@@ -107,7 +107,7 @@ export LD_LIBRARY_PATH=/mnt/afs/250010150/envs/kpgt/lib:$LD_LIBRARY_PATH
   --baselines-dir ./results/baselines
 
 # 只用Uni-Mol (3D)
-/mnt/afs/250010150/envs/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
+<ENV_ROOT>/trimole/bin/python -m trimole.pipelines.batch_run_data_new \
   --data-new ./data/data_new \
   --out ./results/test_unimol \
   --modalities unimol \
@@ -158,7 +158,7 @@ COMMON_ARGS="
 如果已经有三个单模态的运行结果，可以直接运行分析脚本：
 
 ```bash
-/mnt/afs/250010150/envs/trimole/bin/python scripts/analyze_ablation_results.py \
+<ENV_ROOT>/trimole/bin/python scripts/analyze_ablation_results.py \
   --chemberta-run ./results/path/to/chemberta_run \
   --kpgt-run ./results/path/to/kpgt_run \
   --unimol-run ./results/path/to/unimol_run \

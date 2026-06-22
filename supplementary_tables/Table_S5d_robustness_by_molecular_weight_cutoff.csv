@@ -1,0 +1,3 @@
+group,n_tasks,top1,top5_only,top10_only,rank_gt10,top1_rate,top5_rate,top10_rate
+Median MW <300 Da,7,4,1,1,1,0.5714285714285714,0.7142857142857143,0.8571428571428571
+Median MW >=300 Da,15,6,6,3,0,0.4,0.8,1.0
