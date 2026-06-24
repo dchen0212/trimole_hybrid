@@ -2,7 +2,7 @@
 
 Before making the repository public:
 
-1. Confirm the final repository URL: `https://github.com/dchen0212/trimole_hybird`.
+1. Confirm the final repository URL: `https://github.com/dchen0212/trimole_hybrid`.
 2. Add the final author list, affiliation and publication citation after acceptance.
 3. Choose a license and replace `LICENSE_PENDING.md` with the final license file.
 4. Confirm that official TDC data, trained weights, cached embeddings and serialized models are not committed.

@@ -6,7 +6,7 @@ This repository contains the source code, Supplementary Information files, suppl
 
 Planned public repository:
 
-- `https://github.com/dchen0212/trimole_hybird`
+- `https://github.com/dchen0212/trimole_hybrid`
 
 The repository is currently private and can be made public after license and artifact-release decisions are finalized.
 
