@@ -51,6 +51,8 @@ external_predictions/
 # KPGT's Python package uses src/data as a module; this is source code, not a dataset.
 !code/KPGT/src/data/
 !code/KPGT/src/data/**
+code/KPGT/src/data/**/__pycache__/
+code/KPGT/src/data/**/*.pyc
 
 # Archive artifacts should be uploaded as GitHub Release assets, not committed.
 *.zip
