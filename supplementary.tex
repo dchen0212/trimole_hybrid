@@ -109,11 +109,13 @@ The selected-configuration ledger records the model family, task configuration, 
 
 \suppnote{Supplementary Note 3: Model Formulation and Task Configuration Matrix}
 
-The main Methods section is short to meet the Bioinformatics length constraint. Here we give the notation used for implementation. For task $t$, let $D_t^{\mathrm{train}}$, $D_t^{\mathrm{val}}$ and $D_t^{\mathrm{test}}$ denote the official training, validation and test splits. Model development used
+The main Methods section is short to meet the Bioinformatics length constraint. Here we give the notation used for implementation. For task $t$, let $D_t^{\mathrm{train}}$, $D_t^{\mathrm{val}}$ and $D_t^{\mathrm{test}}$ denote the official training, validation and test splits. Candidate parameters were fitted on $D_t^{\mathrm{train}}$ (or on inner scaffold folds formed without $D_t^{\mathrm{test}}$), and candidate configurations were ranked on $D_t^{\mathrm{val}}$. Only after a configuration had been frozen was it refitted, where applicable, on
 \begin{equation}
-  D_t^{\mathrm{dev}} = D_t^{\mathrm{train}} \cup D_t^{\mathrm{val}},
+  D_t^{\mathrm{refit}} = D_t^{\mathrm{train}} \cup D_t^{\mathrm{val}}.
 \end{equation}
-whereas $D_t^{\mathrm{test}}$ was used only after the task-specific configuration had been fixed. The same rule was used for model-family choice, blend-weight choice, seed choice, case-study promotion and ablation design.
+The refit did not reuse $D_t^{\mathrm{val}}$ as an early-stopping set. The official test set was then evaluated once for the frozen configuration. Thus, $D_t^{\mathrm{val}}$ was not simultaneously part of candidate fitting and candidate ranking, and $D_t^{\mathrm{test}}$ was not used for model-family choice, blend-weight choice or seed choice.
+
+For family-transfer candidates, molecular identities were compared across tasks using the connectivity block of an RDKit-generated InChIKey. During candidate selection for target task $t$, pooled source-training rows matching any molecule in $D_t^{\mathrm{val}}$ or $D_t^{\mathrm{test}}$ were removed. During final refitting, pooled source training/validation rows matching any molecule in $D_t^{\mathrm{test}}$ were removed. The overlap audit reports pre-filter and post-filter row counts without publishing test-molecule identities.
 
 For molecule $x_i$, the candidate models used the following molecular representations:
 \begin{equation}
@@ -160,7 +162,7 @@ Task-specific selection used validation data only. Let $\mathcal{C}_t$ denote th
   \arg\max_{c \in \mathcal{C}_t}
   S_t^{\mathrm{val}}\!\left(c;D_t^{\mathrm{val}}\right),
 \end{equation}
-where $S_t^{\mathrm{val}}$ is the official task metric after applying the appropriate metric direction. After selection, $c_t^{\ast}$ was fixed and evaluated on the official test split to obtain the final reported score,
+where $S_t^{\mathrm{val}}$ is the official task metric after applying the appropriate metric direction. After selection and optional refitting, $c_t^{\ast}$ was fixed and evaluated on the official test split to obtain the final reported score,
 \begin{equation}
   S_t^{\mathrm{test}}
   =

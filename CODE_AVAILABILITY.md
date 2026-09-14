@@ -4,11 +4,11 @@ This repository contains the source code, Supplementary Information files, suppl
 
 ## Public repository
 
-Planned public repository:
+The public development repository is:
 
 - `https://github.com/dchen0212/trimole_hybrid`
 
-The repository is currently private and can be made public after license and artifact-release decisions are finalized.
+An archival DOI snapshot is not yet available. It must be created for the revision after the leakage-controlled reruns, manuscript-facing audit artifacts and license have been finalized.
 
 ## Included artifacts
 
@@ -26,4 +26,4 @@ For reviewer inspection, attach the full lightweight server-audit package to a G
 
 - `trimole_hybrid_server_code_pull_20260524.zip`
 
-Before public release, upload the local release asset with this filename to a GitHub Release.
+Do not treat the historical archive as the revised formal result bundle. Create a new release asset only after the leakage-controlled reruns and provenance checks are complete, then archive that exact release with Zenodo or an equivalent DOI-granting service.

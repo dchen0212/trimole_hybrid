@@ -38,11 +38,21 @@ The code package contains more than the KPGT graph branch:
 
 See `docs/MODEL_FAMILY_INDEX.md` for exact paths.
 
+## Leakage-Controlled Family Transfer
+
+The revised family-transfer protocol is implemented in:
+
+- `code/trimole_ept_swap_v1/tools/run_family_transfer_leakage_safe_v2.py`
+- `code/trimole_ept_swap_v1/tools/audit_family_transfer_overlap_v1.py`
+- `docs/FAMILY_TRANSFER_LEAKAGE_CONTROL.md`
+
+For each target, cross-task training rows that overlap the target holdout at the connectivity-InChIKey level are excluded. Candidate ranking is validation-only, boosting rounds are frozen before final refitting, and the official test metric is computed only for the selected candidate. The historical pooled-family `v1` scripts are retained for provenance but are blocked by default and must not be used for revised manuscript results.
+
 ## Data
 
 The official ADMET benchmark data are available from Therapeutics Data Commons (TDC). This repository does not redistribute official TDC datasets or local data copies.
 
-Formal manuscript results used the official TDC ADMET benchmark splits. Historical exploratory files may contain old path names or comments, but the submitted benchmark, ablation and case-study reporting are documented in the strict audit tables and supplementary files.
+Formal manuscript results used the official TDC ADMET benchmark splits. Historical exploratory files may contain old path names or comments. Revised family-transfer claims must be updated only after the leakage-controlled `v2` runs and their overlap/provenance outputs have been checked.
 
 ## Reproducibility Boundary
 
@@ -79,4 +89,4 @@ Citation details will be updated after publication.
 
 ## License
 
-License terms should be finalized before public release. See `LICENSE_PENDING.md`.
+License terms must be finalized before the archival DOI release. See `LICENSE_PENDING.md`.

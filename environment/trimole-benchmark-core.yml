@@ -1,0 +1,17 @@
+name: trimole_bench310
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pip
+  - pip:
+      - numpy==2.2.6
+      - pandas==2.3.3
+      - scikit-learn==1.7.2
+      - xgboost==3.2.0
+      - rdkit==2026.3.1
+      - torch==2.5.1
+
+# CUDA 12.1 was used for the recorded formal environment. Select the PyTorch
+# wheel/channel appropriate for the target host rather than relying on this
+# platform-neutral file to install a CUDA runtime.

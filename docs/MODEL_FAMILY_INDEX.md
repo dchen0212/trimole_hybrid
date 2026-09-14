@@ -94,8 +94,10 @@ The sidecar and prediction-zoo scripts include classical model heads such as XGB
 - `trimole_ept_swap_v1/descriptor_sidecar_official_v2.py`
 - `trimole_ept_swap_v1/tools/run_cyp2c9_substrate_seedmatched_xgb_grid_v2.py`
 - `trimole_ept_swap_v1/tools/run_cyp3a4_substrate_clean_backend_expansion_v1.py`
-- `trimole_ept_swap_v1/tools/run_clearance_pooled_family_xgb_v1.py`
-- `trimole_ept_swap_v1/tools/run_cyp_substrate_pooled_family_xgb_v1.py`
+- `code/trimole_ept_swap_v1/tools/run_family_transfer_leakage_safe_v2.py` (formal revised family-transfer entry point)
+- `code/trimole_ept_swap_v1/tools/audit_family_transfer_overlap_v1.py` (cross-task molecular-overlap audit)
+- `code/trimole_ept_swap_v1/tools/run_clearance_pooled_family_xgb_v1.py` (historical protocol; blocked by default)
+- `code/trimole_ept_swap_v1/tools/run_cyp_substrate_pooled_family_xgb_v1.py` (historical protocol; blocked by default)
 - `trimole_hybrid/scripts/fusion/run_tx_stacking_valid.py`
 - `trimole_hybrid/scripts/fusion/run_top4_targeted_router.py`
 

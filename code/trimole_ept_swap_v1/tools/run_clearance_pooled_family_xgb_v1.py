@@ -1,3 +1,10 @@
+"""Historical clearance-family experiment retained for provenance.
+
+Do not use this v1 protocol for the revised manuscript. It computes test scores
+for every candidate and does not remove cross-task molecular overlap. Use
+``run_family_transfer_leakage_safe_v2.py --family clearance`` instead.
+"""
+
 from __future__ import annotations
 
 import argparse
@@ -32,6 +39,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--out-root", default="")
     p.add_argument("--n-jobs", type=int, default=8)
     p.add_argument("--force", action="store_true")
+    p.add_argument("--allow-historical-protocol", action="store_true")
     return p.parse_args()
 
 
@@ -228,6 +236,11 @@ def pooled_xy(
 
 def main() -> None:
     args = parse_args()
+    if not args.allow_historical_protocol:
+        raise SystemExit(
+            "This historical v1 protocol is blocked for formal use. Run "
+            "run_family_transfer_leakage_safe_v2.py --family clearance instead."
+        )
     repo = Path(args.repo)
     data_root = Path(args.data_root) if args.data_root else repo / "data" / "data_benchmark_official_v1"
     out_root = Path(args.out_root) if args.out_root else repo / "results_strict" / "clearance_pooled_family_xgb_v1"

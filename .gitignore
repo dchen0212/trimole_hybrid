@@ -48,6 +48,10 @@ data_benchmark*/
 admet_group/
 external_predictions/
 
+# KPGT's Python package uses src/data as a module; this is source code, not a dataset.
+!code/KPGT/src/data/
+!code/KPGT/src/data/**
+
 # Archive artifacts should be uploaded as GitHub Release assets, not committed.
 *.zip
 *.tar
