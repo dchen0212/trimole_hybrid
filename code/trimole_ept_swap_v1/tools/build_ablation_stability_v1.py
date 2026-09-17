@@ -148,6 +148,18 @@ def main() -> None:
     args.out_root.mkdir(parents=True, exist_ok=False)
     ranked.to_csv(args.out_root / "ablation_normalized_rank_loss.csv", index=False)
     stability.to_csv(args.out_root / "validation_selection_stability.csv", index=False)
+    combined = pd.concat(
+        [
+            ranked.assign(record_type="ablation_rank_loss"),
+            stability.assign(record_type="validation_selection_stability"),
+        ],
+        ignore_index=True,
+        sort=False,
+    )
+    first = ["record_type", "task", "metric"]
+    combined[first + [column for column in combined.columns if column not in first]].to_csv(
+        args.out_root / "Table_S23_ablation_selection_stability.csv", index=False
+    )
     (args.out_root / "provenance.json").write_text(
         json.dumps(
             {
