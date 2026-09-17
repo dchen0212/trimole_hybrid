@@ -32,6 +32,18 @@ class AblationStabilityTest(unittest.TestCase):
         weak = result[result.variant == "weak"]
         self.assertTrue((weak.normalized_rank_loss == 1.0).all())
 
+    def test_missing_scores_are_excluded_from_rank_denominator(self) -> None:
+        frame = pd.DataFrame(
+            [
+                {"task": "auc", "variant": "full_v36_final", "metric": "AUROC", "score_mean": 0.9},
+                {"task": "auc", "variant": "weak", "metric": "AUROC", "score_mean": 0.7},
+                {"task": "auc", "variant": "missing", "metric": "AUROC", "score_mean": None},
+            ]
+        )
+        result = STABILITY.normalized_rank_loss(frame)
+        self.assertEqual(len(result), 2)
+        self.assertEqual(result.n_ranked_variants.unique().tolist(), [2])
+
 
 if __name__ == "__main__":
     unittest.main()

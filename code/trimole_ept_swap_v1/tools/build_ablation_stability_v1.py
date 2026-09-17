@@ -15,6 +15,7 @@ from run_paired_bootstrap_v1 import load_prediction, load_test_labels, metric_va
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ablation-table", type=Path, required=True)
+    parser.add_argument("--score-corrections", type=Path)
     parser.add_argument("--selection-scores", type=Path, required=True)
     parser.add_argument("--data-root", type=Path, required=True)
     parser.add_argument("--out-root", type=Path, required=True)
@@ -33,6 +34,9 @@ def normalized_rank_loss(
 ) -> pd.DataFrame:
     rows: list[dict[str, object]] = []
     for task, group in frame.groupby(task_col, sort=True):
+        group = group[group[score_col].notna()].copy()
+        if group.empty:
+            raise ValueError(f"no finite ablation scores for {task}")
         metrics = group[metric_col].dropna().unique().tolist()
         if len(metrics) != 1:
             raise ValueError(f"expected one metric for {task}, found {metrics}")
@@ -136,6 +140,24 @@ def main() -> None:
     ablation = pd.read_csv(args.ablation_table)
     score_col = "score_mean" if "score_mean" in ablation else "ablation_score_mean"
     variant_col = "variant" if "variant" in ablation else "ablation"
+    if args.score_corrections:
+        corrections = pd.read_csv(args.score_corrections)
+        required = {"task", variant_col, score_col}
+        missing = required - set(corrections.columns)
+        if missing:
+            raise ValueError(f"score corrections missing columns: {sorted(missing)}")
+        for correction in corrections.to_dict("records"):
+            mask = (ablation.task == correction["task"]) & (
+                ablation[variant_col] == correction[variant_col]
+            )
+            if mask.sum() != 1:
+                raise ValueError(
+                    f"correction must match one row: {correction['task']} / "
+                    f"{correction[variant_col]}"
+                )
+            for column, value in correction.items():
+                if column in ablation.columns and column not in {"task", variant_col}:
+                    ablation.loc[mask, column] = value
     ranked = normalized_rank_loss(
         ablation, variant_col=variant_col, score_col=score_col
     )
@@ -165,6 +187,7 @@ def main() -> None:
             {
                 "created_utc": datetime.now(timezone.utc).isoformat(),
                 "ablation_table": str(args.ablation_table),
+                "score_corrections": str(args.score_corrections) if args.score_corrections else None,
                 "selection_scores": str(args.selection_scores),
                 "bootstrap_replicates_requested": args.bootstrap_replicates,
                 "seed": args.seed,
