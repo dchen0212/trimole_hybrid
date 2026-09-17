@@ -197,7 +197,7 @@ def select_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], 
     )
     selection = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "git_commit": git_commit(),
+        "git_commit_at_start": args.git_commit_at_start,
         "policy": "train-only base fitting; five-seed validation means; no test labels read",
         "modalities": list(MODALITIES),
         "seeds": args.seeds,
@@ -281,7 +281,7 @@ def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
     pd.DataFrame(manifest_rows).to_csv(phase_root / "prediction_manifest.csv", index=False)
     provenance = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "git_commit": git_commit(),
+        "git_commit_at_start": args.git_commit_at_start,
         "policy": "selection frozen before final train+valid refit; test labels not read",
         "selection_file": str(args.out_root / "selection" / "selected_controls.json"),
         "folds": args.folds,
@@ -310,12 +310,13 @@ def score_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
     )
     summary.to_csv(phase_root / "test_summary.csv", index=False)
     (phase_root / "provenance.json").write_text(
-        json.dumps({"created_utc": datetime.now(timezone.utc).isoformat(), "git_commit": git_commit(), "policy": "test labels first read in score phase"}, indent=2) + "\n"
+        json.dumps({"created_utc": datetime.now(timezone.utc).isoformat(), "git_commit_at_start": args.git_commit_at_start, "policy": "test labels first read in score phase"}, indent=2) + "\n"
     )
 
 
 def main() -> None:
     args = parse_args()
+    args.git_commit_at_start = git_commit()
     metadata = read_metadata(args.task_metadata)
     tasks = args.tasks or sorted(metadata)
     unknown = sorted(set(tasks) - set(metadata))
