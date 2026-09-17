@@ -62,6 +62,16 @@ class ControlledBaselineTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "non-finite"):
                 BASELINES.write_prediction(path, np.array([0.1, np.inf]))
 
+    def test_top3_and_uniform_use_identical_canonical_average(self) -> None:
+        base = {
+            "chemberta": np.array([0.1, 0.7, 0.3]),
+            "kpgt": np.array([0.4, 0.2, 0.8]),
+            "ept": np.array([0.9, 0.5, 0.6]),
+        }
+        top3 = BASELINES.mean_selected_modalities(base, ["ept", "kpgt", "chemberta"])
+        uniform = BASELINES.mean_selected_modalities(base, BASELINES.MODALITIES)
+        np.testing.assert_array_equal(top3, uniform)
+
 
 if __name__ == "__main__":
     unittest.main()

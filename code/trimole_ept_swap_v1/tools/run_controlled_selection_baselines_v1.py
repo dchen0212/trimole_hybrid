@@ -243,6 +243,21 @@ def oof_and_test(
     return oof, test_prediction
 
 
+def mean_selected_modalities(
+    base_predictions: dict[str, np.ndarray], selected_modalities: list[str] | tuple[str, ...]
+) -> np.ndarray:
+    """Average selected modalities in canonical order to avoid tie-breaking drift."""
+
+    selected = set(selected_modalities)
+    unknown = selected.difference(MODALITIES)
+    if unknown:
+        raise ValueError(f"unknown modalities: {sorted(unknown)}")
+    ordered = [name for name in MODALITIES if name in selected]
+    if not ordered:
+        raise ValueError("at least one modality is required")
+    return np.mean([base_predictions[name] for name in ordered], axis=0)
+
+
 def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], tasks: list[str]) -> None:
     phase_root = args.out_root / "final"
     if phase_root.exists():
@@ -287,13 +302,9 @@ def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
             predictions = {
                 "global_single": base_test[selection["global_single"]],
                 "per_task_single": base_test[selection["per_task_single"][task]],
-                "validation_top2_average": np.mean(
-                    [base_test[name] for name in task_ranking[:2]], axis=0
-                ),
-                "validation_top3_average": np.mean(
-                    [base_test[name] for name in task_ranking[:3]], axis=0
-                ),
-                "uniform_average": np.mean(list(base_test.values()), axis=0),
+                "validation_top2_average": mean_selected_modalities(base_test, task_ranking[:2]),
+                "validation_top3_average": mean_selected_modalities(base_test, task_ranking[:3]),
+                "uniform_average": mean_selected_modalities(base_test, MODALITIES),
                 "oof_stacking": stacking_prediction,
             }
             for control, prediction in predictions.items():
