@@ -2,7 +2,11 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import math
+import subprocess
+import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
@@ -207,6 +211,17 @@ def write_csv(path: Path, rows: list[dict[str, object]]) -> None:
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writeheader()
         writer.writerows(rows)
+
+
+def git_commit(repo: Path) -> str:
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    return result.stdout.strip() if result.returncode == 0 else "unavailable"
 
 
 def load_task_meta(status: Path) -> dict[str, dict[str, object]]:
@@ -458,6 +473,18 @@ def main() -> None:
 
     write_csv(out_root / "summary.csv", summary)
     write_csv(out_root / "per_seed_scores.csv", per_seed_rows)
+    provenance = {
+        "created_utc": datetime.now(timezone.utc).isoformat(),
+        "command": " ".join(sys.argv),
+        "git_commit": git_commit(repo),
+        "code_root": str(repo.resolve()),
+        "results_root": str(results.resolve()),
+        "data_root": str(data_root.resolve()),
+        "status_file": str(status.resolve()),
+        "tasks": list(args.tasks),
+        "policy": "materialize frozen v29 recipes without weight or model search",
+    }
+    (out_root / "provenance.json").write_text(json.dumps(provenance, indent=2) + "\n")
     print(out_root / "summary.csv", flush=True)
 
 
