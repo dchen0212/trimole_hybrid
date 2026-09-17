@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from concurrent.futures import ProcessPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -23,6 +24,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--reference-model", default="trimole_hybrid")
     parser.add_argument("--bootstrap-replicates", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=20260917)
+    parser.add_argument("--n-jobs", type=int, default=1)
     return parser.parse_args()
 
 
@@ -138,10 +140,65 @@ def aggregate_predictions(
     return np.mean(np.stack(predictions, axis=0), axis=0), seeds
 
 
+def task_comparisons(
+    task: str,
+    task_rows: pd.DataFrame,
+    data_root: Path,
+    reference_model: str,
+    replicates: int,
+    seed: int,
+) -> list[dict[str, object]]:
+    metrics = task_rows.metric.unique().tolist()
+    if len(metrics) != 1:
+        raise ValueError(f"multiple metrics for {task}: {metrics}")
+    metric = str(metrics[0])
+    labels = load_test_labels(data_root, task)
+    reference_rows = task_rows[task_rows.model == reference_model]
+    if reference_rows.empty:
+        raise ValueError(f"missing reference model for {task}")
+    reference_prediction, reference_seeds = aggregate_predictions(reference_rows, labels)
+    rng = np.random.default_rng(seed)
+    output_rows: list[dict[str, object]] = []
+    for comparator_model, comparator_rows in task_rows[
+        task_rows.model != reference_model
+    ].groupby("model", sort=True):
+        comparator_prediction, comparator_seeds = aggregate_predictions(
+            comparator_rows, labels
+        )
+        result = paired_bootstrap(
+            labels,
+            reference_prediction,
+            comparator_prediction,
+            metric,
+            replicates,
+            rng,
+        )
+        output_rows.append(
+            {
+                "task": task,
+                "metric": metric,
+                "reference_model": reference_model,
+                "comparator_model": comparator_model,
+                "reference_seeds": ";".join(map(str, reference_seeds)),
+                "comparator_seeds": ";".join(map(str, comparator_seeds)),
+                **result,
+            }
+        )
+    return output_rows
+
+
+def task_comparisons_job(
+    payload: tuple[str, pd.DataFrame, Path, str, int, int]
+) -> list[dict[str, object]]:
+    return task_comparisons(*payload)
+
+
 def main() -> None:
     args = parse_args()
     if args.bootstrap_replicates < 100:
         raise ValueError("bootstrap-replicates must be at least 100")
+    if args.n_jobs < 1:
+        raise ValueError("n-jobs must be at least 1")
     manifest = pd.read_csv(args.prediction_manifest)
     required = {"task", "metric", "model", "seed", "prediction_file"}
     missing = required - set(manifest.columns)
@@ -150,43 +207,26 @@ def main() -> None:
     if not set(manifest.metric).issubset(SUPPORTED_METRICS):
         raise ValueError("manifest contains unsupported metrics")
 
-    output_rows: list[dict[str, object]] = []
-    rng = np.random.default_rng(args.seed)
-    for task, task_rows in manifest.groupby("task", sort=True):
-        metrics = task_rows.metric.unique().tolist()
-        if len(metrics) != 1:
-            raise ValueError(f"multiple metrics for {task}: {metrics}")
-        metric = str(metrics[0])
-        labels = load_test_labels(args.data_root, str(task))
-        reference_rows = task_rows[task_rows.model == args.reference_model]
-        if reference_rows.empty:
-            raise ValueError(f"missing reference model for {task}")
-        reference_prediction, reference_seeds = aggregate_predictions(reference_rows, labels)
-        for comparator_model, comparator_rows in task_rows[
-            task_rows.model != args.reference_model
-        ].groupby("model", sort=True):
-            comparator_prediction, comparator_seeds = aggregate_predictions(
-                comparator_rows, labels
-            )
-            result = paired_bootstrap(
-                labels,
-                reference_prediction,
-                comparator_prediction,
-                metric,
-                args.bootstrap_replicates,
-                rng,
-            )
-            output_rows.append(
-                {
-                    "task": task,
-                    "metric": metric,
-                    "reference_model": args.reference_model,
-                    "comparator_model": comparator_model,
-                    "reference_seeds": ";".join(map(str, reference_seeds)),
-                    "comparator_seeds": ";".join(map(str, comparator_seeds)),
-                    **result,
-                }
-            )
+    grouped = [(str(task), rows.copy()) for task, rows in manifest.groupby("task", sort=True)]
+    child_seeds = np.random.SeedSequence(args.seed).spawn(len(grouped))
+    payloads = [
+        (
+            task,
+            rows,
+            args.data_root,
+            args.reference_model,
+            args.bootstrap_replicates,
+            int(child_seed.generate_state(1, dtype=np.uint32)[0]),
+        )
+        for (task, rows), child_seed in zip(grouped, child_seeds)
+    ]
+    if args.n_jobs == 1:
+        nested_rows = map(task_comparisons_job, payloads)
+        output_rows = [row for task_rows in nested_rows for row in task_rows]
+    else:
+        with ProcessPoolExecutor(max_workers=args.n_jobs) as executor:
+            nested_rows = executor.map(task_comparisons_job, payloads)
+            output_rows = [row for task_rows in nested_rows for row in task_rows]
 
     results = pd.DataFrame(output_rows)
     if results.empty:
@@ -205,6 +245,8 @@ def main() -> None:
                 "reference_model": args.reference_model,
                 "bootstrap_replicates_requested": args.bootstrap_replicates,
                 "random_seed": args.seed,
+                "parallel_jobs": args.n_jobs,
+                "randomization": "fixed child seed per sorted task; invariant to n_jobs",
                 "delta_definition": "positive means reference model is better",
                 "p_value": "two-sided paired bootstrap with plus-one correction",
                 "multiplicity": "Benjamini-Hochberg across emitted comparisons",

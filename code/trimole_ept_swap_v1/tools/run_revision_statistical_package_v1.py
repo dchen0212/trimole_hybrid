@@ -18,6 +18,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-root", type=Path, required=True)
     parser.add_argument("--bootstrap-replicates", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=20260917)
+    parser.add_argument("--n-jobs", type=int, default=8)
     return parser.parse_args()
 
 
@@ -69,6 +70,8 @@ def main() -> None:
         args.bootstrap_replicates,
         "--seed",
         args.seed,
+        "--n-jobs",
+        args.n_jobs,
     )
     run(
         tools / "build_subgroup_uncertainty_v1.py",
@@ -86,6 +89,8 @@ def main() -> None:
         args.bootstrap_replicates,
         "--seed",
         args.seed,
+        "--n-jobs",
+        args.n_jobs,
     )
     run(
         tools / "combine_s22_outputs_v1.py",
