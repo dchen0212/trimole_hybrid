@@ -115,12 +115,19 @@ def main() -> None:
         if model == "trimole_hybrid":
             candidate_count = int(trimole_counts[task])
             budget = "historical validation-only search; six formal variants audited"
+            prediction_evidence_note = (
+                "five-run aggregate scores archived; one five-model ensemble prediction array archived"
+                if task == "bbb_martins"
+                else "five seed-level prediction arrays archived"
+            )
         elif model == "flaml_automl":
             candidate_count = 4 if metric in CLASSIFICATION_METRICS else 3
             budget = f"{flaml_time:g} seconds and <= {flaml_iter} iterations per task/seed"
+            prediction_evidence_note = "five seed-level prediction arrays generated in revision"
         else:
             candidate_count = 3
             budget = "fixed three-view pool; fixed linear learner; no adaptive time search"
+            prediction_evidence_note = "five seed-level prediction arrays generated in revision"
         rows.append(
             {
                 **item,
@@ -131,6 +138,7 @@ def main() -> None:
                     "formal audited variants" if model == "trimole_hybrid" else "available estimators/views"
                 ),
                 "selection_budget": budget,
+                "prediction_evidence_note": prediction_evidence_note,
             }
         )
 
@@ -146,6 +154,7 @@ def main() -> None:
             "candidate_count",
             "candidate_count_definition",
             "selection_budget",
+            "prediction_evidence_note",
         ],
         as_index=False,
     ).agg(
