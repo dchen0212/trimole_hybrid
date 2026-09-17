@@ -5,6 +5,10 @@ BIOINF-2026-2212 major revision. It contains source code, executable tests,
 environment specifications, frozen task/configuration manifests, aggregate
 results and leakage/statistical audit summaries.
 
+Original project code and revision workflows are released under Apache-2.0.
+Bundled third-party components retain their original licenses and notices as
+documented in `NOTICE` and the license files located with those components.
+
 It does not redistribute official TDC datasets, unrestricted sample-level
 labels, trained model binaries, cached embeddings, NumPy arrays or serialized
 estimators. Dataset acquisition and split provenance are documented by the

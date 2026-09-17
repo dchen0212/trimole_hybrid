@@ -5,7 +5,7 @@ statistical analyses and supplementary tables are frozen.
 
 1. Confirm the final repository URL: `https://github.com/dchen0212/trimole_hybrid`.
 2. Confirm the revised title and author order in `CITATION.cff` and `.zenodo.json`.
-3. Choose a license and replace `LICENSE_PENDING.md` with the final license file.
+3. Confirm the Apache-2.0 top-level license and retained third-party notices in `NOTICE`.
 4. Run the full test suite and record the command, commit and result in the release notes.
 5. Confirm that official TDC data, trained weights, cached embeddings, serialized models and unrestricted sample-level labels are not committed or archived.
 6. Rebuild S19--S23 and verify their provenance JSON/checksum files against the frozen commit.

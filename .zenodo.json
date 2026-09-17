@@ -1,6 +1,7 @@
 {
   "title": "Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction",
   "upload_type": "software",
+  "license": "Apache-2.0",
   "description": "Frozen source code, environment specifications, benchmark manifests and lightweight audit outputs supporting the BIOINF-2026-2212 revision.",
   "creators": [
     {"name": "Luo, Zhensheng"},
