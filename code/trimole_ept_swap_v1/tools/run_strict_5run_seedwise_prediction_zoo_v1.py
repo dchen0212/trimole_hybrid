@@ -288,7 +288,7 @@ def build_streams(task: str) -> list[GroupStream]:
                 continue
             if row.get("trainval_pred_file"):
                 name = f"{rel}:{row.get('candidate','')}/{row.get('selected_variant','')}/w{row.get('weight_sidecar','')}"
-                s = make_single_replicated(task, name, Path(row["trainval_pred_file"]), Path(row["test_pred_file"]))
+                s = make_single_replicated(task, name, paths[0], paths[1])
             else:
                 name = f"{rel}:{row.get('candidate','')}/{row.get('loss_profile', row.get('feature_type',''))}"
                 s = make_single_replicated(task, name, paths[0], paths[1])

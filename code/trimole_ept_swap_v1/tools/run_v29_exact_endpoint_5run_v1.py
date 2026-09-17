@@ -253,6 +253,93 @@ def metric_gap(task: str, value: float) -> float:
     return value - ref
 
 
+def official_labels(task: str, split: str) -> np.ndarray:
+    return zoo.official_y(task, split)
+
+
+def label_alignment(source: np.ndarray, official: np.ndarray) -> tuple[str, float]:
+    """Accept raw labels or a positive affine standardization in official order."""
+    source = np.asarray(source, dtype=np.float64)
+    official = np.asarray(official, dtype=np.float64)
+    if source.shape != official.shape:
+        return "length_mismatch", float("inf")
+    if np.allclose(source, official, rtol=1e-6, atol=1e-6):
+        return "raw", float(np.max(np.abs(source - official), initial=0.0))
+    design = np.column_stack([official, np.ones_like(official)])
+    slope, intercept = np.linalg.lstsq(design, source, rcond=None)[0]
+    fitted = slope * official + intercept
+    residual = float(np.max(np.abs(source - fitted), initial=0.0))
+    tolerance = 1e-5 * max(1.0, float(np.max(np.abs(source), initial=0.0)))
+    if slope > 0 and residual <= tolerance:
+        return "positive_affine", residual
+    return "mismatch", residual
+
+
+def validate_stream_labels(
+    task: str, streams: list[zoo.GroupStream]
+) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for stream in streams:
+        for split in ("valid", "test"):
+            official = official_labels(task, split)
+            predictions = getattr(stream, split)
+            if len(predictions) != 5:
+                raise ValueError(
+                    f"expected five {split} predictions for {task}: {stream.name}"
+                )
+            for seed_index, prediction in enumerate(predictions, start=1):
+                status, residual = label_alignment(prediction.y, official)
+                if status not in {"raw", "positive_affine"}:
+                    raise ValueError(
+                        f"label order mismatch for {task} {split} seed group {seed_index}: "
+                        f"{stream.name} ({status}, residual={residual})"
+                    )
+                rows.append(
+                    {
+                        "task": task,
+                        "stream": stream.name,
+                        "split": split,
+                        "seed_group": seed_index,
+                        "label_encoding": status,
+                        "affine_residual": residual,
+                        "source": prediction.source,
+                    }
+                )
+    return rows
+
+
+def evaluate_formula(
+    task: str,
+    streams: list[zoo.GroupStream],
+    mode: str,
+    weights: np.ndarray,
+) -> dict[str, object]:
+    valid_scores: list[float] = []
+    test_scores: list[float] = []
+    for seed_index in range(5):
+        for split, scores in (("valid", valid_scores), ("test", test_scores)):
+            parts = [
+                zoo.transform(getattr(stream, split)[seed_index].pred, mode)
+                for stream in streams
+            ]
+            combined = sum(
+                float(weights[index]) * parts[index] for index in range(len(parts))
+            )
+            scores.append(zoo.score(task, official_labels(task, split), combined))
+    valid_mean = float(np.nanmean(valid_scores))
+    test_mean = float(np.nanmean(test_scores))
+    return {
+        "stream_kinds": " + ".join(stream.kind for stream in streams),
+        "valid_mean": valid_mean,
+        "valid_std": float(np.nanstd(valid_scores, ddof=1)),
+        "valid_scores": ";".join(f"{score:.12f}" for score in valid_scores),
+        "test_mean": test_mean,
+        "test_std": float(np.nanstd(test_scores, ddof=1)),
+        "test_scores": ";".join(f"{score:.12f}" for score in test_scores),
+        "beats_top1_mean": task_beats(task, test_mean),
+    }
+
+
 def recompute_seedbag_average(task: str, streams: list[zoo.GroupStream], mode: str, weights: np.ndarray) -> tuple[float, float]:
     valid_parts = []
     test_parts = []
@@ -264,8 +351,8 @@ def recompute_seedbag_average(task: str, streams: list[zoo.GroupStream], mode: s
     valid_pred = sum(float(weights[i]) * valid_parts[i] for i in range(len(streams)))
     test_pred = sum(float(weights[i]) * test_parts[i] for i in range(len(streams)))
     return (
-        zoo.score(task, streams[0].valid[0].y, valid_pred),
-        zoo.score(task, streams[0].test[0].y, test_pred),
+        zoo.score(task, official_labels(task, "valid"), valid_pred),
+        zoo.score(task, official_labels(task, "test"), test_pred),
     )
 
 
@@ -286,14 +373,7 @@ def write_formula_predictions(
             source_predictions = [
                 getattr(stream, split_name)[seed_index] for stream in streams
             ]
-            y_true = source_predictions[0].y
-            if any(
-                not np.array_equal(y_true, prediction.y)
-                for prediction in source_predictions[1:]
-            ):
-                raise ValueError(
-                    f"label mismatch among {split_name} streams for {task}, seed group {seed_index + 1}"
-                )
+            y_true = official_labels(task, split_name)
             transformed = [zoo.transform(prediction.pred, mode) for prediction in source_predictions]
             combined = sum(
                 float(weights[index]) * transformed[index]
@@ -361,13 +441,27 @@ def main() -> None:
 
     summary: list[dict[str, object]] = []
     per_seed_rows: list[dict[str, object]] = []
+    source_label_rows: list[dict[str, object]] = []
+
+    if out_root.exists():
+        raise FileExistsError(f"refusing to overwrite existing output: {out_root}")
+
+    prepared: dict[str, tuple[list[zoo.GroupStream], list[dict[str, object]]]] = {}
+    for task in args.tasks:
+        recipe = RECIPES[task]
+        streams = zoo.build_streams(task)
+        by_name = {stream.name: stream for stream in streams}
+        missing = [name for name in recipe["models"] if name not in by_name]  # type: ignore[index]
+        if missing:
+            raise FileNotFoundError(f"missing recipe streams for {task}: {missing}")
+        selected_streams = [by_name[name] for name in recipe["models"]]  # type: ignore[index]
+        prepared[task] = (selected_streams, validate_stream_labels(task, selected_streams))
 
     for task in args.tasks:
         recipe = RECIPES[task]
         print("[task]", task, flush=True)
         streams = zoo.build_streams(task)
         by_name = {stream.name: stream for stream in streams}
-        missing = [name for name in recipe["models"] if name not in by_name]  # type: ignore[index]
         fixed_rows = fixed_formal_rows(task, results)
 
         row: dict[str, object] = {
@@ -380,24 +474,16 @@ def main() -> None:
             "recipe_mode": recipe["mode"],
             "recipe_weights": ",".join(f"{float(w):.3f}" for w in recipe["weights"]),  # type: ignore[arg-type]
             "recipe_models": " + ".join(recipe["models"]),  # type: ignore[arg-type]
-            "missing_models": " | ".join(missing),
+            "missing_models": "",
             "n_available_streams": len(streams),
         }
-
-        if missing:
-            row.update({"status": "missing_recipe_stream"})
-            if fixed_rows:
-                row.update(fixed_rows[0])
-            summary.append(row)
-            print("  missing", missing, flush=True)
-            continue
-
-        selected_streams = [by_name[name] for name in recipe["models"]]  # type: ignore[index]
+        selected_streams, label_rows = prepared[task]
+        source_label_rows.extend(label_rows)
         weights = np.asarray(recipe["weights"], dtype=float)  # type: ignore[arg-type]
         mode = str(recipe["mode"])
         n_seed5 = sum(1 for stream in selected_streams if stream.kind == "seed5")
 
-        formal = zoo.eval_combo(task, tuple(selected_streams), mode, weights, lambda_std=1.0)
+        formal = evaluate_formula(task, selected_streams, mode, weights)
         prediction_files = write_formula_predictions(
             task, selected_streams, mode, weights, out_root
         )
@@ -473,6 +559,7 @@ def main() -> None:
 
     write_csv(out_root / "summary.csv", summary)
     write_csv(out_root / "per_seed_scores.csv", per_seed_rows)
+    write_csv(out_root / "source_label_audit.csv", source_label_rows)
     provenance = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "command": " ".join(sys.argv),
