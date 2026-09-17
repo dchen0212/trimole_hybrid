@@ -1,0 +1,20 @@
+{
+  "controlled_mean_normalized_rank_utility": {
+    "per_task_single": 0.22402597402597396,
+    "global_single": 0.24350649350649345,
+    "validation_top2_average": 0.38311688311688313,
+    "flaml_automl": 0.4610389610389611,
+    "uniform_average": 0.5324675324675323,
+    "validation_top3_average": 0.5324675324675323,
+    "oof_stacking": 0.6558441558441559,
+    "trimole_hybrid": 0.9675324675324675
+  },
+  "paired_bootstrap": {
+    "significant_fdr_0_05": 18,
+    "tasks": 22
+  },
+  "subgroups": {
+    "valid_groups": 131,
+    "invalid_groups": 1
+  }
+}
