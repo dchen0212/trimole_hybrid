@@ -66,6 +66,11 @@ SEEDS = (1, 2, 3, 4, 5)
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--family", choices=FAMILIES, required=True)
+    parser.add_argument(
+        "--target",
+        action="append",
+        help="Target endpoint to evaluate; repeat for multiple targets. Defaults to every family task.",
+    )
     parser.add_argument("--repo", type=Path, default=DEFAULT_REPO)
     parser.add_argument("--data-root", type=Path)
     parser.add_argument("--out-root", type=Path)
@@ -90,6 +95,14 @@ def smiles_col(frame: pd.DataFrame) -> str:
         if candidate in lookup:
             return lookup[candidate]
     raise KeyError("SMILES column not found")
+
+
+def read_feature_frame(path: Path, include_labels: bool) -> pd.DataFrame:
+    """Read only label-free test inputs until candidate selection is frozen."""
+    if include_labels:
+        return pd.read_csv(path)
+    header = pd.read_csv(path, nrows=0)
+    return pd.read_csv(path, usecols=[smiles_col(header)])
 
 
 def split_concat(array: np.ndarray, n_train: int, n_valid: int) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
@@ -151,7 +164,9 @@ def load_inputs(
     scales: dict[str, tuple[float, float]] = {}
     for task_index, task in enumerate(tasks):
         frames = {
-            split: pd.read_csv(data_root / task / f"{split}.csv")
+            split: read_feature_frame(
+                data_root / task / f"{split}.csv", include_labels=split != "test"
+            )
             for split in ("train", "valid", "test")
         }
         label = label_col(frames["train"])
@@ -371,6 +386,14 @@ def main() -> None:
     args = parse_args()
     spec = FAMILIES[args.family]
     tasks: list[str] = spec["tasks"]
+    targets = args.target or tasks
+    invalid_targets = sorted(set(targets) - set(tasks))
+    if invalid_targets:
+        raise ValueError(
+            f"targets do not belong to {args.family}: {', '.join(invalid_targets)}"
+        )
+    if len(targets) != len(set(targets)):
+        raise ValueError("target endpoints must not be repeated")
     kind: str = spec["kind"]
     metrics: dict[str, str] = spec["metrics"]
     data_root = args.data_root or args.repo / "data" / "data_benchmark_official_v1"
@@ -395,7 +418,7 @@ def main() -> None:
     removal_audit: list[dict[str, object]] = []
     best_iterations: dict[tuple[str, str, int, int], int] = {}
 
-    for target in tasks:
+    for target in targets:
         metric = metrics[target]
         valid_index = 1
         valid_x_by_feature = {name: features[target][name][valid_index] for name in feature_sets}
@@ -530,6 +553,7 @@ def main() -> None:
     provenance = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "family": args.family,
+        "targets": targets,
         "selection_rule": args.selection_stat,
         "test_policy": "one frozen candidate per target; no test-based candidate ranking",
         "molecule_identity": "RDKit connectivity-level InChIKey first block",

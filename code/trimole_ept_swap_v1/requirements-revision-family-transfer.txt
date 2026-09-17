@@ -1,0 +1,15 @@
+# Python 3.12.3; CPU-only formal revision environment.
+joblib==1.5.2
+numpy==1.26.4
+pandas==2.2.3
+Pillow==12.3.0
+psutil==7.0.0
+python-dateutil==2.9.0.post0
+pytz==2026.3.post1
+rdkit==2024.9.6
+scikit-learn==1.7.1
+scipy==1.15.3
+six==1.17.0
+threadpoolctl==3.6.0
+tzdata==2026.3
+xgboost-cpu==3.0.4

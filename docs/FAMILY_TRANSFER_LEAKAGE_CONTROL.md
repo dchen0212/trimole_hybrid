@@ -33,11 +33,20 @@ Run the two formal family-transfer experiments:
 ```bash
 python tools/run_family_transfer_leakage_safe_v2.py \
   --family cyp_substrate \
-  --data-root data/data_benchmark_official_v1
+  --target cyp3a4_substrate_carbonmangels \
+  --data-root data/data_benchmark_official_v1 \
+  --out-root results_strict/revision_20260917_cyp3a4_substrate_leakage_safe_v2
 
 python tools/run_family_transfer_leakage_safe_v2.py \
   --family clearance \
-  --data-root data/data_benchmark_official_v1
+  --target clearance_hepatocyte_az \
+  --data-root data/data_benchmark_official_v1 \
+  --out-root results_strict/revision_20260917_clearance_hepatocyte_leakage_safe_v2
 ```
+
+The non-target family tasks remain eligible source datasets after molecular
+overlap filtering. The `--target` option limits candidate selection and final
+test scoring to the endpoint used by the manuscript; omitting it preserves the
+all-family-target behavior for separate exploratory work.
 
 The commands must be executed in the recorded formal environment. Do not update manuscript scores until the generated provenance files, overlap audit and selected-only test outputs have been independently checked.
