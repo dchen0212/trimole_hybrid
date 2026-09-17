@@ -1,4 +1,5 @@
 # Python 3.12.3; CPU-only formal revision environment.
+flaml==2.6.0
 joblib==1.5.2
 numpy==1.26.4
 pandas==2.2.3
