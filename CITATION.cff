@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this code or audit package, please cite the associated manuscript."
-title: "A multimodal representation learning platform for accurate molecular ADMET prediction"
+title: "Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction"
 authors:
   - family-names: "Luo"
     given-names: "Zhensheng"
@@ -16,3 +16,4 @@ year: 2026
 repository-code: "https://github.com/dchen0212/trimole_hybrid"
 type: software
 license: "NOASSERTION"
+version: "bioinf-2026-2212-revision"

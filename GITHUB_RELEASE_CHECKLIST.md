@@ -1,16 +1,23 @@
-# GitHub Release Checklist
+# GitHub and Zenodo Release Checklist
 
-Before making the repository public:
+Complete these checks only after the revised manuscript, controlled baselines,
+statistical analyses and supplementary tables are frozen.
 
 1. Confirm the final repository URL: `https://github.com/dchen0212/trimole_hybrid`.
-2. Add the final author list, affiliation and publication citation after acceptance.
+2. Confirm the revised title and author order in `CITATION.cff` and `.zenodo.json`.
 3. Choose a license and replace `LICENSE_PENDING.md` with the final license file.
-4. Confirm that official TDC data, trained weights, cached embeddings and serialized models are not committed.
-5. This public-upload copy already excludes `results_audit/` because some split-level prediction files contain `y_true` labels. Provide those audits only as a private reviewer archive if appropriate.
-6. Upload `trimole_hybrid_server_code_pull_20260524.zip` as a GitHub Release asset rather than committing it to git.
-7. Optionally archive the release on Zenodo and add the DOI to the manuscript and README.
+4. Run the full test suite and record the command, commit and result in the release notes.
+5. Confirm that official TDC data, trained weights, cached embeddings, serialized models and unrestricted sample-level labels are not committed or archived.
+6. Rebuild S19--S23 and verify their provenance JSON/checksum files against the frozen commit.
+7. Run `tools/build_zenodo_archive_v1.py` from a clean checkout. Review its allowlist report and `SHA256SUMS`.
+8. Create a GitHub Release from the same commit and attach the generated Zenodo-ready ZIP.
+9. After explicit author confirmation, upload that exact ZIP to Zenodo and mint the DOI.
+10. Add the DOI to `CITATION.cff`, the README, the manuscript Availability statement and the response letter. Rebuild the final manuscript PDFs without changing experimental files.
 
-Suggested repository layout:
+Release gates:
 
-- GitHub repository upload folder: `trimole-hybrid-admet-github-public-upload/`
-- GitHub Release asset: `trimole_hybrid_server_code_pull_20260524.zip`
+- The Git worktree is clean and the archived commit matches the GitHub Release tag.
+- `ARCHIVE_MANIFEST.json` contains the commit, file sizes and SHA-256 hashes.
+- No rejected binary suffix or file above the configured size limit is present.
+- All 22 tasks are represented in the frozen data and prediction manifests.
+- No DOI is published until the corresponding author confirms the final snapshot.

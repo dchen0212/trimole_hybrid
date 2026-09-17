@@ -1,0 +1,15 @@
+# Zenodo Archive Scope
+
+This archive is the lightweight, reproducible snapshot associated with the
+BIOINF-2026-2212 major revision. It contains source code, executable tests,
+environment specifications, frozen task/configuration manifests, aggregate
+results and leakage/statistical audit summaries.
+
+It does not redistribute official TDC datasets, unrestricted sample-level
+labels, trained model binaries, cached embeddings, NumPy arrays or serialized
+estimators. Dataset acquisition and split provenance are documented by the
+versioned manifests and Supplementary Tables S13, S18 and S19.
+
+The archive manifest records the exact Git commit, path, size and SHA-256 hash
+of every included file. The ZIP must be uploaded unchanged to GitHub Releases
+and Zenodo so that both resources identify the same experimental snapshot.

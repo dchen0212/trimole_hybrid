@@ -1,0 +1,27 @@
+{
+  "title": "Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction",
+  "upload_type": "software",
+  "description": "Frozen source code, environment specifications, benchmark manifests and lightweight audit outputs supporting the BIOINF-2026-2212 revision.",
+  "creators": [
+    {"name": "Luo, Zhensheng"},
+    {"name": "Huang, Dachen"},
+    {"name": "Shao, Yanruisheng"},
+    {"name": "Yu, Qinze"},
+    {"name": "Li, Yu"}
+  ],
+  "keywords": [
+    "ADMET",
+    "molecular property prediction",
+    "multimodal learning",
+    "model selection",
+    "ensemble learning",
+    "Therapeutics Data Commons"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/dchen0212/trimole_hybrid",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}

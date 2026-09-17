@@ -1,11 +1,21 @@
 # Release Artifacts
 
-The full lightweight server-audit package should be uploaded to GitHub Releases rather than committed to the repository.
+The generated release candidate is a lightweight, immutable code-and-audit
+snapshot intended for both GitHub Releases and Zenodo. It is not generated from
+the historical May 2026 server ZIP.
 
-Recommended release asset:
+Build it from a clean frozen worktree with:
 
-- `trimole_hybrid_server_code_pull_20260524.zip`
+```bash
+python tools/build_zenodo_archive_v1.py \
+  --repo-root . \
+  --output-dir release_artifacts/build
+```
 
-Before public release, upload the local release asset with this filename to a GitHub Release.
+The builder writes a ZIP, `ARCHIVE_MANIFEST.json` and `SHA256SUMS`. Review all
+three before uploading the unchanged ZIP to both services.
 
-This artifact contains a broader lightweight pull of server-side source and audit summaries. It excludes datasets, trained weights, cached arrays and serialized models.
+The public archive excludes official TDC datasets, full sample-level label
+files, trained weights, cached embeddings, arrays and serialized estimators.
+Private reviewer-only evidence must not be added to the public ZIP unless its
+license and disclosure status have been reviewed.
