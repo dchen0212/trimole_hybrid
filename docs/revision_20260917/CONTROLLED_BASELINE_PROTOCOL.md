@@ -12,7 +12,7 @@ Every task uses the same three frozen representation caches:
 2. KPGT for the two-dimensional molecular-graph view;
 3. EPT for the geometry-related view.
 
-Each representation is paired with the same standardized linear stochastic-gradient learner. Classification uses logistic loss and regression uses squared loss with target standardization. Model settings, seeds and stopping criteria are fixed across tasks.
+Each representation is paired with the same fixed linear learner family. Classification uses a standardized stochastic-gradient logistic classifier. Regression uses a standardized Ridge model solved with LSQR after target standardization; this avoids the numerical divergence observed with squared-loss stochastic gradients on large-magnitude endpoints. Model settings, seeds and stopping criteria are fixed across tasks.
 
 ## Data boundaries
 
@@ -31,7 +31,7 @@ The runner has three separate phases.
 - `uniform_average`: an unweighted average of the three modality predictions.
 - `oof_stacking`: logistic regression for classification or ridge regression for regression, trained only on five-fold out-of-fold development predictions.
 
-Five fixed seeds are used: 101, 202, 303, 404 and 505. The same base predictions feed all four controls.
+Five fixed seeds are used: 101, 202, 303, 404 and 505. The same base predictions feed all six controls.
 
 ## Scope and limitation
 
