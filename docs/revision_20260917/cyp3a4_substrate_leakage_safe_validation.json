@@ -1,0 +1,28 @@
+{
+  "target": "cyp3a4_substrate_carbonmangels",
+  "metric": "auroc",
+  "selection_stat": "valid_mean",
+  "selected_feature_set": "fp",
+  "selected_config_index": 2,
+  "valid_mean": 0.7544802867383513,
+  "test_seed_scores": [
+    0.6633137432188065,
+    0.655628390596745,
+    0.6436482820976492,
+    0.6547242314647377,
+    0.6608273056057866
+  ],
+  "test_mean": 0.655628390596745,
+  "test_std_ddof1": 0.007590024136700178,
+  "test_ensemble": 0.6653481012658229,
+  "git_commit": "18b0f6a3d2f625958cfbfdddccb4b0ce331a8ede",
+  "checks": {
+    "seed_mean_matches": true,
+    "seed_std_matches": true,
+    "ensemble_matches": true,
+    "candidate_selection_validation_only": true,
+    "official_test_alignment": true,
+    "five_seed_predictions_present": true
+  },
+  "provenance_warning": "xgboost distribution is xgboost-cpu 3.0.4; original provenance lookup used the module name"
+}

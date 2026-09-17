@@ -1,0 +1,29 @@
+{
+  "target": "clearance_hepatocyte_az",
+  "metric": "spearman",
+  "selection_stat": "valid_mean",
+  "selected_feature_set": "fp_chemberta_kpgt_ept",
+  "selected_config_index": 2,
+  "valid_mean": 0.4485543358152236,
+  "test_seed_scores": [
+    0.28357568913187997,
+    0.26588663384105826,
+    0.26668601874210646,
+    0.24957837225391924,
+    0.3028238652390806
+  ],
+  "test_mean": 0.273710115841609,
+  "test_std_ddof1": 0.020235030266734677,
+  "test_ensemble": 0.275276493244976,
+  "max_abs_test_label_difference": 5.329070518200751e-15,
+  "git_commit": "18b0f6a3d2f625958cfbfdddccb4b0ce331a8ede",
+  "checks": {
+    "seed_mean_matches": true,
+    "seed_std_matches": true,
+    "ensemble_matches": true,
+    "candidate_selection_validation_only": true,
+    "official_test_alignment": true,
+    "five_seed_predictions_present": true
+  },
+  "provenance_warning": "xgboost distribution is xgboost-cpu 3.0.4; original provenance lookup used the module name"
+}

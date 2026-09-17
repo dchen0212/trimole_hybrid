@@ -1,0 +1,176 @@
+{
+  "status": "ok",
+  "run_root": "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3",
+  "generator_git_commit": "943ab4a8b9d020eff1e6f44791070afdbffbc686",
+  "task_count": 5,
+  "prediction_file_count": 50,
+  "tasks": {
+    "cyp2d6_veith": {
+      "metric": "AUPRC",
+      "n_valid": 1313,
+      "n_test": 2626,
+      "valid_scores": [
+        0.7521029510208517,
+        0.758840227574247,
+        0.7551892172437461,
+        0.7524310378076892,
+        0.7562616562753609
+      ],
+      "test_scores": [
+        0.7215777502547901,
+        0.7148431523413046,
+        0.7122459264671253,
+        0.7213492384900042,
+        0.7258213964249156
+      ],
+      "valid_mean": 0.754965017984379,
+      "valid_std": 0.0028000566231112826,
+      "test_mean": 0.719167492795628,
+      "test_std": 0.005510258378855377
+    },
+    "cyp3a4_veith": {
+      "metric": "AUPRC",
+      "n_valid": 1233,
+      "n_test": 2467,
+      "valid_scores": [
+        0.9060737529263695,
+        0.9077162484511513,
+        0.9104387075987698,
+        0.9105939651368867,
+        0.9090373370376821
+      ],
+      "test_scores": [
+        0.8796312302904228,
+        0.8850538843773831,
+        0.887591243656682,
+        0.8861705182061635,
+        0.8821586964964725
+      ],
+      "valid_mean": 0.9087720022301718,
+      "valid_std": 0.0019080764873702434,
+      "test_mean": 0.8841211146054249,
+      "test_std": 0.003206324071075164
+    },
+    "dili": {
+      "metric": "AUROC",
+      "n_valid": 48,
+      "n_test": 96,
+      "valid_scores": [
+        0.9384615384615385,
+        0.9384615384615385,
+        0.9362637362637363,
+        0.9318681318681319,
+        0.9406593406593406
+      ],
+      "test_scores": [
+        0.9156521739130435,
+        0.9021739130434783,
+        0.908695652173913,
+        0.9043478260869566,
+        0.9121739130434782
+      ],
+      "valid_mean": 0.9371428571428572,
+      "valid_std": 0.003333132063319351,
+      "test_mean": 0.9086086956521738,
+      "test_std": 0.005520198347166549
+    },
+    "half_life_obach": {
+      "metric": "Spearman",
+      "n_valid": 67,
+      "n_test": 135,
+      "valid_scores": [
+        0.7402736145664361,
+        0.7387369491132197,
+        0.7347855236620914,
+        0.7450632211738645,
+        0.7411517091111315
+      ],
+      "test_scores": [
+        0.4842625583640587,
+        0.5067482808371478,
+        0.4818844718675555,
+        0.49363343869181747,
+        0.49042119262423334
+      ],
+      "valid_mean": 0.7400022035253487,
+      "valid_std": 0.0037357577613746713,
+      "test_mean": 0.4913899884769625,
+      "test_std": 0.009785242517661046
+    },
+    "lipophilicity_astrazeneca": {
+      "metric": "MAE",
+      "n_valid": 420,
+      "n_test": 840,
+      "valid_scores": [
+        0.4772780515599727,
+        0.4814144424997911,
+        0.4827288264593375,
+        0.4790028274803702,
+        0.49267054004362354
+      ],
+      "test_scores": [
+        0.4652348292813909,
+        0.47700648640452475,
+        0.47803733076279886,
+        0.4663671681581691,
+        0.4778269575658355
+      ],
+      "valid_mean": 0.482618937608619,
+      "valid_std": 0.006002060308392856,
+      "test_mean": 0.47289455443454387,
+      "test_std": 0.006499286394686647
+    }
+  },
+  "prediction_sha256": {
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/valid_predictions_seed_group_1.csv": "32d5c19c0df578700a38145506674d1e2502a0ffac0190c1c28a5f3d7e122b8e",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/test_predictions_seed_group_1.csv": "c823ee495a3f25f12b03ba77f7f274c1c34f430867687fca5685fa265cd0179a",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/valid_predictions_seed_group_2.csv": "f006b4edab83d70daf03cb81eb82866113eeb4c615ac2b3725c3797efe5b661e",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/test_predictions_seed_group_2.csv": "0e9b9204cebea491a9f564d156c809357322c6d4c95f057c4763c959418d7eae",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/valid_predictions_seed_group_3.csv": "14dd2c4b8a9e60b92dff79272fbd088ac048c11c7e631f52d6d91c0b7e3416c8",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/test_predictions_seed_group_3.csv": "4c327a562b598edc598d134463f0501c67752f420d9c033310a1475fe64935e3",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/valid_predictions_seed_group_4.csv": "d91d7c800af896ad8329f221cf9ca277c49a8932df0b58b2e830e8ba4251b534",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/test_predictions_seed_group_4.csv": "0eb2ef3b5873041ecbd9adfcfabae28655feb563b4927f1d3dd20dff4f2f0931",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/valid_predictions_seed_group_5.csv": "6b13d9376ca27e5645fcfc21acfdfa8a5b04a21df094c45eb80b586ddc64f39e",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp2d6_veith/test_predictions_seed_group_5.csv": "73e5bd4c04e475c52499ccb1b14452e92aaf567b0fdada35a32fe5b5b0f2a687",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/valid_predictions_seed_group_1.csv": "ea20c4a51431c0a85cfac8d6d2d3f3a033ba6d2dbdc927d6cbdd6424633e1372",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/test_predictions_seed_group_1.csv": "930fd4b2d02ed0127a02e43d2b11aa28d132277b6020cd4814c6fbb8d47ed550",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/valid_predictions_seed_group_2.csv": "1803f9f9eb07849afe7b47e0a5e4ed8ac46fb101334540575bd0dfc5033734a0",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/test_predictions_seed_group_2.csv": "5402d18905ad1c584c63ba274682a0be11b32f3f68be9289ee2cbb11623c5a5a",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/valid_predictions_seed_group_3.csv": "491dede7ef6a0dc0f8cf7a5de0683eedab3682e776fa867050cb8f74f55fd534",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/test_predictions_seed_group_3.csv": "392f624422b72cbee98133eb2b5606ca5923e3a1c309f39a508b1086d20faf48",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/valid_predictions_seed_group_4.csv": "342cd542ba98e06b5698e145bd616585e31f78475068d4459cf3b4cfc641f3ee",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/test_predictions_seed_group_4.csv": "859090309623907897d71a67214543c0dd69061e9543d2119d331463d5976387",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/valid_predictions_seed_group_5.csv": "e2a5341b7a8ce969baa64df92142c3bd627925e62afea6a5f9db112d4965d7ee",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/cyp3a4_veith/test_predictions_seed_group_5.csv": "63c1d0084d101760177a7e69dda42192c58e869bdc4559f46d347e05f44de9af",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/valid_predictions_seed_group_1.csv": "0cae4df992809d1c6fd79efa2950ca25065fb4d34f1afd89784e316e8b4249db",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/test_predictions_seed_group_1.csv": "04d729cf7f738fd0a53b774617571c75ab1709c927cf43755c3830ceb5892c58",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/valid_predictions_seed_group_2.csv": "b597a5bf341cf0bbb9b345c3c84b83a2b04d53e7b62ca96a826df2da248eae71",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/test_predictions_seed_group_2.csv": "21b5be6822ff79588fafe58499567c3727f1012941a9a64cbeb482d1cb0b295a",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/valid_predictions_seed_group_3.csv": "a14fe97d63cd7839ca2bb220132fd5b22ce4c54283e0d1d0ef0e99444b358e9b",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/test_predictions_seed_group_3.csv": "3b9f54f011cac39a0ed3291426db797d9d56e76925d625b01fcfe4e395956060",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/valid_predictions_seed_group_4.csv": "0383c4ddc8b19b196a0478af725126033c0e40f98f0eba1c648a2bb6ad5d5b3c",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/test_predictions_seed_group_4.csv": "d0db8bef8e1281075a2d30de2aed3115287772909ec226508897c99aaf5490d0",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/valid_predictions_seed_group_5.csv": "787fd7854d677754619ba05743ae037468809ee660ee43a5b6edd10737ea1333",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/dili/test_predictions_seed_group_5.csv": "ca00b119fbc18f61262fd53b15032603c2b11e22250eeb407a2e7261fbaedb3c",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/valid_predictions_seed_group_1.csv": "0753e64303aa7168d637a00961f4fe65efc9a927aff49672c2f04f0cc1889dd4",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/test_predictions_seed_group_1.csv": "c69dc08d0955da1260200a5273fe6ac46dba80fa3c154dacef825b4ed681417c",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/valid_predictions_seed_group_2.csv": "8a5b92a08677ca7c03c367ef07eae7ad764b331b0bdf022fa740b7a8f7512a24",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/test_predictions_seed_group_2.csv": "6397402fd0de4781cd2b5228a8de709e0e4b1506440645de203c38679e305288",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/valid_predictions_seed_group_3.csv": "83b49aac8ebd06571881bbf86ad7e747873d81cb28b365d822ba42204cafd2f6",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/test_predictions_seed_group_3.csv": "faf82fbe1878298f51fa77443a76f447ef9fd4b383653f503bf1f1558495f25a",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/valid_predictions_seed_group_4.csv": "57636cbb0be8df6481efedcc86d6de49e4ac2d170d079014cc5fcaeee41b91e5",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/test_predictions_seed_group_4.csv": "24d5a45add0d2dec28af42d460a01266af1ae458831634e21723fdbd0fdea8a2",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/valid_predictions_seed_group_5.csv": "03f932caef4dc8e1c74680e06933be47f25112ac5bdc82bf0b6a730790b1911c",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/half_life_obach/test_predictions_seed_group_5.csv": "1b24be24a23a76a2b9be11ae17ca81fc7ecdff9bd6a2000903c2f7e240d7eaf9",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/valid_predictions_seed_group_1.csv": "7cb564834b2a9135b3cd003d3092f45291f161e3de6cb1503c4d71f1ce15b34b",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/test_predictions_seed_group_1.csv": "f43ec851dde0cf612c64846a6a38423585a4e28502afe6e6220e2ce4126ac1ba",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/valid_predictions_seed_group_2.csv": "9ba748d6fb8e26a4f6f3172852d21b25ff9d1b25f5fb4c465a94515e3e02b118",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/test_predictions_seed_group_2.csv": "c7a79066ee804c109f4b68bc34ad1d4ce17e223d94642670559cd44ff8645319",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/valid_predictions_seed_group_3.csv": "9c539a8ab7f8d0e8d546b63d5cbfc9701e8dcde08cdf736ca919e5c5d5709581",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/test_predictions_seed_group_3.csv": "e6e52a346024007b8c0e1e190b7d73e519bdf5fa2e3057394bf634321e521a7e",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/valid_predictions_seed_group_4.csv": "9334289b4f6198246db6fb6843c014fa4e5e832eb469ffcfe93493cc8c2f7e42",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/test_predictions_seed_group_4.csv": "f2a297c97f89ba9e51c48b0d4d35545beba86aa9a40f4a057a5c74a89addf646",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/valid_predictions_seed_group_5.csv": "0ba1847bdeec0c385bf14712384e9fd08790a90ff88f2a51a16fed9e72e6f2ae",
+    "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260917_v29_formula_predictions_v3/predictions/lipophilicity_astrazeneca/test_predictions_seed_group_5.csv": "227114ce10dcf2606e02d5fb0113de934ff274ea1b1791cf320939e56a69510d"
+  }
+}
