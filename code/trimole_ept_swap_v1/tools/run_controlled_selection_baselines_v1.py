@@ -11,7 +11,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import spearmanr
-from sklearn.linear_model import LogisticRegression, Ridge, SGDClassifier, SGDRegressor
+from sklearn.linear_model import LogisticRegression, Ridge, SGDClassifier
 from sklearn.metrics import average_precision_score, mean_absolute_error, roc_auc_score
 from sklearn.model_selection import KFold, StratifiedKFold
 from sklearn.pipeline import make_pipeline
@@ -93,15 +93,10 @@ def make_base_model(classification: bool, seed: int, max_iter: int):
             random_state=seed,
         )
     else:
-        estimator = SGDRegressor(
-            loss="squared_error",
-            penalty="l2",
-            alpha=1e-4,
-            max_iter=max_iter,
-            tol=1e-4,
-            average=True,
-            random_state=seed,
-        )
+        # A deterministic LSQR solve is stable for the high-dimensional frozen
+        # embedding matrices. SGDRegressor produced unbounded predictions on
+        # several ADMET regression tasks and is unsuitable as a fair control.
+        estimator = Ridge(alpha=1.0, solver="lsqr")
     return make_pipeline(StandardScaler(), estimator)
 
 
@@ -141,6 +136,8 @@ def utility(metric: str, value: float) -> float:
 
 
 def write_prediction(path: Path, predictions: np.ndarray) -> None:
+    if not np.isfinite(predictions).all():
+        raise ValueError(f"non-finite predictions: {path}")
     path.parent.mkdir(parents=True, exist_ok=True)
     pd.DataFrame(
         {"sample_idx": np.arange(len(predictions)), "prediction": predictions}
@@ -264,7 +261,7 @@ def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
                 meta_model.fit(stacked_oof, dev_y.astype(int))
                 stacking_prediction = meta_model.predict_proba(stacked_test)[:, 1]
             else:
-                meta_model = Ridge(alpha=1.0)
+                meta_model = make_pipeline(StandardScaler(), Ridge(alpha=1.0, solver="lsqr"))
                 meta_model.fit(stacked_oof, dev_y)
                 stacking_prediction = meta_model.predict(stacked_test)
             predictions = {
