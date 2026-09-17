@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import subprocess
 import sys
 from pathlib import Path
@@ -19,6 +20,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--bootstrap-replicates", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=20260917)
     parser.add_argument("--n-jobs", type=int, default=8)
+    parser.add_argument("--skip-figure", action="store_true")
     return parser.parse_args()
 
 
@@ -31,6 +33,10 @@ def main() -> None:
     args = parse_args()
     if args.out_root.exists():
         raise FileExistsError(f"refusing to overwrite {args.out_root}")
+    if not args.skip_figure and importlib.util.find_spec("matplotlib") is None:
+        raise ModuleNotFoundError(
+            "matplotlib is required for Figure 2; install it or pass --skip-figure"
+        )
     tools = Path(__file__).resolve().parent
     s21 = args.out_root / "s21"
     bootstrap = args.out_root / "paired_bootstrap"
@@ -101,21 +107,22 @@ def main() -> None:
         "--out-root",
         s22,
     )
-    run(
-        tools / "generate_figure2_revision_v1.py",
-        "--benchmark-table",
-        args.benchmark_table,
-        "--controlled-summary",
-        s21 / "Table_S21_controlled_baselines_summary.csv",
-        "--bootstrap-results",
-        bootstrap / "paired_bootstrap_results.csv",
-        "--subgroup-table",
-        subgroup / "Table_S22_subgroup_uncertainty.csv",
-        "--output-stem",
-        figure_stem,
-        "--seed",
-        args.seed,
-    )
+    if not args.skip_figure:
+        run(
+            tools / "generate_figure2_revision_v1.py",
+            "--benchmark-table",
+            args.benchmark_table,
+            "--controlled-summary",
+            s21 / "Table_S21_controlled_baselines_summary.csv",
+            "--bootstrap-results",
+            bootstrap / "paired_bootstrap_results.csv",
+            "--subgroup-table",
+            subgroup / "Table_S22_subgroup_uncertainty.csv",
+            "--output-stem",
+            figure_stem,
+            "--seed",
+            args.seed,
+        )
 
 
 if __name__ == "__main__":
