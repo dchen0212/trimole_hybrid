@@ -20,6 +20,11 @@ from sklearn.preprocessing import StandardScaler
 
 MODALITIES = ("chemberta", "kpgt", "ept")
 CLASSIFICATION_METRICS = {"AUROC", "AUPRC"}
+ALLOWED_LABEL_SPLITS = {
+    "select": {"train", "valid"},
+    "final": {"train", "valid"},
+    "score": {"test"},
+}
 
 
 def parse_args() -> argparse.Namespace:
@@ -54,6 +59,12 @@ def label_column(frame: pd.DataFrame) -> str:
 def load_labels(task_root: Path, split: str) -> np.ndarray:
     frame = pd.read_csv(task_root / f"{split}.csv")
     return frame[label_column(frame)].to_numpy(dtype=np.float64)
+
+
+def load_labels_for_phase(task_root: Path, split: str, phase: str) -> np.ndarray:
+    if split not in ALLOWED_LABEL_SPLITS[phase]:
+        raise ValueError(f"{phase} phase may not read {split} labels")
+    return load_labels(task_root, split)
 
 
 def split_counts(task_root: Path) -> dict[str, int]:
@@ -159,8 +170,8 @@ def select_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], 
     for task in tasks:
         print("[select]", task, flush=True)
         task_root = args.data_root / task
-        train_y = load_labels(task_root, "train")
-        valid_y = load_labels(task_root, "valid")
+        train_y = load_labels_for_phase(task_root, "train", "select")
+        valid_y = load_labels_for_phase(task_root, "valid", "select")
         metric = metadata[task]["metric"]
         classification = metric in CLASSIFICATION_METRICS
         for modality in MODALITIES:
@@ -181,11 +192,13 @@ def select_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], 
     scores.to_csv(phase_root / "candidate_valid_scores.csv", index=False)
     means = scores.groupby(["task", "metric", "modality"], as_index=False).valid_score.mean()
     task_choices: dict[str, str] = {}
+    task_rankings: dict[str, list[str]] = {}
     rank_rows: list[dict[str, object]] = []
     for task, group in means.groupby("task"):
         metric = str(group.metric.iloc[0])
         ordered = group.assign(utility=group.valid_score.map(lambda value: utility(metric, value))).sort_values("utility", ascending=False)
         task_choices[str(task)] = str(ordered.modality.iloc[0])
+        task_rankings[str(task)] = ordered.modality.astype(str).tolist()
         for rank, row in enumerate(ordered.to_dict("records"), start=1):
             rank_rows.append({"task": task, "modality": row["modality"], "rank": rank, "valid_score": row["valid_score"]})
     ranks = pd.DataFrame(rank_rows)
@@ -200,6 +213,7 @@ def select_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], 
         "seeds": args.seeds,
         "tasks": tasks,
         "per_task_single": task_choices,
+        "per_task_validation_ranking": task_rankings,
         "global_single": global_choice,
     }
     (phase_root / "selected_controls.json").write_text(json.dumps(selection, indent=2) + "\n")
@@ -240,7 +254,12 @@ def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
     for task in tasks:
         print("[final]", task, flush=True)
         task_root = args.data_root / task
-        dev_y = np.concatenate([load_labels(task_root, "train"), load_labels(task_root, "valid")])
+        dev_y = np.concatenate(
+            [
+                load_labels_for_phase(task_root, "train", "final"),
+                load_labels_for_phase(task_root, "valid", "final"),
+            ]
+        )
         metric = metadata[task]["metric"]
         classification = metric in CLASSIFICATION_METRICS
         for seed in args.seeds:
@@ -264,9 +283,16 @@ def final_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
                 meta_model = make_pipeline(StandardScaler(), Ridge(alpha=1.0, solver="lsqr"))
                 meta_model.fit(stacked_oof, dev_y)
                 stacking_prediction = meta_model.predict(stacked_test)
+            task_ranking = selection["per_task_validation_ranking"][task]
             predictions = {
                 "global_single": base_test[selection["global_single"]],
                 "per_task_single": base_test[selection["per_task_single"][task]],
+                "validation_top2_average": np.mean(
+                    [base_test[name] for name in task_ranking[:2]], axis=0
+                ),
+                "validation_top3_average": np.mean(
+                    [base_test[name] for name in task_ranking[:3]], axis=0
+                ),
                 "uniform_average": np.mean(list(base_test.values()), axis=0),
                 "oof_stacking": stacking_prediction,
             }
@@ -295,7 +321,7 @@ def score_phase(args: argparse.Namespace, metadata: dict[str, dict[str, str]], t
     rows: list[dict[str, object]] = []
     for row in manifest.to_dict("records"):
         task = str(row["task"])
-        labels = load_labels(args.data_root / task, "test")
+        labels = load_labels_for_phase(args.data_root / task, "test", "score")
         predictions = read_prediction(Path(row["prediction_file"]))
         rows.append({**row, "test_score": score(str(row["metric"]), labels, predictions)})
     scores = pd.DataFrame(rows)

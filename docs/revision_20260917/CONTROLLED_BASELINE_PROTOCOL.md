@@ -26,6 +26,8 @@ The runner has three separate phases.
 
 - `global_single`: one modality selected by mean validation rank across all 22 tasks and then used for every task.
 - `per_task_single`: the best validation modality for each task, without custom ensembles.
+- `validation_top2_average`: an unweighted average of the two highest-ranked modalities for that task, ranked by five-seed validation mean.
+- `validation_top3_average`: an explicit average of all three validation-ranked modalities; with this three-candidate pool it is numerically equivalent to `uniform_average` and is retained to make the top-3 control auditable.
 - `uniform_average`: an unweighted average of the three modality predictions.
 - `oof_stacking`: logistic regression for classification or ridge regression for regression, trained only on five-fold out-of-fold development predictions.
 

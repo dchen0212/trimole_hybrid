@@ -24,6 +24,20 @@ SPEC.loader.exec_module(BASELINES)
 
 
 class ControlledBaselineTest(unittest.TestCase):
+    def test_test_labels_are_blocked_before_score_phase(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            import pandas as pd
+
+            pd.DataFrame({"smiles": ["CC"], "Y": [1]}).to_csv(
+                root / "test.csv", index=False
+            )
+            for phase in ("select", "final"):
+                with self.assertRaisesRegex(ValueError, "may not read test labels"):
+                    BASELINES.load_labels_for_phase(root, "test", phase)
+            labels = BASELINES.load_labels_for_phase(root, "test", "score")
+            np.testing.assert_array_equal(labels, np.array([1.0]))
+
     def test_regression_fit_is_finite_on_high_scale_features(self) -> None:
         rng = np.random.default_rng(7)
         train_x = rng.normal(size=(80, 32)) * 1e4
