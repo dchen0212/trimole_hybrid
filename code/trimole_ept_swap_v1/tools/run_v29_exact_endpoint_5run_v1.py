@@ -308,24 +308,36 @@ def validate_stream_labels(
     return rows
 
 
-def evaluate_formula(
+def evaluate_prediction_files(
     task: str,
     streams: list[zoo.GroupStream],
-    mode: str,
-    weights: np.ndarray,
+    prediction_files: list[tuple[Path, Path]],
 ) -> dict[str, object]:
     valid_scores: list[float] = []
     test_scores: list[float] = []
-    for seed_index in range(5):
-        for split, scores in (("valid", valid_scores), ("test", test_scores)):
-            parts = [
-                zoo.transform(getattr(stream, split)[seed_index].pred, mode)
-                for stream in streams
-            ]
-            combined = sum(
-                float(weights[index]) * parts[index] for index in range(len(parts))
+    for valid_path, test_path in prediction_files:
+        for split, path, scores in (
+            ("valid", valid_path, valid_scores),
+            ("test", test_path, test_scores),
+        ):
+            frame = pd.read_csv(path)
+            labels = official_labels(task, split)
+            if not np.array_equal(frame["sample_idx"].to_numpy(), np.arange(len(labels))):
+                raise ValueError(f"sample index mismatch after writing {path}")
+            if not np.allclose(
+                frame["y_true"].to_numpy(dtype=np.float64),
+                labels,
+                rtol=1e-12,
+                atol=1e-12,
+            ):
+                raise ValueError(f"official label mismatch after writing {path}")
+            scores.append(
+                zoo.score(
+                    task,
+                    labels,
+                    frame["prediction"].to_numpy(dtype=np.float64),
+                )
             )
-            scores.append(zoo.score(task, official_labels(task, split), combined))
     valid_mean = float(np.nanmean(valid_scores))
     test_mean = float(np.nanmean(test_scores))
     return {
@@ -483,10 +495,10 @@ def main() -> None:
         mode = str(recipe["mode"])
         n_seed5 = sum(1 for stream in selected_streams if stream.kind == "seed5")
 
-        formal = evaluate_formula(task, selected_streams, mode, weights)
         prediction_files = write_formula_predictions(
             task, selected_streams, mode, weights, out_root
         )
+        formal = evaluate_prediction_files(task, selected_streams, prediction_files)
         avg_valid, avg_test = recompute_seedbag_average(task, selected_streams, mode, weights)
         v29_score = float(recipe["v29_score"])
 
