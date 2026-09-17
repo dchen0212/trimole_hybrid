@@ -30,7 +30,11 @@ def finite_count(array: np.ndarray, chunk_size: int = 2048) -> int:
 
 def main() -> None:
     args = parse_args()
-    task_dirs = sorted(path for path in args.data_root.iterdir() if path.is_dir())
+    task_dirs = sorted(
+        path
+        for path in args.data_root.iterdir()
+        if path.is_dir() and all((path / f"{split}.csv").exists() for split in SPLITS)
+    )
     rows: list[dict[str, object]] = []
     failures: list[str] = []
 
