@@ -12,9 +12,9 @@ Metabolism,TDC.CYP2C9-S,AUPRC,Fixed chemical-prior XGBoost,"chemistry priors, se
 Metabolism,TDC.CYP2C9-I,AUPRC,Fixed chemical-prior XGBoost,"chemistry priors, graph embeddings, EPT/3D",seed/fold bagging,"Chem, EPT/3D, Seedbag",True,False,True,True,False,True,Table S2/S2c
 Metabolism,TDC.CYP2D6-S,AUPRC,XL chemical-prior endpoint,"chemistry priors, sequence/pretrained embeddings","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,False,True,True,True,Table S2/S2c
 Metabolism,TDC.CYP2D6-I,AUPRC,KPGT/EPT hybrid endpoint,"chemistry priors, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,False,True,True,True,True,Table S2/S2c
-Metabolism,TDC.CYP3A4-S,AUROC,Family-transfer fingerprint XGBoost,"chemistry priors, graph embeddings",single frozen recipe,Chem,True,False,True,False,False,False,Table S2/S2c
+Metabolism,TDC.CYP3A4-S,AUROC,Leakage-safe family-transfer XGBoost,chemistry priors,five-seed mean,"Chem, Seedbag",True,False,False,False,False,True,Table S2/S2c
 Metabolism,TDC.CYP3A4-I,AUPRC,KPGT/EPT hybrid endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings, EPT/3D","prediction blend, seed/fold bagging","Chem, EPT/3D, Blend, Seedbag",True,True,True,True,True,True,Table S2/S2c
-Excretion,TDC.CL-Hepa,Spearman,Family-transfer fingerprint XGBoost,chemistry priors,single frozen recipe,Chem,True,False,False,False,False,False,Table S2/S2c
+Excretion,TDC.CL-Hepa,Spearman,Leakage-safe family-transfer XGBoost,"chemistry priors, sequence embeddings, graph embeddings, EPT/3D",five-seed mean,"Chem, Seq, Graph, EPT/3D, Seedbag",True,True,True,True,False,True,Table S2/S2c
 Excretion,TDC.CL-Micro,Spearman,KPGT/EPT hybrid endpoint,"graph embeddings, EPT/3D",seed/fold bagging,"EPT/3D, Blend, Seedbag",False,False,True,True,True,True,Table S2/S2c
 Excretion,TDC.Half_Life,Spearman,Task-specific frozen endpoint,"chemistry priors, sequence/pretrained embeddings, graph embeddings","prediction blend, seed/fold bagging","Chem, Blend, Seedbag",True,True,True,False,True,True,Table S2/S2c
 Toxicity,TDC.AMES,AUROC,Repeated fingerprint XGBoost,chemistry priors,seed/fold bagging,"Chem, Seedbag",True,False,False,False,False,True,Table S2/S2c
