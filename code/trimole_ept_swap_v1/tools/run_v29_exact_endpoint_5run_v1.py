@@ -6,6 +6,7 @@ import math
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 import run_strict_5run_seedwise_prediction_zoo_v1 as zoo
 
@@ -182,8 +183,11 @@ RECIPES: dict[str, dict[str, object]] = {
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser()
     p.add_argument("--repo", default=str(REPO))
+    p.add_argument("--results-root", default="")
+    p.add_argument("--data-root", default="")
     p.add_argument("--status", default=str(STATUS))
     p.add_argument("--out-root", default=str(OUT))
+    p.add_argument("--tasks", nargs="*", choices=TASKS_12, default=TASKS_12)
     return p.parse_args()
 
 
@@ -250,6 +254,49 @@ def recompute_seedbag_average(task: str, streams: list[zoo.GroupStream], mode: s
     )
 
 
+def write_formula_predictions(
+    task: str,
+    streams: list[zoo.GroupStream],
+    mode: str,
+    weights: np.ndarray,
+    out_root: Path,
+) -> list[tuple[Path, Path]]:
+    """Materialize the exact five seed-group formulas evaluated by eval_combo."""
+    task_root = out_root / "predictions" / task
+    task_root.mkdir(parents=True, exist_ok=True)
+    outputs: list[tuple[Path, Path]] = []
+    for seed_index in range(5):
+        split_outputs: list[Path] = []
+        for split_name in ("valid", "test"):
+            source_predictions = [
+                getattr(stream, split_name)[seed_index] for stream in streams
+            ]
+            y_true = source_predictions[0].y
+            if any(
+                not np.array_equal(y_true, prediction.y)
+                for prediction in source_predictions[1:]
+            ):
+                raise ValueError(
+                    f"label mismatch among {split_name} streams for {task}, seed group {seed_index + 1}"
+                )
+            transformed = [zoo.transform(prediction.pred, mode) for prediction in source_predictions]
+            combined = sum(
+                float(weights[index]) * transformed[index]
+                for index in range(len(transformed))
+            )
+            path = task_root / f"{split_name}_predictions_seed_group_{seed_index + 1}.csv"
+            pd.DataFrame(
+                {
+                    "sample_idx": np.arange(len(y_true)),
+                    "y_true": y_true,
+                    "prediction": combined,
+                }
+            ).to_csv(path, index=False)
+            split_outputs.append(path)
+        outputs.append((split_outputs[0], split_outputs[1]))
+    return outputs
+
+
 def fixed_formal_rows(task: str, results: Path) -> list[dict[str, object]]:
     rows: list[dict[str, object]] = []
     for rel in FIXED_FORMAL_SUMMARIES:
@@ -282,11 +329,16 @@ def main() -> None:
     repo = Path(args.repo)
     status = Path(args.status)
     out_root = Path(args.out_root)
-    results = repo / "results_strict"
+    results = Path(args.results_root) if args.results_root else repo / "results_strict"
+    data_root = (
+        Path(args.data_root)
+        if args.data_root
+        else repo / "data" / "data_benchmark_official_v1"
+    )
 
     zoo.REPO = repo
     zoo.RESULTS = results
-    zoo.DATA = repo / "data" / "data_benchmark_official_v1"
+    zoo.DATA = data_root
     zoo.TASKS = load_task_meta(status)
     for rel in EXTRA_SINGLE_SUMMARIES:
         if rel not in zoo.SINGLE_SUMMARIES:
@@ -295,7 +347,7 @@ def main() -> None:
     summary: list[dict[str, object]] = []
     per_seed_rows: list[dict[str, object]] = []
 
-    for task in TASKS_12:
+    for task in args.tasks:
         recipe = RECIPES[task]
         print("[task]", task, flush=True)
         streams = zoo.build_streams(task)
@@ -331,6 +383,9 @@ def main() -> None:
         n_seed5 = sum(1 for stream in selected_streams if stream.kind == "seed5")
 
         formal = zoo.eval_combo(task, tuple(selected_streams), mode, weights, lambda_std=1.0)
+        prediction_files = write_formula_predictions(
+            task, selected_streams, mode, weights, out_root
+        )
         avg_valid, avg_test = recompute_seedbag_average(task, selected_streams, mode, weights)
         v29_score = float(recipe["v29_score"])
 
@@ -383,6 +438,8 @@ def main() -> None:
                     "status": status_name,
                     "recipe_relation": relation,
                     "stream_kinds": formal["stream_kinds"],
+                    "valid_prediction_file": str(prediction_files[i - 1][0]),
+                    "test_prediction_file": str(prediction_files[i - 1][1]),
                 }
             )
 

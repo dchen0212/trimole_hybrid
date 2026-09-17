@@ -7,6 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 import run_family_transfer_leakage_safe_v2 as runner
+import run_strict_5run_seedwise_prediction_zoo_v1 as prediction_zoo
 from family_transfer_safety import forbidden_keys, select_validation_candidate
 
 
@@ -45,6 +46,20 @@ class FamilyTransferRevisionTest(unittest.TestCase):
             ).to_csv(path, index=False)
             frame = runner.read_feature_frame(path, include_labels=False)
         self.assertEqual(list(frame.columns), ["smiles"])
+
+    def test_migrated_result_path_rebases_only_results_suffix(self) -> None:
+        original_results = prediction_zoo.RESULTS
+        try:
+            prediction_zoo.RESULTS = Path("/new/project/results_strict")
+            resolved = prediction_zoo.resolve_results_path(
+                "/old/afs/repository/results_strict/example/task/test_predictions.csv"
+            )
+        finally:
+            prediction_zoo.RESULTS = original_results
+        self.assertEqual(
+            resolved,
+            Path("/new/project/results_strict/example/task/test_predictions.csv"),
+        )
 
 
 if __name__ == "__main__":

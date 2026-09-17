@@ -362,10 +362,13 @@ def file_sha256(path: Path) -> str:
 
 
 def package_version(name: str) -> str:
-    try:
-        return importlib.metadata.version(name)
-    except importlib.metadata.PackageNotFoundError:
-        return "not-installed"
+    distributions = (name, "xgboost-cpu") if name == "xgboost" else (name,)
+    for distribution in distributions:
+        try:
+            return importlib.metadata.version(distribution)
+        except importlib.metadata.PackageNotFoundError:
+            continue
+    return "not-installed"
 
 
 def git_commit(repo: Path) -> str:

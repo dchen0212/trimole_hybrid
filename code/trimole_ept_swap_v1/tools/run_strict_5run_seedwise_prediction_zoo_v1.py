@@ -195,17 +195,33 @@ def read_rows(rel_path: str) -> list[dict[str, str]]:
         return list(csv.DictReader(f))
 
 
+def resolve_results_path(value: str | Path) -> Path:
+    """Resolve migrated result paths while preserving existing originals."""
+    path = Path(value)
+    if path.exists():
+        return path
+    parts = path.parts
+    if "results_strict" in parts:
+        index = parts.index("results_strict")
+        return RESULTS.joinpath(*parts[index + 1 :])
+    return path
+
+
 def result_paths(row: dict[str, str], task: str) -> tuple[Path, Path] | None:
     if row.get("valid_pred_file") and row.get("test_pred_file"):
-        return Path(row["valid_pred_file"]), Path(row["test_pred_file"])
+        return resolve_results_path(row["valid_pred_file"]), resolve_results_path(
+            row["test_pred_file"]
+        )
     if row.get("source_results_dir"):
-        d = Path(row["source_results_dir"])
+        d = resolve_results_path(row["source_results_dir"])
         return d / "valid_predictions.csv", d / "test_predictions.csv"
     if row.get("source_results_csv"):
-        d = Path(row["source_results_csv"]).parent / task
+        d = resolve_results_path(row["source_results_csv"]).parent / task
         return d / "valid_predictions.csv", d / "test_predictions.csv"
     if row.get("trainval_pred_file") and row.get("test_pred_file"):
-        return Path(row["trainval_pred_file"]), Path(row["test_pred_file"])
+        return resolve_results_path(row["trainval_pred_file"]), resolve_results_path(
+            row["test_pred_file"]
+        )
     return None
 
 
