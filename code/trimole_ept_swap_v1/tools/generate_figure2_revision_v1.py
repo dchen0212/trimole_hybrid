@@ -129,24 +129,44 @@ def draw_paired_ci(ax: plt.Axes, bootstrap: pd.DataFrame, labels: dict[str, str]
     ].copy()
     if len(data) != 22:
         raise ValueError(f"expected 22 paired task rows, found {len(data)}")
+    scale = data.comparator_score.abs().clip(lower=1e-12)
+    data["relative_improvement"] = data.improvement / scale
+    data["relative_ci95_lower"] = data.ci95_lower / scale
+    data["relative_ci95_upper"] = data.ci95_upper / scale
     data["label"] = data.task.map(labels)
-    data = data.sort_values("improvement")
+    data = data.sort_values("relative_improvement")
     y = np.arange(len(data))
     significant = data.significant_fdr_0_05.astype(bool)
     colors = np.where(significant, "#C96855", "#3978A8")
     ax.errorbar(
-        data.improvement,
+        data.relative_improvement,
         y,
-        xerr=np.vstack([data.improvement - data.ci95_lower, data.ci95_upper - data.improvement]),
+        xerr=np.vstack(
+            [
+                data.relative_improvement - data.relative_ci95_lower,
+                data.relative_ci95_upper - data.relative_improvement,
+            ]
+        ),
         fmt="none",
         ecolor=MUTED,
         elinewidth=1.0,
         capsize=2.0,
     )
-    ax.scatter(data.improvement, y, c=colors, s=18, zorder=3, edgecolors="white", linewidths=0.35)
+    ax.scatter(
+        data.relative_improvement,
+        y,
+        c=colors,
+        s=18,
+        zorder=3,
+        edgecolors="white",
+        linewidths=0.35,
+    )
     ax.axvline(0, color=INK, linewidth=0.9)
     ax.set_yticks(y, data.label, fontsize=7.1)
-    ax.set_xlabel("Improvement over per-task single model (paired 95% CI)", fontsize=8.2)
+    ax.set_xlabel(
+        "Relative improvement over per-task single model (paired 95% CI)",
+        fontsize=8.2,
+    )
     ax.grid(axis="x", color="#D8DEE2", linewidth=0.6, alpha=0.8)
     ax.set_axisbelow(True)
     panel_label(ax, "c", "Sample-paired uncertainty (10,000 resamples)")
@@ -155,12 +175,17 @@ def draw_paired_ci(ax: plt.Axes, bootstrap: pd.DataFrame, labels: dict[str, str]
 
 def draw_subgroups(ax: plt.Axes, subgroup: pd.DataFrame, labels: dict[str, str]) -> dict[str, int]:
     valid = subgroup[subgroup.metric_valid.astype(bool)].copy()
+    valid["relative_improvement"] = valid.improvement / valid.comparator_score.abs().clip(
+        lower=1e-12
+    )
     valid["column"] = valid.descriptor.map(
         {"molecular_weight": "MW", "clogp": "cLogP", "tpsa": "TPSA"}
     ) + valid.group.map({"low_or_equal_median": " low", "above_median": " high"})
     columns = ["MW low", "MW high", "cLogP low", "cLogP high", "TPSA low", "TPSA high"]
     tasks = list(labels)
-    matrix = valid.pivot(index="task", columns="column", values="improvement").reindex(index=tasks, columns=columns)
+    matrix = valid.pivot(
+        index="task", columns="column", values="relative_improvement"
+    ).reindex(index=tasks, columns=columns)
     finite = matrix.to_numpy(dtype=float)
     limit = float(np.nanquantile(np.abs(finite), 0.95))
     limit = max(limit, 1e-6)
@@ -183,7 +208,7 @@ def draw_subgroups(ax: plt.Axes, subgroup: pd.DataFrame, labels: dict[str, str])
             if (task, descriptor, group) in invalid.index and not bool(invalid.loc[(task, descriptor, group)]):
                 ax.text(column_index, task_index, "×", ha="center", va="center", fontsize=7, color=INK)
     colorbar = ax.figure.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
-    colorbar.set_label("Improvement vs per-task single", fontsize=7.5)
+    colorbar.set_label("Relative improvement vs per-task single", fontsize=7.5)
     colorbar.ax.tick_params(labelsize=6.5)
     panel_label(ax, "d", "Matched molecular-property subgroup effects")
     return {"valid_groups": int(valid.shape[0]), "invalid_groups": invalid_count}
