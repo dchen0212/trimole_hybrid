@@ -77,7 +77,7 @@ def arrow(ax, start, end, color=INK, style="-"):
 
 def panel_label(ax, label, title):
     ax.text(0.0, 1.025, label, transform=ax.transAxes, fontsize=13, weight="bold", va="bottom")
-    ax.text(0.036, 1.025, title, transform=ax.transAxes, fontsize=12, weight="bold", va="bottom", color=NAVY)
+    ax.text(0.045, 1.025, title, transform=ax.transAxes, fontsize=12, weight="bold", va="bottom", color=NAVY)
 
 
 def draw_protocol(ax):
@@ -117,7 +117,7 @@ def draw_protocol(ax):
     ax.text(
         0.5,
         0.08,
-        "Family transfer: source-train identities matching target validation/test are removed during selection; source train+valid identities matching target test are removed during final refit",
+        "Family transfer: one label-free target train+valid+test universe fixes exact-identity and Morgan-Tanimoto >=0.90 source exclusions before stage-specific fitting",
         transform=ax.transAxes,
         ha="center",
         va="center",
@@ -170,22 +170,18 @@ def draw_candidate_pool(ax):
     )
 
     group_specs = [
-        ("Molecular views", ["SMILES\nChemBERTa", "2D graph\nKPGT", "EPT / 3D\nenvironment", "Morgan\nfingerprint", "RDKit / XL\ndescriptors"], PALE_TEAL, TEAL),
-        ("Prediction heads", ["Ridge /\nlogistic", "XGBoost", "ExtraTrees"], PALE_OCHRE, OCHRE),
-        ("Combination rules", ["single", "validation\ntop-2 / top-3", "uniform\naverage", "OOF\nstacking", "frozen task\nensemble", "matched\nFLAML"], PALE_BLUE, BLUE),
+        ("Molecular views", "SMILES encoder  |  graph encoder  |  EPT / 3D\nMorgan fingerprint  |  descriptors", PALE_TEAL, TEAL),
+        ("Prediction heads", "linear  |  XGBoost  |  ExtraTrees", PALE_OCHRE, OCHRE),
+        ("Combination rules", "global / task single  |  valid. top-2 / top-3\nuniform  |  valid. stacking\ncommon-pool task-wise  |  common-pool AutoML", PALE_BLUE, BLUE),
     ]
     y_positions = [0.66, 0.39, 0.10]
     for (title, items, face, edge), y in zip(group_specs, y_positions):
         ax.text(0.015, y + 0.085, title, transform=ax.transAxes, fontsize=8.7, weight="bold", color=edge, va="center")
-        start_x = 0.27
-        gap = 0.018
-        width = min(0.12, (0.72 - gap * (len(items) - 1)) / len(items))
-        for index, item in enumerate(items):
-            box(ax, (start_x + index * (width + gap), y), width, 0.17, item, face, edge, fontsize=7.4, radius=0.018)
+        box(ax, (0.30, y), 0.675, 0.17, items, face, edge, fontsize=7.0, radius=0.018)
     ax.text(
         0.5,
         0.00,
-        "Each task receives one machine-readable frozen recipe; all matched controls use the same official splits, representation inputs and five seeds",
+        "Primary controls use one frozen nine-family pool, the same official splits and five seeds; the task-wise selector and AutoML each search six validation configurations",
         transform=ax.transAxes,
         ha="center",
         va="bottom",

@@ -2,8 +2,8 @@
 
 Candidate selection uses target validation labels only. Official test labels are
 scored only after one feature/configuration candidate has been frozen per target.
-Cross-task training molecules that overlap a target holdout are removed using
-connectivity-level InChIKey identities.
+Cross-task training molecules are filtered against a target-wide identity set
+defined before split membership is considered.
 """
 
 from __future__ import annotations
@@ -30,8 +30,10 @@ from xgboost import XGBClassifier, XGBRegressor
 
 from family_transfer_safety import (
     canonical_connectivity_keys,
-    forbidden_keys,
     keep_mask,
+    molecular_similarity_audit,
+    molecular_similarity_keep_mask,
+    presplit_target_universe_keys,
     select_validation_candidate,
 )
 
@@ -75,6 +77,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--data-root", type=Path)
     parser.add_argument("--out-root", type=Path)
     parser.add_argument("--selection-stat", choices=("valid_mean", "valid_adjusted"), default="valid_mean")
+    parser.add_argument(
+        "--cross-task-tanimoto-threshold",
+        type=float,
+        default=0.90,
+        help="Exclude cross-task source rows at or above this Morgan similarity to any target row.",
+    )
     parser.add_argument("--n-jobs", type=int, default=8)
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--allow-dirty", action="store_true")
@@ -153,6 +161,7 @@ def load_inputs(
     dict[str, dict[str, np.ndarray]],
     dict[str, dict[str, list[str]]],
     dict[str, tuple[float, float]],
+    dict[str, dict[str, list[str]]],
 ]:
     if str(repo) not in sys.path:
         sys.path.insert(0, str(repo))
@@ -162,6 +171,7 @@ def load_inputs(
     labels: dict[str, dict[str, np.ndarray]] = {}
     identities: dict[str, dict[str, list[str]]] = {}
     scales: dict[str, tuple[float, float]] = {}
+    smiles_by_task: dict[str, dict[str, list[str]]] = {}
     for task_index, task in enumerate(tasks):
         frames = {
             split: read_feature_frame(
@@ -174,6 +184,7 @@ def load_inputs(
             split: frames[split][smiles_col(frames[split])].tolist()
             for split in ("train", "valid", "test")
         }
+        smiles_by_task[task] = smiles
         identities[task] = {
             split: canonical_connectivity_keys(values) for split, values in smiles.items()
         }
@@ -218,7 +229,7 @@ def load_inputs(
         else:
             scales[task] = (0.0, 1.0)
             labels[task] = task_labels
-    return features, labels, identities, scales
+    return features, labels, identities, scales, smiles_by_task
 
 
 def load_test_labels(
@@ -249,16 +260,28 @@ def pooled_stage(
     target: str,
     feature_set: str,
     stage: str,
+    cross_task_masks: dict[tuple[str, str, str], list[bool]] | None = None,
 ) -> tuple[np.ndarray, np.ndarray, list[dict[str, object]]]:
     split_index = {"train": 0, "valid": 1}
     included_splits = ("train",) if stage == "selection" else ("train", "valid")
-    blocked = forbidden_keys(identities[target]["valid"], identities[target]["test"], stage)
+    target_universe = presplit_target_universe_keys(
+        identities[target]["train"],
+        identities[target]["valid"],
+        identities[target]["test"],
+    )
+    cross_task_masks = cross_task_masks or {}
     pooled_x: list[np.ndarray] = []
     pooled_y: list[np.ndarray] = []
     audit: list[dict[str, object]] = []
     for source in tasks:
+        blocked = set() if source == target else target_universe
         for split in included_splits:
-            mask = np.asarray(keep_mask(identities[source][split], blocked), dtype=bool)
+            exact_mask = np.asarray(keep_mask(identities[source][split], blocked), dtype=bool)
+            similarity_mask = np.asarray(
+                cross_task_masks.get((target, source, split), [True] * len(exact_mask)),
+                dtype=bool,
+            )
+            mask = exact_mask & similarity_mask
             pooled_x.append(features[source][feature_set][split_index[split]][mask])
             pooled_y.append(labels[source][split][mask])
             audit.append(
@@ -268,11 +291,108 @@ def pooled_stage(
                     "source_task": source,
                     "source_split": split,
                     "rows_before": int(len(mask)),
-                    "rows_removed_for_holdout_overlap": int(np.sum(~mask)),
+                    "rows_removed_exact_target_universe": int(np.sum(~exact_mask)),
+                    "rows_removed_high_tanimoto": int(np.sum(exact_mask & ~similarity_mask)),
+                    "rows_removed_total": int(np.sum(~mask)),
                     "rows_after": int(np.sum(mask)),
+                    "filter_policy": (
+                        "target endpoint retains its designated development split"
+                        if source == target
+                        else "cross-task rows filtered against the pre-split target identity universe and high-similarity threshold"
+                    ),
                 }
             )
     return np.concatenate(pooled_x), np.concatenate(pooled_y), audit
+
+
+def build_cross_task_similarity_audit(
+    identities: dict[str, dict[str, list[str]]],
+    smiles_by_task: dict[str, dict[str, list[str]]],
+    tasks: list[str],
+    targets: list[str],
+    threshold: float = 0.90,
+) -> list[dict[str, object]]:
+    """Audit scaffold and near-neighbor overlap after exact universe filtering."""
+
+    rows: list[dict[str, object]] = []
+    for target in targets:
+        target_smiles = sum(
+            (smiles_by_task[target][split] for split in ("train", "valid", "test")),
+            [],
+        )
+        blocked = presplit_target_universe_keys(
+            identities[target]["train"],
+            identities[target]["valid"],
+            identities[target]["test"],
+        )
+        for source in tasks:
+            if source == target:
+                continue
+            for split in ("train", "valid"):
+                mask = keep_mask(identities[source][split], blocked)
+                filtered_smiles = [
+                    smiles
+                    for smiles, keep in zip(smiles_by_task[source][split], mask, strict=True)
+                    if keep
+                ]
+                similarity = molecular_similarity_audit(
+                    filtered_smiles, target_smiles, threshold
+                )
+                rows.append(
+                    {
+                        "target_task": target,
+                        "source_task": source,
+                        "source_split": split,
+                        "source_rows_before_exact_filter": len(mask),
+                        "rows_removed_exact_target_universe": int(sum(not value for value in mask)),
+                        "rows_after_exact_filter": int(sum(mask)),
+                        "target_identity_scope": "train+valid+test, assembled before split-specific filtering",
+                        **similarity,
+                    }
+                )
+    return rows
+
+
+def build_cross_task_similarity_masks(
+    identities: dict[str, dict[str, list[str]]],
+    smiles_by_task: dict[str, dict[str, list[str]]],
+    tasks: list[str],
+    targets: list[str],
+    threshold: float,
+) -> dict[tuple[str, str, str], list[bool]]:
+    """Precompute exact-plus-near-neighbor source masks once per target dataset."""
+
+    masks: dict[tuple[str, str, str], list[bool]] = {}
+    for target in targets:
+        target_smiles = sum(
+            (smiles_by_task[target][split] for split in ("train", "valid", "test")),
+            [],
+        )
+        blocked = presplit_target_universe_keys(
+            identities[target]["train"],
+            identities[target]["valid"],
+            identities[target]["test"],
+        )
+        for source in tasks:
+            if source == target:
+                continue
+            for split in ("train", "valid"):
+                exact_mask = keep_mask(identities[source][split], blocked)
+                exact_smiles = [
+                    value
+                    for value, keep in zip(
+                        smiles_by_task[source][split], exact_mask, strict=True
+                    )
+                    if keep
+                ]
+                near_mask = molecular_similarity_keep_mask(
+                    exact_smiles, target_smiles, threshold
+                )
+                iterator = iter(near_mask)
+                masks[(target, source, split)] = [
+                    next(iterator) if keep else False for keep in exact_mask
+                ]
+    return masks
 
 
 def classification_grid(y: np.ndarray) -> list[dict[str, float | int]]:
@@ -410,7 +530,9 @@ def main() -> None:
         raise FileExistsError(f"refusing to mix outputs in non-empty directory: {out_root}; pass --force to overwrite")
     out_root.mkdir(parents=True, exist_ok=True)
 
-    features, labels, identities, scales = load_inputs(args.repo, data_root, tasks, kind)
+    features, labels, identities, scales, smiles_by_task = load_inputs(
+        args.repo, data_root, tasks, kind
+    )
     feature_sets = common_feature_sets(features)
     if not feature_sets:
         raise RuntimeError("no feature set is available for every task in the family")
@@ -420,6 +542,21 @@ def main() -> None:
     selected_rows: list[dict[str, object]] = []
     removal_audit: list[dict[str, object]] = []
     best_iterations: dict[tuple[str, str, int, int], int] = {}
+    similarity_audit = build_cross_task_similarity_audit(
+        identities,
+        smiles_by_task,
+        tasks,
+        targets,
+        threshold=args.cross_task_tanimoto_threshold,
+    )
+    write_csv(out_root / "cross_task_similarity_audit.csv", similarity_audit)
+    cross_task_masks = build_cross_task_similarity_masks(
+        identities,
+        smiles_by_task,
+        tasks,
+        targets,
+        args.cross_task_tanimoto_threshold,
+    )
 
     for target in targets:
         metric = metrics[target]
@@ -430,7 +567,14 @@ def main() -> None:
         valid_y_score = valid_y_model * std + mean
         for feature_set in feature_sets:
             pool_x, pool_y, audit = pooled_stage(
-                features, labels, identities, tasks, target, feature_set, "selection"
+                features,
+                labels,
+                identities,
+                tasks,
+                target,
+                feature_set,
+                "selection",
+                cross_task_masks,
             )
             if feature_set == feature_sets[0]:
                 removal_audit.extend(audit)
@@ -495,7 +639,14 @@ def main() -> None:
             if key in selected and selected[key] not in (None, "")
         }
         pool_x, pool_y, audit = pooled_stage(
-            features, labels, identities, tasks, target, feature_set, "final"
+            features,
+            labels,
+            identities,
+            tasks,
+            target,
+            feature_set,
+            "final",
+            cross_task_masks,
         )
         removal_audit.extend(audit)
         test_x = features[target][feature_set][2]
@@ -559,7 +710,10 @@ def main() -> None:
         "targets": targets,
         "selection_rule": args.selection_stat,
         "test_policy": "one frozen candidate per target; no test-based candidate ranking",
+        "cross_task_filter_policy": "one target-wide connectivity identity universe assembled from train+valid+test before split-specific model stages, followed by a target-wide Morgan-similarity exclusion; the same cross-task masks are used for selection and final refit",
         "molecule_identity": "RDKit connectivity-level InChIKey first block",
+        "similarity_audit": f"Bemis-Murcko scaffold overlap and Morgan radius-2 2048-bit Tanimoto >= {args.cross_task_tanimoto_threshold:.2f} after exact target-universe exclusion",
+        "cross_task_tanimoto_filter_threshold": args.cross_task_tanimoto_threshold,
         "git_commit": git_commit(args.repo),
         "git_status_at_start": initial_git_status or "clean",
         "command": " ".join(sys.argv),

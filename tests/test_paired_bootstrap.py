@@ -42,6 +42,40 @@ class PairedBootstrapTest(unittest.TestCase):
         adjusted = BOOTSTRAP.bh_adjust(np.array([0.01, 0.04, 0.03, 0.002]))
         np.testing.assert_allclose(adjusted, [0.02, 0.04, 0.04, 0.008])
 
+    def test_hierarchical_bootstrap_resamples_seed_and_sample(self) -> None:
+        labels = np.arange(30, dtype=float)
+        reference = np.stack([labels + 0.1, labels + 0.2, labels + 0.3])
+        comparator = np.stack([labels + 1.0, labels + 1.1, labels + 1.2])
+        result = BOOTSTRAP.hierarchical_seed_sample_bootstrap(
+            labels,
+            reference,
+            comparator,
+            "MAE",
+            500,
+            np.random.default_rng(9),
+            True,
+        )
+        self.assertGreater(result["ci95_lower"], 0.0)
+        self.assertEqual(result["resampling_mode"], "hierarchical_seed_and_sample")
+        self.assertEqual(result["seed_resampling"], "paired")
+        self.assertTrue(result["reference_seed_uncertainty_available"])
+
+    def test_single_seed_is_explicitly_flagged(self) -> None:
+        labels = np.arange(20, dtype=float)
+        reference = np.stack([labels + 0.1])
+        comparator = np.stack([labels + 1.0, labels + 1.2])
+        result = BOOTSTRAP.hierarchical_seed_sample_bootstrap(
+            labels,
+            reference,
+            comparator,
+            "MAE",
+            200,
+            np.random.default_rng(4),
+            False,
+        )
+        self.assertFalse(result["reference_seed_uncertainty_available"])
+        self.assertEqual(result["seed_resampling"], "independent")
+
 
 if __name__ == "__main__":
     unittest.main()

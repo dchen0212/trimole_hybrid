@@ -31,6 +31,10 @@ MODEL_LABELS = {
     "validation_top3_average": "Validation top-3",
     "uniform_average": "Uniform average",
     "oof_stacking": "OOF stacking",
+    "common_pool_taskwise_selector": "Common-pool task-wise",
+    "common_pool_automl": "Common-pool AutoML",
+    "uniform_candidate_average": "Uniform average",
+    "validation_stacking": "Validation stacking",
 }
 
 
@@ -106,7 +110,10 @@ def draw_controlled(ax: plt.Axes, summary: pd.DataFrame, rng: np.random.Generato
         rows.append((model, values.mean(), *np.quantile(boot, [0.025, 0.975])))
     result = pd.DataFrame(rows, columns=["model", "mean", "lower", "upper"])
     y = np.arange(len(result))
-    colors = ["#C96855" if model == "trimole_hybrid" else "#3978A8" for model in result.model]
+    colors = [
+        "#C96855" if model == "common_pool_taskwise_selector" else "#3978A8"
+        for model in result.model
+    ]
     ax.barh(y, result["mean"], color=colors, alpha=0.9, height=0.68)
     ax.errorbar(
         result["mean"], y,
@@ -118,14 +125,14 @@ def draw_controlled(ax: plt.Axes, summary: pd.DataFrame, rng: np.random.Generato
     ax.set_xlabel("Mean within-task normalized rank utility (95% task-bootstrap CI)", fontsize=8.2)
     ax.grid(axis="x", color="#D8DEE2", linewidth=0.6, alpha=0.8)
     ax.set_axisbelow(True)
-    panel_label(ax, "b", "Matched controls on identical official splits")
+    panel_label(ax, "b", "Strict nine-family common-pool controls")
     return dict(zip(result.model, result["mean"]))
 
 
 def draw_paired_ci(ax: plt.Axes, bootstrap: pd.DataFrame, labels: dict[str, str]) -> dict[str, int]:
     data = bootstrap[
         bootstrap.comparator_model.eq("per_task_single")
-        & bootstrap.reference_model.eq("trimole_hybrid")
+        & bootstrap.reference_model.eq("common_pool_taskwise_selector")
     ].copy()
     if len(data) != 22:
         raise ValueError(f"expected 22 paired task rows, found {len(data)}")
@@ -164,12 +171,12 @@ def draw_paired_ci(ax: plt.Axes, bootstrap: pd.DataFrame, labels: dict[str, str]
     ax.axvline(0, color=INK, linewidth=0.9)
     ax.set_yticks(y, data.label, fontsize=7.1)
     ax.set_xlabel(
-        "Relative improvement over per-task single model (paired 95% CI)",
+        "Relative improvement over per-task single family (hierarchical 95% CI)",
         fontsize=8.2,
     )
     ax.grid(axis="x", color="#D8DEE2", linewidth=0.6, alpha=0.8)
     ax.set_axisbelow(True)
-    panel_label(ax, "c", "Sample-paired uncertainty (10,000 resamples)")
+    panel_label(ax, "c", "Seed-and-sample uncertainty (10,000 resamples)")
     return {"significant_fdr_0_05": int(significant.sum()), "tasks": len(data)}
 
 
@@ -238,7 +245,7 @@ def main() -> None:
     paired_summary = draw_paired_ci(axes[1, 0], bootstrap, labels)
     subgroup_summary = draw_subgroups(axes[1, 1], subgroup, labels)
     fig.suptitle(
-        "Leakage-safe benchmark results, matched controls and sample-level uncertainty",
+        "Leakage-safe benchmark results, strict common-pool controls and hierarchical uncertainty",
         fontsize=13,
         weight="bold",
         color=INK,

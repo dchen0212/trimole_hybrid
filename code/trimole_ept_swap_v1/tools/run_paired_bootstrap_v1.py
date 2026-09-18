@@ -25,6 +25,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--bootstrap-replicates", type=int, default=10_000)
     parser.add_argument("--seed", type=int, default=20260917)
     parser.add_argument("--n-jobs", type=int, default=1)
+    parser.add_argument(
+        "--resampling-mode",
+        choices=("hierarchical", "sample_only"),
+        default="hierarchical",
+        help="Resample both model seeds and test samples, or test samples only.",
+    )
     return parser.parse_args()
 
 
@@ -120,6 +126,84 @@ def paired_bootstrap(
     }
 
 
+def hierarchical_seed_sample_bootstrap(
+    labels: np.ndarray,
+    reference: np.ndarray,
+    comparator: np.ndarray,
+    metric: str,
+    replicates: int,
+    rng: np.random.Generator,
+    paired_seed_resampling: bool,
+) -> dict[str, float | int | str | bool]:
+    """Resample training seeds and test samples in each bootstrap replicate."""
+
+    if reference.ndim != 2 or comparator.ndim != 2:
+        raise ValueError("seed-level predictions must be two-dimensional")
+    if reference.shape[1] != len(labels) or comparator.shape[1] != len(labels):
+        raise ValueError("seed prediction row mismatch")
+    if paired_seed_resampling and len(reference) != len(comparator):
+        raise ValueError("paired seed resampling requires equal seed counts")
+
+    reference_mean = np.mean(reference, axis=0)
+    comparator_mean = np.mean(comparator, axis=0)
+    observed_reference = metric_value(metric, labels, reference_mean)
+    observed_comparator = metric_value(metric, labels, comparator_mean)
+    observed_delta = improvement(metric, observed_reference, observed_comparator)
+    deltas = np.empty(replicates, dtype=np.float64)
+    valid = 0
+    n = len(labels)
+    for _ in range(replicates):
+        sample_index = rng.integers(0, n, size=n)
+        if paired_seed_resampling:
+            seed_index = rng.integers(0, len(reference), size=len(reference))
+            reference_prediction = np.mean(reference[seed_index], axis=0)
+            comparator_prediction = np.mean(comparator[seed_index], axis=0)
+        else:
+            reference_index = rng.integers(0, len(reference), size=len(reference))
+            comparator_index = rng.integers(0, len(comparator), size=len(comparator))
+            reference_prediction = np.mean(reference[reference_index], axis=0)
+            comparator_prediction = np.mean(comparator[comparator_index], axis=0)
+        try:
+            reference_score = metric_value(
+                metric, labels[sample_index], reference_prediction[sample_index]
+            )
+            comparator_score = metric_value(
+                metric, labels[sample_index], comparator_prediction[sample_index]
+            )
+        except ValueError:
+            continue
+        delta = improvement(metric, reference_score, comparator_score)
+        if np.isfinite(delta):
+            deltas[valid] = delta
+            valid += 1
+    if valid < max(100, int(0.8 * replicates)):
+        raise RuntimeError(f"too few valid bootstrap replicates: {valid}/{replicates}")
+    deltas = deltas[:valid]
+    lower, upper = np.quantile(deltas, [0.025, 0.975])
+    p_two_sided = min(
+        1.0,
+        2.0
+        * min(
+            (np.count_nonzero(deltas <= 0.0) + 1.0) / (valid + 1.0),
+            (np.count_nonzero(deltas >= 0.0) + 1.0) / (valid + 1.0),
+        ),
+    )
+    return {
+        "n_samples": n,
+        "reference_score": observed_reference,
+        "comparator_score": observed_comparator,
+        "improvement": observed_delta,
+        "ci95_lower": float(lower),
+        "ci95_upper": float(upper),
+        "p_value_two_sided": float(p_two_sided),
+        "bootstrap_replicates_valid": valid,
+        "resampling_mode": "hierarchical_seed_and_sample",
+        "seed_resampling": "paired" if paired_seed_resampling else "independent",
+        "reference_seed_uncertainty_available": len(reference) > 1,
+        "comparator_seed_uncertainty_available": len(comparator) > 1,
+    }
+
+
 def bh_adjust(p_values: np.ndarray) -> np.ndarray:
     if len(p_values) == 0:
         return p_values.copy()
@@ -135,9 +219,12 @@ def bh_adjust(p_values: np.ndarray) -> np.ndarray:
 def aggregate_predictions(
     rows: pd.DataFrame, labels: np.ndarray
 ) -> tuple[np.ndarray, list[int]]:
-    predictions = [load_prediction(path, len(labels)) for path in rows.prediction_file]
-    seeds = sorted(rows.seed.astype(int).tolist())
-    return np.mean(np.stack(predictions, axis=0), axis=0), seeds
+    ordered = rows.assign(_seed=rows.seed.astype(int)).sort_values("_seed")
+    predictions = [load_prediction(path, len(labels)) for path in ordered.prediction_file]
+    seeds = ordered._seed.astype(int).tolist()
+    if len(seeds) != len(set(seeds)):
+        raise ValueError("duplicate seed rows in prediction manifest")
+    return np.stack(predictions, axis=0), seeds
 
 
 def task_comparisons(
@@ -147,6 +234,7 @@ def task_comparisons(
     reference_model: str,
     replicates: int,
     seed: int,
+    resampling_mode: str,
 ) -> list[dict[str, object]]:
     metrics = task_rows.metric.unique().tolist()
     if len(metrics) != 1:
@@ -165,14 +253,34 @@ def task_comparisons(
         comparator_prediction, comparator_seeds = aggregate_predictions(
             comparator_rows, labels
         )
-        result = paired_bootstrap(
-            labels,
-            reference_prediction,
-            comparator_prediction,
-            metric,
-            replicates,
-            rng,
-        )
+        paired_seeds = reference_seeds == comparator_seeds and len(reference_seeds) > 1
+        if resampling_mode == "hierarchical":
+            result = hierarchical_seed_sample_bootstrap(
+                labels,
+                reference_prediction,
+                comparator_prediction,
+                metric,
+                replicates,
+                rng,
+                paired_seeds,
+            )
+        else:
+            result = paired_bootstrap(
+                labels,
+                np.mean(reference_prediction, axis=0),
+                np.mean(comparator_prediction, axis=0),
+                metric,
+                replicates,
+                rng,
+            )
+            result.update(
+                {
+                    "resampling_mode": "sample_only_after_seed_average",
+                    "seed_resampling": "none",
+                    "reference_seed_uncertainty_available": len(reference_seeds) > 1,
+                    "comparator_seed_uncertainty_available": len(comparator_seeds) > 1,
+                }
+            )
         output_rows.append(
             {
                 "task": task,
@@ -181,6 +289,9 @@ def task_comparisons(
                 "comparator_model": comparator_model,
                 "reference_seeds": ";".join(map(str, reference_seeds)),
                 "comparator_seeds": ";".join(map(str, comparator_seeds)),
+                "reference_seed_count": len(reference_seeds),
+                "comparator_seed_count": len(comparator_seeds),
+                "paired_seed_ids": paired_seeds,
                 **result,
             }
         )
@@ -188,7 +299,7 @@ def task_comparisons(
 
 
 def task_comparisons_job(
-    payload: tuple[str, pd.DataFrame, Path, str, int, int]
+    payload: tuple[str, pd.DataFrame, Path, str, int, int, str]
 ) -> list[dict[str, object]]:
     return task_comparisons(*payload)
 
@@ -217,6 +328,7 @@ def main() -> None:
             args.reference_model,
             args.bootstrap_replicates,
             int(child_seed.generate_state(1, dtype=np.uint32)[0]),
+            args.resampling_mode,
         )
         for (task, rows), child_seed in zip(grouped, child_seeds)
     ]
@@ -248,7 +360,8 @@ def main() -> None:
                 "parallel_jobs": args.n_jobs,
                 "randomization": "fixed child seed per sorted task; invariant to n_jobs",
                 "delta_definition": "positive means reference model is better",
-                "p_value": "two-sided paired bootstrap with plus-one correction",
+                "resampling_mode": args.resampling_mode,
+                "p_value": "two-sided hierarchical seed-and-sample bootstrap with plus-one correction" if args.resampling_mode == "hierarchical" else "two-sided paired sample bootstrap with plus-one correction",
                 "multiplicity": "Benjamini-Hochberg across emitted comparisons",
             },
             indent=2,

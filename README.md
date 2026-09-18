@@ -24,6 +24,8 @@ It is **not** a one-command full rerun bundle. Large files are intentionally exc
 - `docs/MODEL_FAMILY_INDEX.md`: file-by-file map from manuscript model families to concrete source files.
 - `docs/PULL_COMPLETENESS_AUDIT.md`: audit of what was pulled from the server and what was intentionally excluded.
 - `code/trimole_ept_swap_v1/tools/run_expanded_candidate_pool_controls_v1.py`: validation-gated expanded common-pool sensitivity analysis used for Supplementary Table S24.
+- `code/trimole_ept_swap_v1/tools/run_common_pool_fair_comparison_v1.py`: primary nine-family, eight-method, five-seed strict common-pool comparison used for Supplementary Tables S24g-S24j.
+- `code/trimole_ept_swap_v1/tools/run_paired_bootstrap_v1.py`: hierarchical seed-and-sample bootstrap with BH-FDR correction.
 
 ## Model Families
 
@@ -47,13 +49,13 @@ The revised family-transfer protocol is implemented in:
 - `code/trimole_ept_swap_v1/tools/audit_family_transfer_overlap_v1.py`
 - `docs/FAMILY_TRANSFER_LEAKAGE_CONTROL.md`
 
-For each target, cross-task training rows that overlap the target holdout at the connectivity-InChIKey level are excluded. Candidate ranking is validation-only, boosting rounds are frozen before final refitting, and the official test metric is computed only for the selected candidate. The historical pooled-family `v1` scripts are retained for provenance but are blocked by default and must not be used for revised manuscript results.
+For each target, one label-free identity universe is assembled from the already defined target train, validation and test structures before stage-specific fitting. The same connectivity-InChIKey exclusion set is applied to every cross-task source split, followed by a Morgan radius-2, 2,048-bit Tanimoto filter at 0.90. Candidate ranking is validation-only, boosting rounds are frozen before final refitting, and the official test metric is computed only for the selected candidate. The historical pooled-family `v1` scripts and the superseded test-split-specific exact-only reruns are retained for provenance but must not be used for revised manuscript results.
 
 ## Data
 
 The official ADMET benchmark data are available from Therapeutics Data Commons (TDC). This repository does not redistribute official TDC datasets or local data copies.
 
-Formal manuscript results used the official TDC ADMET benchmark splits. Historical exploratory files may contain old path names or comments. Revised family-transfer claims must be updated only after the leakage-controlled `v2` runs and their overlap/provenance outputs have been checked.
+Formal manuscript results used the official TDC ADMET benchmark splits. Historical exploratory files may contain old path names or comments. Revised family-transfer claims must be updated only from independently validated target-wide and similarity-filtered runs.
 
 ## Reproducibility Boundary
 
@@ -62,7 +64,8 @@ Included in this public-upload package:
 - Source code for model branches, endpoint selection, sidecars, ensembles and audits.
 - Lightweight benchmark, ablation and case-study summaries through `supplementary_tables/`.
 - Supplementary Information source/PDF, supplementary figures and supplementary tables used in the manuscript.
-- Validation-only numerical-stability audits for all 15 complete candidate families and the nine-family expanded common-pool controls reported in Table S24.
+- Validation-only numerical-stability audits for all 15 complete candidate families and the strict nine-family common-pool controls reported in Tables S24g-S24j.
+- Target-wide exact-identity, Bemis-Murcko scaffold and Morgan-Tanimoto family-transfer audits reported in Tables S20b-S20d.
 
 Excluded:
 

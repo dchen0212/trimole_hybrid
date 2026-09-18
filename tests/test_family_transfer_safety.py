@@ -35,6 +35,16 @@ class FamilyTransferSafetyTest(unittest.TestCase):
         self.assertEqual(blocked, {"test-a"})
         self.assertEqual(SAFETY.keep_mask(["valid-a", "test-a"], blocked), [True, False])
 
+    def test_presplit_target_universe_is_split_membership_independent(self) -> None:
+        blocked = SAFETY.presplit_target_universe_keys(
+            ["train-a", "shared"], ["valid-a"], ["test-a", "shared"]
+        )
+        self.assertEqual(blocked, {"train-a", "valid-a", "test-a", "shared"})
+        self.assertEqual(
+            SAFETY.keep_mask(["source-only", "train-a", "test-a"], blocked),
+            [True, False, False],
+        )
+
 
     def test_overlap_stats_counts_rows_and_unique_molecules(self) -> None:
         stats = SAFETY.overlap_stats(["a", "a", "b", "c"], ["a", "d", "d"])
@@ -49,6 +59,20 @@ class FamilyTransferSafetyTest(unittest.TestCase):
                 "overlap_unique_molecules": 1,
             },
         )
+
+    def test_similarity_audit_detects_scaffold_and_near_neighbor(self) -> None:
+        audit = SAFETY.molecular_similarity_audit(
+            ["c1ccccc1C", "CCO"], ["c1ccccc1Cl"], threshold=0.30
+        )
+        self.assertEqual(audit["source_rows_with_target_scaffold"], 1)
+        self.assertGreaterEqual(audit["source_rows_tanimoto_ge_threshold"], 1)
+        self.assertGreater(audit["maximum_tanimoto"], 0.30)
+
+    def test_similarity_filter_removes_near_neighbor_only(self) -> None:
+        mask = SAFETY.molecular_similarity_keep_mask(
+            ["c1ccccc1C", "CCO"], ["c1ccccc1Cl"], threshold=0.30
+        )
+        self.assertEqual(mask, [False, True])
 
 
     def test_anonymized_key_is_deterministic(self) -> None:

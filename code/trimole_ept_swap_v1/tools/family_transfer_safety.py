@@ -54,6 +54,21 @@ def forbidden_keys(
     raise ValueError(f"unknown stage: {stage!r}")
 
 
+def presplit_target_universe_keys(
+    target_train_keys: Sequence[str],
+    target_valid_keys: Sequence[str],
+    target_test_keys: Sequence[str],
+) -> set[str]:
+    """Build one split-membership-independent target identity set.
+
+    Cross-task sources are filtered against this same set during selection and
+    final refitting. The rule depends on target-dataset membership, not on which
+    target rows later happen to be assigned to the test partition.
+    """
+
+    return set(target_train_keys) | set(target_valid_keys) | set(target_test_keys)
+
+
 def keep_mask(row_keys: Sequence[str], blocked_keys: set[str]) -> list[bool]:
     return [key not in blocked_keys for key in row_keys]
 
@@ -69,6 +84,99 @@ def overlap_stats(source_keys: Sequence[str], holdout_keys: Sequence[str]) -> di
         "overlap_source_rows": len(overlapping_rows),
         "overlap_unique_molecules": len(set(overlapping_rows)),
     }
+
+
+def molecular_similarity_audit(
+    source_smiles: Sequence[object],
+    target_smiles: Sequence[object],
+    threshold: float = 0.90,
+) -> dict[str, int | float]:
+    """Audit exact scaffold and high Morgan-Tanimoto cross-dataset overlap."""
+
+    if not 0.0 < threshold <= 1.0:
+        raise ValueError("Tanimoto threshold must be in (0, 1]")
+    try:
+        from rdkit import Chem, DataStructs
+        from rdkit.Chem import rdFingerprintGenerator
+        from rdkit.Chem.Scaffolds import MurckoScaffold
+    except ImportError as exc:  # pragma: no cover - runtime dependent
+        raise RuntimeError("RDKit is required for molecular similarity auditing") from exc
+
+    def molecules(values: Sequence[object]):
+        output = []
+        for value in values:
+            mol = Chem.MolFromSmiles(str(value).strip())
+            if mol is None:
+                raise ValueError(f"invalid SMILES: {value!r}")
+            output.append(mol)
+        return output
+
+    source_molecules = molecules(source_smiles)
+    target_molecules = molecules(target_smiles)
+    target_scaffolds = {
+        MurckoScaffold.MurckoScaffoldSmiles(mol=mol, includeChirality=False)
+        for mol in target_molecules
+    }
+    target_scaffolds.discard("")
+    source_scaffolds = [
+        MurckoScaffold.MurckoScaffoldSmiles(mol=mol, includeChirality=False)
+        for mol in source_molecules
+    ]
+    generator = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
+    target_fingerprints = [generator.GetFingerprint(mol) for mol in target_molecules]
+    high_similarity_rows = 0
+    maximum_similarity = 0.0
+    for mol in source_molecules:
+        fingerprint = generator.GetFingerprint(mol)
+        similarities = DataStructs.BulkTanimotoSimilarity(fingerprint, target_fingerprints)
+        row_maximum = max(similarities, default=0.0)
+        maximum_similarity = max(maximum_similarity, float(row_maximum))
+        high_similarity_rows += int(row_maximum >= threshold)
+    return {
+        "source_rows": len(source_molecules),
+        "target_rows": len(target_molecules),
+        "source_rows_with_target_scaffold": sum(
+            bool(scaffold) and scaffold in target_scaffolds for scaffold in source_scaffolds
+        ),
+        "source_unique_scaffolds": len({value for value in source_scaffolds if value}),
+        "target_unique_scaffolds": len(target_scaffolds),
+        "source_rows_tanimoto_ge_threshold": high_similarity_rows,
+        "tanimoto_threshold": threshold,
+        "maximum_tanimoto": maximum_similarity,
+    }
+
+
+def molecular_similarity_keep_mask(
+    source_smiles: Sequence[object],
+    target_smiles: Sequence[object],
+    threshold: float = 0.90,
+) -> list[bool]:
+    """Keep source rows whose Morgan similarity to every target row is below threshold."""
+
+    if not 0.0 < threshold <= 1.0:
+        raise ValueError("Tanimoto threshold must be in (0, 1]")
+    try:
+        from rdkit import Chem, DataStructs
+        from rdkit.Chem import rdFingerprintGenerator
+    except ImportError as exc:  # pragma: no cover - runtime dependent
+        raise RuntimeError("RDKit is required for molecular similarity filtering") from exc
+
+    generator = rdFingerprintGenerator.GetMorganGenerator(radius=2, fpSize=2048)
+
+    def fingerprint(value: object):
+        mol = Chem.MolFromSmiles(str(value).strip())
+        if mol is None:
+            raise ValueError(f"invalid SMILES: {value!r}")
+        return generator.GetFingerprint(mol)
+
+    target_fingerprints = [fingerprint(value) for value in target_smiles]
+    output = []
+    for value in source_smiles:
+        similarities = DataStructs.BulkTanimotoSimilarity(
+            fingerprint(value), target_fingerprints
+        )
+        output.append(max(similarities, default=0.0) < threshold)
+    return output
 
 
 def anonymized_key(connectivity_key: str) -> str:
