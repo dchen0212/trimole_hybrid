@@ -12,7 +12,7 @@
     "no_ept_or_no_3d": 0.5,
     "no_prediction_level_ensemble": 0.5,
     "no_seedbag_single_seed": 0.5,
-    "no_task_adaptive_selection": 0.5
+    "no_task_adaptive_selection": 0.6
   },
   "median_switch_rate": 0.189,
   "maximum_switch_rate": 0.4975,

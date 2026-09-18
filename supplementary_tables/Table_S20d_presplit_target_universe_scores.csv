@@ -1,0 +1,3 @@
+family,config_index,feature_set,metric,target_task,test_ensemble,test_mean,test_std
+clearance,1,fp,spearman,clearance_hepatocyte_az,0.476533293267201,0.4735898019169064,0.0087237905949024
+cyp_substrate,1,fp_chemberta_kpgt_ept,auroc,cyp3a4_substrate_carbonmangels,0.6435352622061482,0.6266048824593129,0.0345077695692252

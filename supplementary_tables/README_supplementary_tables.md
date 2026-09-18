@@ -16,10 +16,10 @@ The tables are intended to support reproducibility, selection-protocol auditing,
 - S18: Software and execution-environment manifest read from the server environments. File: `Table_S18_software_environment_manifest.csv`
 - S19: Endpoint-level primary-source provenance, including publication titles, DOI/ChEMBL accessions, direct source URLs, TDC catalogue URLs, split counts, label ranges, noise and applicability limits. File: `Table_S19_dataset_provenance.csv`
 - S20: Cross-task connectivity-level identity overlap, filtering counts, corrected family-transfer scores and provenance. File: `Table_S20_cross_task_leakage_audit.csv`
-- S21: Standardized three-view controlled baselines, matched-budget FLAML and frozen Trimole-Hybrid records. File: `Table_S21_controlled_baselines_automl.csv`
+- S21: Historical three-view controls and frozen Trimole-Hybrid sensitivity records. These rows document pool construction but are not used as matched-budget evidence. File: `Table_S21_controlled_baselines_automl.csv`
 - S22: Paired uncertainty and molecular-property subgroup analysis, including 10,000-replicate bootstrap outputs. File: `Table_S22_uncertainty_and_subgroups.csv`
 - S23: Scale-free ablation and validation-bootstrap selection-stability records. File: `Table_S23_ablation_selection_stability.csv`
-- S24: Expanded nine-family validation-stable common-pool controls. S24a--S24f contain summaries, paired bootstrap results, test-row alignment, validation ranks, scale-free method ranks and the complete 15-family numerical-eligibility audit. File: `Table_S24_expanded_candidate_pool_controls.csv`
+- S24: Nine-family validation-stable pool construction and strict common-pool controls. S24a--S24f retain pool-construction sensitivity analyses; S24g--S24j contain the primary equal-pool runs, summaries, hierarchical seed-and-sample bootstrap and frozen validation-selection records. File: `Table_S24_expanded_candidate_pool_controls.csv`
 - S2: Selected endpoint recipes and full ablation candidate ledger. S2d provides the compact endpoint overview used in the PDF supplement. File: `Table_S2_endpoint_recipe_and_variant_ledger.csv`
 - S3: Frozen leaderboard/reference and multibaseline comparison data. File: `Table_S3_frozen_reference_snapshot.csv`
 - S4: Formal ablation summary, long-form ablation scores, deltas, and heatmap-ready data. File: `Table_S4_formal_ablation_long.csv`

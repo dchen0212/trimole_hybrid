@@ -1,16 +1,16 @@
 {
   "controlled_mean_normalized_rank_utility": {
-    "per_task_single": 0.22402597402597396,
-    "global_single": 0.24350649350649345,
-    "validation_top2_average": 0.38311688311688313,
-    "flaml_automl": 0.4610389610389611,
-    "uniform_average": 0.5324675324675323,
-    "validation_top3_average": 0.5324675324675323,
-    "oof_stacking": 0.6558441558441559,
-    "trimole_hybrid": 0.9675324675324675
+    "validation_stacking": 0.30844155844155846,
+    "per_task_single": 0.3961038961038961,
+    "global_single": 0.3993506493506493,
+    "common_pool_automl": 0.4577922077922078,
+    "uniform_candidate_average": 0.49675324675324667,
+    "common_pool_taskwise_selector": 0.5324675324675325,
+    "validation_top2_average": 0.6948051948051949,
+    "validation_top3_average": 0.7142857142857143
   },
   "paired_bootstrap": {
-    "significant_fdr_0_05": 18,
+    "significant_fdr_0_05": 5,
     "tasks": 22
   },
   "subgroups": {

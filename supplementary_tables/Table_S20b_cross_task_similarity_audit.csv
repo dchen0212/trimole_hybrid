@@ -1,0 +1,7 @@
+family,maximum_tanimoto,rows_after_exact_filter,rows_removed_exact_target_universe,source_rows,source_rows_before_exact_filter,source_rows_tanimoto_ge_threshold,source_rows_with_target_scaffold,source_split,source_task,source_unique_scaffolds,tanimoto_threshold,target_identity_scope,target_rows,target_task,target_unique_scaffolds
+clearance,1.0,285,485,285,770,4,78,train,clearance_microsome_az,163,0.9,"train+valid+test, assembled before split-specific filtering",1213,clearance_hepatocyte_az,744
+clearance,0.8421052631578947,45,66,45,111,0,16,valid,clearance_microsome_az,24,0.9,"train+valid+test, assembled before split-specific filtering",1213,clearance_hepatocyte_az,744
+cyp_substrate,0.7647058823529411,4,463,4,467,0,3,train,cyp2c9_substrate_carbonmangels,4,0.9,"train+valid+test, assembled before split-specific filtering",670,cyp3a4_substrate_carbonmangels,452
+cyp_substrate,0.0,0,67,0,67,0,0,valid,cyp2c9_substrate_carbonmangels,0,0.9,"train+valid+test, assembled before split-specific filtering",670,cyp3a4_substrate_carbonmangels,452
+cyp_substrate,0.7407407407407407,5,460,5,465,0,3,train,cyp2d6_substrate_carbonmangels,5,0.9,"train+valid+test, assembled before split-specific filtering",670,cyp3a4_substrate_carbonmangels,452
+cyp_substrate,0.0,0,67,0,67,0,0,valid,cyp2d6_substrate_carbonmangels,0,0.9,"train+valid+test, assembled before split-specific filtering",670,cyp3a4_substrate_carbonmangels,452

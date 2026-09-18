@@ -1,0 +1,16 @@
+family,filter_policy,rows_after,rows_before,rows_removed_exact_target_universe,rows_removed_high_tanimoto,rows_removed_total,source_split,source_task,stage,target_task
+clearance,target endpoint retains its designated development split,848,848,0,0,0,train,clearance_hepatocyte_az,selection,clearance_hepatocyte_az
+clearance,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,281,770,485,4,489,train,clearance_microsome_az,selection,clearance_hepatocyte_az
+clearance,target endpoint retains its designated development split,848,848,0,0,0,train,clearance_hepatocyte_az,final,clearance_hepatocyte_az
+clearance,target endpoint retains its designated development split,122,122,0,0,0,valid,clearance_hepatocyte_az,final,clearance_hepatocyte_az
+clearance,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,281,770,485,4,489,train,clearance_microsome_az,final,clearance_hepatocyte_az
+clearance,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,45,111,66,0,66,valid,clearance_microsome_az,final,clearance_hepatocyte_az
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,4,467,463,0,463,train,cyp2c9_substrate_carbonmangels,selection,cyp3a4_substrate_carbonmangels
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,5,465,460,0,460,train,cyp2d6_substrate_carbonmangels,selection,cyp3a4_substrate_carbonmangels
+cyp_substrate,target endpoint retains its designated development split,468,468,0,0,0,train,cyp3a4_substrate_carbonmangels,selection,cyp3a4_substrate_carbonmangels
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,4,467,463,0,463,train,cyp2c9_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,0,67,67,0,67,valid,cyp2c9_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,5,465,460,0,460,train,cyp2d6_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels
+cyp_substrate,cross-task rows filtered against the pre-split target identity universe and high-similarity threshold,0,67,67,0,67,valid,cyp2d6_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels
+cyp_substrate,target endpoint retains its designated development split,468,468,0,0,0,train,cyp3a4_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels
+cyp_substrate,target endpoint retains its designated development split,67,67,0,0,0,valid,cyp3a4_substrate_carbonmangels,final,cyp3a4_substrate_carbonmangels

@@ -2,20 +2,21 @@
   "target": "cyp3a4_substrate_carbonmangels",
   "metric": "auroc",
   "selection_stat": "valid_mean",
-  "selected_feature_set": "fp",
-  "selected_config_index": 2,
-  "valid_mean": 0.7544802867383513,
+  "selected_feature_set": "fp_chemberta_kpgt_ept",
+  "selected_config_index": 1,
+  "valid_mean": 0.7538530465949821,
   "test_seed_scores": [
-    0.6633137432188065,
-    0.655628390596745,
-    0.6436482820976492,
-    0.6547242314647377,
-    0.6608273056057866
+    0.6582278481012658,
+    0.6426311030741411,
+    0.6505424954792044,
+    0.5771925858951177,
+    0.6044303797468354
   ],
-  "test_mean": 0.655628390596745,
-  "test_std_ddof1": 0.007590024136700178,
-  "test_ensemble": 0.6653481012658229,
-  "git_commit": "18b0f6a3d2f625958cfbfdddccb4b0ce331a8ede",
+  "test_mean": 0.6266048824593129,
+  "test_std_ddof1": 0.03450776956922529,
+  "test_ensemble": 0.6435352622061482,
+  "max_abs_test_label_difference": 0.0,
+  "git_commit": "898ecc21e9dfe8c6ea6b9bd4708bb261067475fb",
   "checks": {
     "seed_mean_matches": true,
     "seed_std_matches": true,
@@ -24,5 +25,5 @@
     "official_test_alignment": true,
     "five_seed_predictions_present": true
   },
-  "provenance_warning": "xgboost distribution is xgboost-cpu 3.0.4; original provenance lookup used the module name"
+  "provenance_warning": "The verified runner and tests were frozen in this code-only commit immediately after the formal run; generated evidence is committed separately."
 }

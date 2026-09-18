@@ -2,21 +2,21 @@
   "target": "clearance_hepatocyte_az",
   "metric": "spearman",
   "selection_stat": "valid_mean",
-  "selected_feature_set": "fp_chemberta_kpgt_ept",
-  "selected_config_index": 2,
-  "valid_mean": 0.4485543358152236,
+  "selected_feature_set": "fp",
+  "selected_config_index": 1,
+  "valid_mean": 0.4385569343675254,
   "test_seed_scores": [
-    0.28357568913187997,
-    0.26588663384105826,
-    0.26668601874210646,
-    0.24957837225391924,
-    0.3028238652390806
+    0.4651084590461412,
+    0.4817228220826707,
+    0.463592753585602,
+    0.47622432183873026,
+    0.48130065303138786
   ],
-  "test_mean": 0.273710115841609,
-  "test_std_ddof1": 0.020235030266734677,
-  "test_ensemble": 0.275276493244976,
+  "test_mean": 0.4735898019169064,
+  "test_std_ddof1": 0.008723790594902426,
+  "test_ensemble": 0.47653329326720106,
   "max_abs_test_label_difference": 5.329070518200751e-15,
-  "git_commit": "18b0f6a3d2f625958cfbfdddccb4b0ce331a8ede",
+  "git_commit": "898ecc21e9dfe8c6ea6b9bd4708bb261067475fb",
   "checks": {
     "seed_mean_matches": true,
     "seed_std_matches": true,
@@ -25,5 +25,5 @@
     "official_test_alignment": true,
     "five_seed_predictions_present": true
   },
-  "provenance_warning": "xgboost distribution is xgboost-cpu 3.0.4; original provenance lookup used the module name"
+  "provenance_warning": "The verified runner and tests were frozen in this code-only commit immediately after the formal run; generated evidence is committed separately."
 }

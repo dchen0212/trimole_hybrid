@@ -88,13 +88,13 @@ TDC.CYP3A4-S,Metabolism,AUROC,higher_better,1.0,1,MiniMol,MiniMol,TDC leaderboar
 TDC.CYP3A4-S,Metabolism,AUROC,higher_better,1.0,1,CNN (DeepPurpose),CNN (DeepPurpose),TDC leaderboard,3,0.662,0.031,False,
 TDC.CYP3A4-S,Metabolism,AUROC,higher_better,1.0,1,DeepMol (AutoML),DeepMol,TDC leaderboard,4,0.655,0.003,False,
 TDC.CYP3A4-S,Metabolism,AUROC,higher_better,1.0,1,MapLight,MapLight,TDC leaderboard,5,0.65,0.006,False,
-TDC.CYP3A4-S,Metabolism,AUROC,higher_better,,0,Trimole-Hybrid,Trimole,results_strict/revision_20260917_cyp3a4_substrate_leakage_safe_v2/final_selected_test_summary.csv,1,0.655628390596745,0.007590024136700193,True,Leakage-safe family-transfer XGB; fingerprint features
+TDC.CYP3A4-S,Metabolism,AUROC,higher_better,,0,Trimole-Hybrid,Trimole,results_strict/revision_20260918_cyp3a4_substrate_presplit_similarity_v4/final_selected_test_summary.csv,1,0.6266048824593129,0.0345077695692252,True,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint + ChemBERTa + KPGT + EPT
 TDC.CL-Hepa,Excretion,Spearman,higher_better,1.0,1,CFA,CFA,TDC leaderboard,1,0.536,0.02,False,
 TDC.CL-Hepa,Excretion,Spearman,higher_better,1.0,1,MapLight + GNN,MapLight+GNN,TDC leaderboard,2,0.498,0.009,False,
 TDC.CL-Hepa,Excretion,Spearman,higher_better,1.0,1,MapLight,MapLight,TDC leaderboard,3,0.466,0.012,False,
 TDC.CL-Hepa,Excretion,Spearman,higher_better,1.0,1,ADMETrix,ADMETrix,TDC leaderboard,4,0.447,0.028,False,
 TDC.CL-Hepa,Excretion,Spearman,higher_better,1.0,1,MiniMol,MiniMol,TDC leaderboard,5,0.446,0.029,False,
-TDC.CL-Hepa,Excretion,Spearman,higher_better,,0,Trimole-Hybrid,Trimole,results_strict/revision_20260917_clearance_hepatocyte_leakage_safe_v2/final_selected_test_summary.csv,1,0.2737101158416089,0.020235030266734705,True,Leakage-safe family-transfer XGB; FP+ChemBERTa+KPGT+EPT
+TDC.CL-Hepa,Excretion,Spearman,higher_better,,0,Trimole-Hybrid,Trimole,results_strict/revision_20260918_clearance_hepatocyte_presplit_similarity_v4/final_selected_test_summary.csv,1,0.4735898019169064,0.0087237905949024,True,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint
 TDC.CL-Micro,Excretion,Spearman,higher_better,1.0,1,MapLight + GNN,MapLight+GNN,TDC leaderboard,1,0.63,0.01,False,
 TDC.CL-Micro,Excretion,Spearman,higher_better,1.0,1,MiniMol,MiniMol,TDC leaderboard,2,0.628,0.005,False,
 TDC.CL-Micro,Excretion,Spearman,higher_better,1.0,1,MapLight,MapLight,TDC leaderboard,3,0.626,0.008,False,
