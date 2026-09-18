@@ -1,0 +1,8 @@
+method,tasks,mean_normalized_rank_utility,median_normalized_rank_utility,tasks_ranked_first,paired_vs_trimole_comparisons,trimole_point_better,trimole_significantly_better_bh_fdr,comparator_significantly_better_bh_fdr
+trimole_hybrid,22,0.9128787878787878,1.0,17,0,0,0,0
+validation_top3_average,22,0.5757575757575757,0.5833333333333333,1,22,19,8,1
+validation_top2_average,22,0.5530303030303031,0.5833333333333333,1,22,21,10,0
+uniform_candidate_average,22,0.41666666666666663,0.3333333333333333,2,22,19,10,1
+validation_stacking,22,0.375,0.3333333333333333,0,22,19,13,1
+per_task_single,22,0.35227272727272724,0.29166666666666663,0,22,21,11,0
+global_single,22,0.3143939393939394,0.3333333333333333,0,22,21,12,0

@@ -14,6 +14,12 @@ The tables are intended to support reproducibility, selection-protocol auditing,
 - S16: Metric direction, margin formula, and endpoint scale guide. File: `Table_S16_metric_direction_and_unit_guide.csv`
 - S17: Case-study decision-boundary table for promoted and non-promoted molecule-level examples. File: `Table_S17_case_study_decision_boundary.csv`
 - S18: Software and execution-environment manifest read from the server environments. File: `Table_S18_software_environment_manifest.csv`
+- S19: Endpoint-level primary-source provenance, including publication titles, DOI/ChEMBL accessions, direct source URLs, TDC catalogue URLs, split counts, label ranges, noise and applicability limits. File: `Table_S19_dataset_provenance.csv`
+- S20: Cross-task connectivity-level identity overlap, filtering counts, corrected family-transfer scores and provenance. File: `Table_S20_cross_task_leakage_audit.csv`
+- S21: Standardized three-view controlled baselines, matched-budget FLAML and frozen Trimole-Hybrid records. File: `Table_S21_controlled_baselines_automl.csv`
+- S22: Paired uncertainty and molecular-property subgroup analysis, including 10,000-replicate bootstrap outputs. File: `Table_S22_uncertainty_and_subgroups.csv`
+- S23: Scale-free ablation and validation-bootstrap selection-stability records. File: `Table_S23_ablation_selection_stability.csv`
+- S24: Expanded nine-family validation-stable common-pool controls. S24a--S24f contain summaries, paired bootstrap results, test-row alignment, validation ranks, scale-free method ranks and the complete 15-family numerical-eligibility audit. File: `Table_S24_expanded_candidate_pool_controls.csv`
 - S2: Selected endpoint recipes and full ablation candidate ledger. S2d provides the compact endpoint overview used in the PDF supplement. File: `Table_S2_endpoint_recipe_and_variant_ledger.csv`
 - S3: Frozen leaderboard/reference and multibaseline comparison data. File: `Table_S3_frozen_reference_snapshot.csv`
 - S4: Formal ablation summary, long-form ablation scores, deltas, and heatmap-ready data. File: `Table_S4_formal_ablation_long.csv`
@@ -24,5 +30,5 @@ The tables are intended to support reproducibility, selection-protocol auditing,
 - S8: External molecule leakage audit, including P-gp split-overlap summary. File: `Table_S8_external_candidate_leakage_audit.csv`
 - S9: P-gp matched-replacement sweep supporting the Deutivacaftor case. File: `Table_S9_Pgp_matched_replacement_sweep.csv`
 
-The workbook `Supplementary_Tables_S1_S18.xlsx` contains all tables as separate sheets.
+The workbook `Supplementary_Tables_S1_S24.xlsx` contains all tables as separate sheets.
 Large source CSV files are also exported individually for easier inspection.

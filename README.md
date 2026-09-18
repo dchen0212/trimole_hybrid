@@ -2,7 +2,7 @@
 
 Source code and audit artifacts for the manuscript:
 
-**A multimodal representation learning platform for accurate molecular ADMET prediction**
+**Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction**
 
 Trimole-Hybrid is a task-adaptive ADMET prediction framework that combines sequence, graph, 3D/EPT and chemistry-prior molecular evidence streams. Endpoint configurations are selected using training/validation evidence or scaffold cross-validation only; official TDC test labels are reserved for final reporting.
 
@@ -23,6 +23,7 @@ It is **not** a one-command full rerun bundle. Large files are intentionally exc
 - `supplementary_tables/`: supplementary workbook and CSV tables used by the manuscript.
 - `docs/MODEL_FAMILY_INDEX.md`: file-by-file map from manuscript model families to concrete source files.
 - `docs/PULL_COMPLETENESS_AUDIT.md`: audit of what was pulled from the server and what was intentionally excluded.
+- `code/trimole_ept_swap_v1/tools/run_expanded_candidate_pool_controls_v1.py`: validation-gated expanded common-pool sensitivity analysis used for Supplementary Table S24.
 
 ## Model Families
 
@@ -61,6 +62,7 @@ Included in this public-upload package:
 - Source code for model branches, endpoint selection, sidecars, ensembles and audits.
 - Lightweight benchmark, ablation and case-study summaries through `supplementary_tables/`.
 - Supplementary Information source/PDF, supplementary figures and supplementary tables used in the manuscript.
+- Validation-only numerical-stability audits for all 15 complete candidate families and the nine-family expanded common-pool controls reported in Table S24.
 
 Excluded:
 
@@ -79,7 +81,7 @@ Citation details will be updated after publication.
 
 ```bibtex
 @article{huang2026trimolehybrid,
-  title = {A multimodal representation learning platform for accurate molecular ADMET prediction},
+  title = {Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction},
   author = {Luo, Zhensheng and Huang, Dachen and Shao, Yanruisheng and Yu, Qinze and Li, Yu},
   journal = {Bioinformatics},
   year = {2026},
@@ -89,4 +91,4 @@ Citation details will be updated after publication.
 
 ## License
 
-License terms must be finalized before the archival DOI release. See `LICENSE_PENDING.md`.
+The repository-level original code and revision audit package are released under Apache-2.0. Third-party components retain their upstream licenses; see `LICENSE` and `NOTICE`.

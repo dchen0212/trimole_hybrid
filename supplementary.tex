@@ -51,7 +51,7 @@
 \newcommand{\used}{\textcolor{suppblue}{\textbullet}}
 \newcommand{\scorepm}[2]{\begin{tabular}{@{}c@{}}$#1$\\[-1pt]$\pm\;#2$\end{tabular}}
 
-\title{Supplementary Information for\\A multimodal representation learning platform for accurate molecular ADMET prediction}
+\title{Supplementary Information for\\Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction}
 \author{Zhensheng Luo, Dachen Huang, Yanruisheng Shao, Qinze Yu and Yu Li}
 \date{}
 
@@ -63,7 +63,7 @@
 {\Large\bfseries Supplementary Information\par}
 \vspace{0.8cm}
 {\LARGE\bfseries\begin{minipage}{0.88\textwidth}
-\raggedright A multimodal representation learning platform for accurate molecular ADMET prediction
+\raggedright Task-wise multimodal model selection and ensemble learning for molecular ADMET prediction
 \end{minipage}\par}
 \vspace{0.7cm}
 {\large Zhensheng Luo, Dachen Huang, Yanruisheng Shao, Qinze Yu and Yu Li\par}
@@ -72,7 +72,7 @@
 \vspace{0.35cm}
 
 \begin{minipage}{0.92\textwidth}
-This file contains Supplementary Notes 1--7, Supplementary Figure S1 and Supplementary Tables A--C, S1--S18 and S4e for the Trimole-Hybrid ADMET study.
+This file contains Supplementary Notes 1--8, Supplementary Figures S1--S2 and Supplementary Tables A--C, S1--S24 and S4e for the Trimole-Hybrid ADMET study.
 \end{minipage}
 
 \vfill
@@ -84,12 +84,12 @@ Repository: \url{https://github.com/dchen0212/trimole_hybrid}
 
 \suppnoteplain{Supplementary Overview}
 
-This Supplementary Information provides the benchmark protocol, reference snapshot, task-configuration records, ablation settings, case-study checks, metric interpretation and software environment for the Trimole-Hybrid ADMET study. It does not add leaderboard claims beyond the main text. Complete machine-readable tables are provided in the GitHub repository under \href{https://github.com/dchen0212/trimole_hybrid/tree/main/supplementary_tables}{\texttt{supplementary\_tables/}}, including \href{https://github.com/dchen0212/trimole_hybrid/blob/main/supplementary_tables/Supplementary_Tables_S1_S18.xlsx}{\texttt{Supplementary\_Tables\_S1\_S18.xlsx}} and the individual CSV files.
+This Supplementary Information provides the benchmark protocol, reference snapshot, task-configuration records, ablation settings, case-study checks, metric interpretation, software environment and revision audits for the Trimole-Hybrid ADMET study. It does not add leaderboard claims beyond the main text. Complete machine-readable tables are provided in the GitHub repository under \href{https://github.com/dchen0212/trimole_hybrid/tree/main/supplementary_tables}{\texttt{supplementary\_tables/}}, including the consolidated supplementary workbook and the individual CSV files.
 
-Supplementary Tables A--C are compact tables included in this PDF for readability. Supplementary Tables S1--S18 and S4e are the machine-readable workbook and CSV tables used as the complete record for the benchmark, ablations, case-study checks and provenance information.
+Supplementary Tables A--C are compact tables included in this PDF for readability. Supplementary Tables S1--S24 and S4e are the machine-readable workbook and CSV tables used as the complete record for the benchmark, ablations, case-study checks, provenance, leakage audit, controlled baselines, uncertainty and selection stability.
 
 \textbf{Supplementary file guide.}
-Supplementary Tables A--C and Supplementary Figure S1 provide compact PDF summaries. Supplementary Tables S1--S18 and S4e provide the complete machine-readable record. Table S1 reports the full 22-task benchmark; Tables S2, S13 and S15 record task configurations and selection evidence; Tables S3 and S14 record the fixed public-reference snapshot; Tables S4 and S4e record ablation and naive MLP late-fusion control results; Tables S7--S10 and S17 record molecule-level case-study checks; Table S11 records split and source provenance; Table S16 records metric direction and endpoint-scale interpretation; and Table S18 records the software environment.
+Supplementary Tables A--C and Supplementary Figures S1--S2 provide compact PDF summaries. Supplementary Tables S1--S24 and S4e provide the complete machine-readable record. Table S1 reports the corrected 22-task benchmark; Tables S2, S13 and S15 record task configurations and selection evidence; Tables S3 and S14 record the fixed public-reference snapshot; Tables S4, S4e and S23 record scale-aware ablations and selection stability; Tables S7--S10 and S17 record molecule-level case-study checks; Tables S11 and S19 record split, source, endpoint and applicability provenance; Table S20 records cross-task overlap and leakage-safe correction; Table S21 records controlled baselines and matched-budget AutoML; Table S22 records uncertainty and subgroup analysis; Table S24 records an expanded nine-family stable common-pool sensitivity analysis and the preceding 15-family eligibility audit; Table S16 records metric interpretation; and Table S18 records the software environment.
 
 \suppnote{Supplementary Note 1: Benchmark Protocol and Frozen Reference Snapshot}
 
@@ -227,10 +227,37 @@ For each component-removal ablation, task-wise selection was repeated with the s
 \makebox[\textwidth][c]{\includegraphics[width=1.04\textwidth]{supplementary_figures/Supplementary_Figure_S1_component_ablation_combined.pdf}}
 \vspace{6pt}
 \begin{minipage}{\textwidth}
-\captionof{figure}{Task-wise component usage and component-removal ablation effects. \textbf{a}, Component map for the 22 fixed TDC ADMET task configurations. Blue circles indicate components used in the final configuration; grey circles indicate components not used. \textbf{b}, Direction-normalized margin changes after removing each component class relative to the full v36 configuration. Red indicates loss relative to the full configuration. Values are clipped at $-0.5$ for readability; exact values are provided in Supplementary Table S4. Task labels use dataset codes; full endpoint names are listed in Supplementary Table S1.}
+\captionof{figure}{Task-wise component usage and scale-free component-removal effects. \textbf{a}, Component map for the 22 fixed TDC ADMET task configurations. Filled circles indicate components used in the final configuration; open circles indicate components not used. \textbf{b}, Within-task normalized rank loss after removing each component class. Positive values indicate a worse within-task rank than the corrected full configuration, zero indicates a tie and negative values indicate an improved rank after restriction. Exact task-level scores, ranks and stability statistics are provided in Supplementary Table S23. Task labels use abbreviated dataset codes; full endpoint names are listed in Supplementary Table S1. \textbf{Alt text:} A two-panel matrix and heatmap show which chemistry, geometry, ensemble and seed-bagging components each of 22 tasks uses and the scale-free normalized rank loss after each component restriction.}
 \label{fig:supp_component_ablation}
 \end{minipage}
 \end{center}
+
+\begin{figure}[htbp]
+\centering
+\setlength{\fboxsep}{7pt}
+\begin{minipage}{0.96\textwidth}
+\centering
+\fbox{\parbox{0.82\textwidth}{\centering \textbf{1. Frozen task split and feature extraction}\\Encoder fitting or fixed feature extraction uses no official test labels.}}
+
+$\Downarrow$
+
+\fbox{\parbox{0.82\textwidth}{\centering \textbf{2. Base-model fitting}\\Candidate parameters are fitted on training data or inner training folds.}}
+
+$\Downarrow$
+
+\fbox{\parbox{0.82\textwidth}{\centering \textbf{3. Validation-only decisions}\\Hyperparameters, candidate identity, blend weights, calibration and candidate ranking are fixed using validation data. A machine-readable selection manifest is written here.}}
+
+$\Downarrow$
+
+\fbox{\parbox{0.82\textwidth}{\centering \textbf{4. Frozen refit}\\The selected configuration is refitted on training plus validation data without changing its identity or settings.}}
+
+$\Downarrow$
+
+\fbox{\parbox{0.82\textwidth}{\centering \textbf{5. Test reporting only}\\Official test labels are first read by the scoring phase after predictions and their manifest have been written.}}
+\end{minipage}
+\caption{Leakage-controlled development and evaluation protocol. The test split can be featurized without labels for final prediction, but its labels are inaccessible to selection and refitting code. Family-transfer candidates additionally remove source molecules matching target validation or test identities during selection and target test identities during final refitting. \textbf{Alt text:} Five vertically ordered boxes separate frozen splitting and feature extraction, base-model fitting, validation-only decisions, frozen train-plus-validation refitting and final test-only scoring.}
+\label{fig:supp_protocol}
+\end{figure}
 
 \clearpage
 
@@ -238,7 +265,7 @@ For each component-removal ablation, task-wise selection was repeated with the s
 
 The main text contains two molecule-level sensitivity examples. Both were chosen after the task models had been fixed. They were not used for model selection, task promotion, ablation design or leaderboard comparison. They report score changes for individual molecules and matched local replacements. They do not prove causal pharmacophores.
 
-The two examples have different replay status. The AMES example uses the saved full prediction for the original official-test molecule, but the perturbation sweep used a reconstructed AMES task model. We therefore label it as reconstruction-based sensitivity, not exact full-ensemble attribution. The Deutivacaftor/P-gp example uses the replayed P-gp pipeline for both the external molecule and its matched local replacement. The P-gp perturbation therefore has the stronger replay status. Both examples remain model-sensitivity checks, not mechanistic claims.
+The two examples have different replay and label status. The AMES example has an official-test label and a saved full prediction for the original molecule, but its perturbation sweep used a reconstructed task model. We therefore label it as reconstruction-based sensitivity, not exact full-ensemble attribution. The Deutivacaftor example uses the replayed TDC P-gp-inhibition pipeline for both the external molecule and its matched local replacement, but has no matched experimental inhibition label. It therefore has stronger replay status but weaker outcome evidence. Both examples remain model-sensitivity checks, not mechanistic or prospective-accuracy claims.
 
 \begin{table}[htbp]
 \centering
@@ -248,17 +275,17 @@ The two examples have different replay status. The AMES example uses the saved f
 \begin{tabularx}{\textwidth}{p{2.5cm} p{2.0cm} p{1.2cm} p{1.8cm} p{1.8cm} Y}
 \toprule
 \rowcolor{suppbluepale}
-Case & Task & Label & MiniMol score & Trimole score & Sensitivity status \\
+Case & Task & Label status & MiniMol output & Trimole output & Sensitivity status \\
 \midrule
 AMES test\_297 & AMES & 1 & 0.293194 & 0.894085 & Original molecule uses a saved Trimole-Hybrid prediction; perturbation uses a reconstructed AMES model and is not exact full-ensemble attribution. \\
-Deutivacaftor & P-gp & 1 & \scorepm{0.746979}{0.064799} & \scorepm{0.914545}{0.021395} & Exact replayed P-gp pipeline; O-to-CH2 matched replacement reduced the score to \scorepm{0.729853}{0.149185}. \\
+Deutivacaftor & P-gp inhibition & None & \scorepm{0.746979}{0.064799} & \scorepm{0.914545}{0.021395} & Exact replayed endpoint pipeline; O-to-CH2 matched replacement reduced the model output to \scorepm{0.729853}{0.149185}; no correctness claim is made. \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
-External molecule candidates were converted to canonical SMILES and compared with the corresponding official TDC task splits. Candidates found in the training set were excluded from main-text use. For Deutivacaftor/P-gp, no canonical SMILES overlap was found in the P-gp training, validation or test split. This example is therefore treated as an external molecule-level check, not as a new benchmark task.
+External molecule candidates were converted to canonical SMILES and compared with the corresponding official TDC task splits. Candidates found in the training set were excluded from main-text use. For Deutivacaftor, no canonical SMILES overlap was found in the Pgp\_Broccatelli training, validation or test split. Because that benchmark endpoint is P-gp inhibition and no matched experimental inhibition label was identified for Deutivacaftor, this example is treated only as an unlabeled output-sensitivity check, not as a new benchmark task or a labeled external validation.
 
-Several molecule-level candidates were examined but not used in the main sensitivity figure. A candidate was not promoted when an exact replay path was not available under the archived inference setting, the matched replacement did not yield a stable sensitivity pattern, or the Trimole-Hybrid prediction did not clearly improve on the MiniMol-style baseline. Supplementary Table S17 lists the promoted and non-promoted molecule-level examples. A case was eligible for main-text use only if it had a clear label or official-test label, no prohibited training-set overlap for external cases, a MiniMol-style comparison where relevant, a reportable Trimole-Hybrid prediction and a replay-status label.
+Several molecule-level candidates were examined but not used in the main sensitivity figure. A candidate was not promoted when an exact replay path was not available under the archived inference setting, the matched replacement did not yield a stable sensitivity pattern, or the available evidence could not support even a constrained sensitivity interpretation. Supplementary Table S17 lists the promoted and non-promoted molecule-level examples. A case was eligible for main-text use only if it had an explicit label-status field, no prohibited training-set overlap for external cases, a reportable model output and a replay-status label. An unlabeled external molecule can support sensitivity analysis but not correctness or external-validation claims.
 
 \begin{table}[htbp]
 \centering
@@ -279,7 +306,7 @@ PPBR external candidates & PPBR & External predictions remained near-reconstruct
 \end{tabularx}
 \end{table}
 
-For this reason, AMES is listed in the Figure 4 table but labeled as reconstruction-based sensitivity, whereas Deutivacaftor/P-gp is labeled as exact replay. The two evidence levels should not be treated as equivalent.
+For this reason, AMES is labeled as an official-label example with reconstruction-based perturbation sensitivity, whereas Deutivacaftor is labeled as an unlabeled external example with exact endpoint replay. The two evidence types should not be treated as equivalent.
 
 \suppnote{Supplementary Note 6: Metric Direction and Endpoint Scale}
 
@@ -294,6 +321,22 @@ Supplementary Table S18 reports the software environments used for model assembl
 We include this environment table because some exploratory replay analyses depended on archived model files and package versions. AMES remains a valid benchmark result, but its perturbation result is labeled as reconstruction-based because the exact archived full-ensemble replay path was not available for arbitrary AMES SMILES.
 
 All supplementary tables are included in the manuscript package under \texttt{supplementary\_tables/}. Source code, supplementary tables and lightweight audit manifests are available from the main manuscript repository. Large trained model binaries, cached embeddings and serialized estimators will be provided through archive or release assets where storage and licensing permit. The supplementary workbook remains the manuscript-level record for the benchmark, ablations and case-study checks.
+
+\suppnote{Supplementary Note 8: Revision Audits, Controlled Comparisons and Statistical Analysis}
+
+Supplementary Table S19 reports the named primary source, publication title, DOI or ChEMBL document accession, direct primary-source URL, separate TDC catalogue URL, endpoint definition, task type, label or unit, frozen train/validation/test counts, unique-SMILES count, class prevalence where applicable, observed label range, known measurement limitations and applicability-domain constraints for all 22 tasks. The 22 rows resolve to 15 distinct primary DOI/accession records because several tasks share a source publication or ChEMBL document. Counts refer to the exact frozen benchmark files used in this study. Row count and unique-molecule count are reported separately because repeated molecular strings occur in some datasets.
+
+Supplementary Table S20 reports pairwise molecular overlap within the CYP-substrate and clearance families using the connectivity layer of an RDKit-generated parent InChIKey. It also records the source rows removed by the selection-stage and final-stage filters, the corrected test scores and the provenance files. The previously reported CYP3A4-substrate and hepatocyte-clearance family-transfer results were invalidated and replaced because their source pools contained target-test identities.
+
+Supplementary Table S21 reports the consistently trained global single-model, per-task single-model, validation-selected top-2/top-3, uniform-average, out-of-fold stacking, matched-budget FLAML AutoML and Trimole-Hybrid comparisons. The controlled methods use the same frozen ChemBERTa, KPGT and EPT feature views, official splits and five fixed seeds. FLAML is limited to 60 seconds and 30 iterations per task and seed. All selection decisions use the official validation partition; the official test labels are inaccessible until the scoring phase. Trimole-Hybrid is the frozen submitted system and has a broader heterogeneous historical candidate pool, so this comparison does not claim identical candidate-pool coverage. Twenty-one tasks have five archived Trimole-Hybrid seed-level prediction arrays. BBB has one archived five-model ensemble prediction array plus historical five-run aggregate scores; its paired analysis uses the ensemble array. Because the controlled pool has exactly three views, top-3 and uniform averaging are identical by construction. Public leaderboard rows without sample-level predictions are retained only as descriptive external context.
+
+Supplementary Table S22 reports 154 paired sample-level comparisons using 10,000 replicates, 95\% confidence intervals, two-sided bootstrap $p$ values and one Benjamini--Hochberg false-discovery-rate adjustment across all emitted task--comparator tests. Five-seed predictions are averaged per sample before metric recomputation. Trimole-Hybrid has the best point estimate on 21 of 22 controlled tasks and is significant against per-task single-view selection on 18 tasks after global correction. It also reports 132 task--descriptor--subgroup combinations with sample size, positive count and prevalence for classification tasks, matched scores and paired intervals. Of these, 131 pass the prespecified validity rule; the high-cLogP HIA subgroup is marked invalid because of insufficient class count and is not assigned an AUROC.
+
+Supplementary Table S23 reports task-wise raw ablation metrics, normalized rank loss, validation-bootstrap candidate selection frequency, selection entropy and switching rate. The no-task-adaptive control is defined as one globally fixed candidate family selected by aggregate validation rank and applied unchanged to every task. Rank normalization is performed within each task and does not average raw AUROC, AUPRC, MAE and Spearman values.
+
+Supplementary Table S24 extends the controlled analysis from three frozen feature views. Fifteen candidate families had complete validation and test prediction files for all 22 tasks and five fixed seeds, but validation-only diagnostics identified numerical divergence in all six unregularized deep linear heads. These six families were excluded globally, before test prediction contents were loaded; the eligibility decision and reason for every family are retained in Table S24f. The remaining nine stable XGBoost or Ridge families comprise 990 eligible candidate runs. Six rules---global single candidate, per-task single candidate, validation top-2 and top-3 averaging, uniform averaging and validation stacking---use exactly this common pool. Candidate identities and combination rules are frozen from validation predictions before test predictions are loaded. Test rows are then aligned by molecule, label and within-key occurrence against the current evaluation split. This identity-based audit excluded two legacy AqSolDB rows that were absent from the current 1,995-row test split; it did not truncate predictions by row position. The resulting 660 method--seed records and 132 method summaries contain finite, numerically plausible scores.
+
+Against these six expanded-pool controls, Trimole-Hybrid ranked first by point estimate on 17 of 22 tasks and had mean within-task normalized rank utility 0.913. It had a positive paired point estimate in 19--21 tasks depending on the comparator. After one Benjamini--Hochberg correction across the 132 additional 10,000-replicate comparisons, 8--13 positive comparisons per comparator were significant. The negative result is retained: on hepatocyte clearance, uniform averaging, validation stacking and validation top-3 averaging significantly exceeded the leakage-corrected Trimole-Hybrid prediction. The expanded pool provides exact candidate-pool parity among the six control strategies, but it still does not reconstruct every heterogeneous historical candidate used to produce the frozen Trimole-Hybrid configurations; it is therefore a robustness analysis rather than proof of universal superiority.
 
 \suppnote{Supplementary Tables}
 
@@ -332,6 +375,12 @@ S15 & \path{Table_S15_validation_only_selection_evidence.csv} & Validation-only 
 S16 & \path{Table_S16_metric_direction_and_unit_guide.csv} & Metric direction, margin formula, endpoint-scale and single-molecule interpretation guide. \\
 S17 & \path{Table_S17_case_study_decision_boundary.csv} & Case-study decision table for promoted and non-promoted molecule-level examples. \\
 S18 & \path{Table_S18_software_environment_manifest.csv} & Server-side software and execution-environment manifest. \\
+S19 & \path{Table_S19_dataset_provenance.csv} & Endpoint-level primary-publication title, DOI or ChEMBL accession, direct source and catalogue URLs, label or unit, frozen split counts, class prevalence, known noise and applicability-domain limitations for all 22 tasks. \\
+S20 & \path{Table_S20_cross_task_leakage_audit.csv} & Pairwise source/target/split molecular-identity overlap, leakage-safe filtering counts, corrected family-transfer scores and provenance. \\
+S21 & \path{Table_S21_controlled_baselines_automl.csv} & Controlled single-model, ensemble, OOF-stacking, matched-budget AutoML and frozen Trimole-Hybrid results with seed-level evidence notes, budgets and candidate-count records; a summary is provided in \path{Table_S21b_controlled_baselines_summary.csv}. \\
+S22 & \path{Table_S22_uncertainty_and_subgroups.csv} & 154 paired bootstrap comparisons and 132 subgroup records with global BH-FDR adjustment, sample size, prevalence, validity and matched-baseline effects; detailed components are provided in Tables S22a--S22b. \\
+S23 & \path{Table_S23_ablation_selection_stability.csv} & Per-task raw ablation metrics, normalized rank loss, validation-bootstrap selection frequency, entropy and switching rate. \\
+S24 & \path{Table_S24_expanded_candidate_pool_controls.csv} & Expanded common-pool controls covering nine validation-stable families, 22 tasks, five seeds and six selection/ensemble rules. Summaries, 10,000-replicate paired statistics, split-alignment audit, validation ranks, scale-free method ranks and the 15-family numerical-eligibility audit are provided in Tables S24a--S24f. \\
 \bottomrule
 \end{longtable}
 \rowcolors{2}{}{}

@@ -1,0 +1,16 @@
+candidate_family,complete_for_all_tasks_seeds,validation_files_checked,regression_validation_files_checked,max_abs_validation_prediction,max_regression_mae_to_median_baseline_ratio,eligible,policy,stability_ratio_threshold,reason
+chem_fp_chemberta_kpgt_ept_xgb,True,110,25,761.9448,0.8346787117950148,True,stable_regularized,100.0,eligible complete family
+chem_fp_chemberta_kpgt_xgb,True,110,25,749.80536,0.8841409131094182,True,stable_regularized,100.0,eligible complete family
+chem_fp_xgb,True,110,25,326.82986,0.9078087463360818,True,stable_regularized,100.0,eligible complete family
+deep_chemberta_kpgt_ept_linear,True,110,25,4489947987929.601,1518088098766.6057,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_chemberta_kpgt_ept_ridge_linear,True,110,25,717.7381,1.203891631304233,True,stable_regularized,100.0,eligible complete family
+deep_chemberta_kpgt_linear,True,110,25,3294858031500.521,1630134127186.2832,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_chemberta_kpgt_ridge_linear,True,110,25,770.4784,1.2471176360102307,True,stable_regularized,100.0,eligible complete family
+deep_chemberta_linear,True,110,25,2914.7174211802007,1442.8603860724718,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_chemberta_ridge_linear,True,110,25,288.9743,1.186488846597319,True,stable_regularized,100.0,eligible complete family
+deep_ept_linear,True,110,25,77959691.00883377,326309.9189639873,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_ept_ridge_linear,True,110,25,379.40634,0.9336768552437922,True,stable_regularized,100.0,eligible complete family
+deep_kpgt_ept_linear,True,110,25,4625827527074.216,1245146353497.4456,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_kpgt_ept_ridge_linear,True,110,25,654.83704,1.0471590942336502,True,stable_regularized,100.0,eligible complete family
+deep_kpgt_linear,True,110,25,589110476460.7983,274394294808.94775,False,stable_regularized,100.0,excluded because validation-only regression MAE exceeded 100x the median-prediction baseline
+deep_kpgt_ridge_linear,True,110,25,716.576,1.0200161966360082,True,stable_regularized,100.0,eligible complete family
