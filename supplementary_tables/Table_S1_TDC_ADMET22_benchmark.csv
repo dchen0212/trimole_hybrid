@@ -12,9 +12,9 @@ Metabolism,TDC.CYP2C9-S,666,Scaffold,AUPRC,↑,0.443370±0.023358,0.474,-0.03063
 Metabolism,TDC.CYP2C9-I,"12,092",Scaffold,AUPRC,↑,0.790586±0.002608,0.859,-0.068414,Top-8,KPGT+EPT chem XGB
 Metabolism,TDC.CYP2D6-S,664,Scaffold,AUPRC,↑,0.747531±0.009610,0.736,0.011531,Top-1,AP seedbag + XL/descriptor blend
 Metabolism,TDC.CYP2D6-I,"13,130",Scaffold,AUPRC,↑,0.719172±0.005514,0.79,-0.070828,Top-4,K+E seedbag + sidecar blend
-Metabolism,TDC.CYP3A4-S,667,Scaffold,AUROC,↑,0.626605±0.034508,0.667,-0.04039511754068714,Descriptive,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint + ChemBERTa + KPGT + EPT
+Metabolism,TDC.CYP3A4-S,667,Scaffold,AUROC,↑,0.653662±0.009391,0.667,-0.013338155515370764,Descriptive,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint + KPGT
 Metabolism,TDC.CYP3A4-I,"12,328",Scaffold,AUPRC,↑,0.884121±0.003206,0.916,-0.031879,Top-4,XL/K+E + tabular blend
-Excretion,TDC.CL-Hepa,"1,020",Scaffold,Spearman,↑,0.473590±0.008724,0.536,-0.062410198083093615,Descriptive,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint
+Excretion,TDC.CL-Hepa,"1,020",Scaffold,Spearman,↑,0.181237±0.023071,0.536,-0.3547630854788376,Descriptive,Target-wide leakage-safe family-transfer XGBoost; Morgan fingerprint + ChemBERTa + KPGT + EPT
 Excretion,TDC.CL-Micro,"1,102",Scaffold,Spearman,↑,0.642814±0.005773,0.63,0.012814,Top-1,KPGT+EPT 5×5 seedbag
 Excretion,TDC.Half_Life,667,Scaffold,Spearman,↑,0.491390±0.009785,0.576,-0.08461,Top-7,C+K descriptor blend
 Toxicity,TDC.AMES,"7,255",Scaffold,AUROC,↑,0.871945±0.000583,0.871,0.000945,Top-1,XGB tabular ensemble

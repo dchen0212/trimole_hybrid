@@ -125,7 +125,7 @@ def draw_controlled(ax: plt.Axes, summary: pd.DataFrame, rng: np.random.Generato
     ax.set_xlabel("Mean within-task normalized rank utility (95% task-bootstrap CI)", fontsize=8.2)
     ax.grid(axis="x", color="#D8DEE2", linewidth=0.6, alpha=0.8)
     ax.set_axisbelow(True)
-    panel_label(ax, "b", "Strict nine-family common-pool controls")
+    panel_label(ax, "b", "Retrospective nine-family common-pool controls")
     return dict(zip(result.model, result["mean"]))
 
 
@@ -189,7 +189,7 @@ def draw_subgroups(ax: plt.Axes, subgroup: pd.DataFrame, labels: dict[str, str])
         {"molecular_weight": "MW", "clogp": "cLogP", "tpsa": "TPSA"}
     ) + valid.group.map({"low_or_equal_median": " low", "above_median": " high"})
     columns = ["MW low", "MW high", "cLogP low", "cLogP high", "TPSA low", "TPSA high"]
-    tasks = list(labels)
+    tasks = [task for task in labels if task in set(valid.task)]
     matrix = valid.pivot(
         index="task", columns="column", values="relative_improvement"
     ).reindex(index=tasks, columns=columns)
@@ -217,7 +217,7 @@ def draw_subgroups(ax: plt.Axes, subgroup: pd.DataFrame, labels: dict[str, str])
     colorbar = ax.figure.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
     colorbar.set_label("Relative improvement vs per-task single", fontsize=7.5)
     colorbar.ax.tick_params(labelsize=6.5)
-    panel_label(ax, "d", "Matched molecular-property subgroup effects")
+    panel_label(ax, "d", "Matched subgroup effects (20 comparable tasks)")
     return {"valid_groups": int(valid.shape[0]), "invalid_groups": invalid_count}
 
 
@@ -227,6 +227,8 @@ def main() -> None:
     controlled = pd.read_csv(args.controlled_summary)
     bootstrap = pd.read_csv(args.bootstrap_results)
     subgroup = pd.read_csv(args.subgroup_table)
+    if "primary_subgroup_comparable" in subgroup:
+        subgroup = subgroup[subgroup.primary_subgroup_comparable.astype(bool)].copy()
     labels = task_labels(benchmark)
     rng = np.random.default_rng(args.seed)
 
@@ -245,7 +247,7 @@ def main() -> None:
     paired_summary = draw_paired_ci(axes[1, 0], bootstrap, labels)
     subgroup_summary = draw_subgroups(axes[1, 1], subgroup, labels)
     fig.suptitle(
-        "Leakage-safe benchmark results, strict common-pool controls and hierarchical uncertainty",
+        "Corrected benchmark margins, common-pool controls and conditional uncertainty",
         fontsize=13,
         weight="bold",
         color=INK,

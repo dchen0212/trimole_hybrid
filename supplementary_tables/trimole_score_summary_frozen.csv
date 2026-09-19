@@ -3,13 +3,13 @@ ames,AUROC,trimole_hybrid,legacy_materialized_final,5,1457,0.8719454071941882,0.
 bbb_martins,AUROC,trimole_hybrid,legacy_materialized_final,1,406,0.9281191369606004,
 bioavailability_ma,AUROC,trimole_hybrid,recovered_fixed_endpoint,5,128,0.7222480877951447,0.00404846765375
 caco2_wang,MAE,trimole_hybrid,legacy_materialized_final,5,182,0.2836473732906736,0.0022896749235878
-clearance_hepatocyte_az,Spearman,trimole_hybrid,targetwide_similarity_safe_family_transfer,5,243,0.4735898019169064,0.0087237905949024
+clearance_hepatocyte_az,Spearman,trimole_hybrid,test_blind_target_only_five_seed,5,243,0.1812369145211624,0.0230712534233265
 clearance_microsome_az,Spearman,trimole_hybrid,legacy_materialized_final,5,221,0.6428140013895282,0.0057731492137335
 cyp2c9_substrate_carbonmangels,AUPRC,trimole_hybrid,recovered_fixed_endpoint,5,135,0.4433698985861019,0.0233580814323923
 cyp2c9_veith,AUPRC,trimole_hybrid,recovered_fixed_endpoint,5,2419,0.790586152904674,0.0026075674557395
 cyp2d6_substrate_carbonmangels,AUPRC,trimole_hybrid,legacy_materialized_final,5,135,0.7475310487600084,0.0096103883360214
 cyp2d6_veith,AUPRC,trimole_hybrid,v29_formula_reconstruction,5,2626,0.719167492795628,0.0055102583788553
-cyp3a4_substrate_carbonmangels,AUROC,trimole_hybrid,targetwide_similarity_safe_family_transfer,5,135,0.6266048824593129,0.0345077695692252
+cyp3a4_substrate_carbonmangels,AUROC,trimole_hybrid,test_blind_target_only_five_seed,5,135,0.6536618444846293,0.0093914021486061
 cyp3a4_veith,AUPRC,trimole_hybrid,v29_formula_reconstruction,5,2467,0.8841211146054248,0.0032063240710751
 dili,AUROC,trimole_hybrid,v29_formula_reconstruction,5,96,0.908608695652174,0.0055201983471665
 half_life_obach,Spearman,trimole_hybrid,v29_formula_reconstruction,5,135,0.4913899884769625,0.009785242517661

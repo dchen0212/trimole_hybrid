@@ -1,6 +1,6 @@
 # Family-Transfer Leakage-Control Protocol
 
-This protocol replaces the historical pooled-family `v1` scripts for the revised manuscript. Historical scripts remain in the repository solely to preserve provenance and are blocked by default.
+This document distinguishes the primary test-blind target-only reruns from the historical family-transfer sensitivities. The pooled-family `v1` scripts remain solely for provenance and are blocked by default.
 
 ## Molecular identity
 
@@ -9,6 +9,8 @@ SMILES are parsed with RDKit and represented by the first block of the standard 
 ## Target-wide exclusion rule
 
 For each target endpoint, the train, validation and test structures from the already defined official split are combined into one label-free target universe before any stage-specific fitting. Every non-target source split is filtered against the same connectivity-level identity set during candidate selection and final refitting. The exclusion rule therefore does not change according to target validation or test membership and never uses a target label.
+
+This is still a transductive, test-covariate-aware rule: unlabeled target test structures affect which source rows enter training. It must not be described as an untouched-test protocol. The stricter `target_only` negative control excludes every cross-task source row, so training-row selection does not consult target holdout identities. That control no longer performs transfer and must be labeled accordingly.
 
 After exact exclusion, each remaining source molecule is compared with the target universe using Morgan radius-2, 2,048-bit fingerprints. Source rows with maximum Tanimoto similarity greater than or equal to 0.90 are removed. Bemis-Murcko scaffold sharing is reported as an applicability diagnostic but is not itself an exclusion criterion.
 
@@ -34,7 +36,7 @@ python tools/audit_family_transfer_overlap_v1.py \
   --out-root results_strict/family_transfer_overlap_audit_v1
 ```
 
-Run the two formal family-transfer experiments:
+The following commands reproduce the transductive target-wide sensitivity experiments, not the primary manuscript scores:
 
 ```bash
 python tools/run_family_transfer_leakage_safe_v2.py \
@@ -58,3 +60,10 @@ test scoring to the endpoint used by the manuscript; omitting it preserves the
 all-family-target behavior for separate exploratory work.
 
 The commands must be executed in the recorded formal environment. Do not update manuscript scores until the generated provenance files, overlap audit and selected-only test outputs have been independently checked.
+
+For the test-covariate-independent primary analysis, run the same script with
+`--source-policy target_only` and a fresh output directory. The revised main
+table labels these two endpoints as target-only training, not demonstrated
+family transfer. Do not overwrite the target-wide sensitivity outputs. Table
+S20e reports independently validated scores and the corresponding clean-start
+commit.

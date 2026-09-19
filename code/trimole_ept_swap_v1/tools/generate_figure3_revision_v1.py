@@ -66,11 +66,13 @@ def main() -> None:
     args = parse_args()
     data = pd.read_csv(args.s23)
     rank = data[data.record_type == "ablation_rank_loss"].copy()
+    if "primary_ablation_comparable" in rank:
+        rank = rank[rank.primary_ablation_comparable.astype(bool)].copy()
     stability = data[data.record_type == "validation_selection_stability"].copy()
     expected_variants = list(VARIANT_LABELS)
     rank = rank[rank.variant.isin(expected_variants)]
-    if rank.task.nunique() != 22 or len(rank) != 22 * len(expected_variants):
-        raise ValueError("S23 does not contain a complete 22-task ablation grid")
+    if rank.task.nunique() != 20 or len(rank) != 20 * len(expected_variants):
+        raise ValueError("S23 does not contain a complete 20-task comparable ablation grid")
     if stability.task.nunique() != 22:
         raise ValueError("S23 selection stability does not cover 22 tasks")
 
@@ -151,13 +153,13 @@ def main() -> None:
     ax_c.set_yticks(y, [TASK_LABELS.get(value, value) for value in stability_order])
     ax_c.set_xlim(0, 1)
     ax_c.set_xlabel("Validation-bootstrap selection frequency")
-    ax_c.set_title("Selection frequency and switching", loc="left", fontweight="bold")
+    ax_c.set_title("Historical-pool selection frequency and switching", loc="left", fontweight="bold")
     ax_c.legend(ncol=4, loc="lower right", fontsize=7)
     panel_label(ax_c, "c")
 
     mlp = pd.read_csv(args.mlp_control)
     mlp = mlp[mlp.variant == "mlp_stacking_baseline_v1"].set_index("task")
-    full = data[(data.record_type == "ablation_rank_loss") & (data.variant == "full_v36_final")].drop_duplicates("task").set_index("task")
+    full = data[(data.record_type == "ablation_rank_loss") & (data.variant == "full_v36_final") & (data.primary_ablation_comparable.astype(bool))].drop_duplicates("task").set_index("task")
     shared = full.index.intersection(mlp.index)
     advantage = pd.Series(index=shared, dtype=float)
     for task in shared:
@@ -203,7 +205,7 @@ def main() -> None:
             1, 2, figsize=(12.8, 8.2), gridspec_kw={"width_ratios": [0.7, 1.5]}, constrained_layout=True
         )
         full_rows = data[
-            (data.record_type == "ablation_rank_loss") & (data.variant == "full_v36_final")
+            (data.record_type == "ablation_rank_loss") & (data.variant == "full_v36_final") & (data.primary_ablation_comparable.astype(bool))
         ].drop_duplicates("task").set_index("task")
         component_columns = [
             "uses_chemistry_sidecar",

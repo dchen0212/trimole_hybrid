@@ -19,7 +19,9 @@ The tables are intended to support reproducibility, selection-protocol auditing,
 - S21: Historical three-view controls and frozen Trimole-Hybrid sensitivity records. These rows document pool construction but are not used as matched-budget evidence. File: `Table_S21_controlled_baselines_automl.csv`
 - S22: Paired uncertainty and molecular-property subgroup analysis, including 10,000-replicate bootstrap outputs. File: `Table_S22_uncertainty_and_subgroups.csv`
 - S23: Scale-free ablation and validation-bootstrap selection-stability records. File: `Table_S23_ablation_selection_stability.csv`
-- S24: Nine-family validation-stable pool construction and strict common-pool controls. S24a--S24f retain pool-construction sensitivity analyses; S24g--S24j contain the primary equal-pool runs, summaries, hierarchical seed-and-sample bootstrap and frozen validation-selection records. File: `Table_S24_expanded_candidate_pool_controls.csv`
+- S24: Nine-family validation-stable pool construction and common-pool controls. S24a--S24f retain pool-construction sensitivity analyses; S24g--S24j contain equal-pool runs, summaries, hierarchical seed-and-sample bootstrap and frozen validation-selection records. File: `Table_S24_expanded_candidate_pool_controls.csv`
+- S24k: Per-task and per-seed meta-model fit-count audit. Equal option count does not mean equal computation; historical base-family wall times are unavailable. File: `Table_S24k_common_pool_compute_budget.csv`
+- S24l: Independent recomputation of all 880 common-pool method scores from the label-free prediction bundle plus official TDC test labels. Maximum absolute discrepancy: 1.78e-15. File: `Table_S24l_independent_prediction_recalculation.csv`
 - S2: Selected endpoint recipes and full ablation candidate ledger. S2d provides the compact endpoint overview used in the PDF supplement. File: `Table_S2_endpoint_recipe_and_variant_ledger.csv`
 - S3: Frozen leaderboard/reference and multibaseline comparison data. File: `Table_S3_frozen_reference_snapshot.csv`
 - S4: Formal ablation summary, long-form ablation scores, deltas, and heatmap-ready data. File: `Table_S4_formal_ablation_long.csv`
