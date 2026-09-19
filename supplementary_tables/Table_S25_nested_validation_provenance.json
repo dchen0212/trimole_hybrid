@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-09-19T15:07:04.115855+00:00",
+  "policy": "validation-only nested audit; official test predictions and labels were not opened",
+  "candidate_root": "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/ablation_v36_formal/candidate_predictions",
+  "base_selection": "/mnt/data/projects/trimole_hybrid_revision_20260915/results_strict/revision_20260918_expanded_candidate_pool_controls_v4_threshold_aligned/selection/frozen_selection.json",
+  "base_selection_sha256": "c8de7423a65f4c90bc48cdd4e1478ff8013a4853bba8d22414161467a8ddc8d8",
+  "candidate_pool": [
+    "chem_fp_chemberta_kpgt_ept_xgb",
+    "chem_fp_chemberta_kpgt_xgb",
+    "chem_fp_xgb",
+    "deep_chemberta_kpgt_ept_ridge_linear",
+    "deep_chemberta_kpgt_ridge_linear",
+    "deep_chemberta_ridge_linear",
+    "deep_ept_ridge_linear",
+    "deep_kpgt_ept_ridge_linear",
+    "deep_kpgt_ridge_linear"
+  ],
+  "tasks": [
+    "ames",
+    "bbb_martins",
+    "bioavailability_ma",
+    "caco2_wang",
+    "clearance_hepatocyte_az",
+    "clearance_microsome_az",
+    "cyp2c9_substrate_carbonmangels",
+    "cyp2c9_veith",
+    "cyp2d6_substrate_carbonmangels",
+    "cyp2d6_veith",
+    "cyp3a4_substrate_carbonmangels",
+    "cyp3a4_veith",
+    "dili",
+    "half_life_obach",
+    "herg",
+    "hia_hou",
+    "ld50_zhu",
+    "lipophilicity_astrazeneca",
+    "pgp_broccatelli",
+    "ppbr_az",
+    "solubility_aqsoldb",
+    "vdss_lombardo"
+  ],
+  "seeds": [
+    101,
+    202,
+    303,
+    404,
+    505
+  ],
+  "rules": [
+    "per_task_single",
+    "validation_top2_average",
+    "validation_top3_average",
+    "uniform_candidate_average",
+    "validation_stacking"
+  ],
+  "n_splits_requested": 5,
+  "outer_rows": 550
+}

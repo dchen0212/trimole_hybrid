@@ -37,4 +37,4 @@ Five fixed seeds are used: 101, 202, 303, 404 and 505. Every method receives the
 
 ## Scope and limitation
 
-The strict outputs contain 880 method-task-seed scores, 176 task-method summaries, 154 hierarchical seed-and-sample bootstrap comparisons and complete validation-selection records (Tables S24g-S24j). These controls do not reproduce every historical exploratory candidate; instead, they establish candidate-pool and selection-budget parity for the comparison used in the revised claims. The mixed results do not support universal superiority of the task-wise selector.
+The strict outputs contain 880 method-task-seed scores, 176 task-method summaries, 154 hierarchical seed-and-sample bootstrap comparisons and complete validation-selection records (Tables S24g-S24j). These controls establish candidate-pool parity and a transparent, but not equal-compute, selection comparison; Table S24k reports the unequal meta-model fit counts. A separate validation-only nested audit is provided in Table S25. The mixed results do not support universal superiority of the task-wise selector.

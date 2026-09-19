@@ -9,7 +9,7 @@ Status values: `DONE-EVIDENCE`, `DONE-TEXT`, `AUTHOR-ACTION`.
 | Potential data leakage | Target-wide exact/similarity filtering, corrected reruns, independent validation, Tables S20b--d | DONE-EVIDENCE |
 | Archival code DOI | Zenodo-ready release package and GitHub release checklist prepared; DOI must be minted by an author | AUTHOR-ACTION |
 | Marked manuscript | Red-text LaTeX source and PDF | DONE-TEXT |
-| Clean supplement | Clean LaTeX source, PDF and S1--S24 workbook | DONE-TEXT |
+| Clean supplement | Clean LaTeX source, PDF, S1--S24 workbook and S25 nested-audit CSVs | DONE-TEXT |
 | Figure alt text | Main and supplementary figures have independent alt-text descriptions | DONE-TEXT |
 
 ## Reviewer 1

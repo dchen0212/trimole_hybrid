@@ -27,6 +27,7 @@ It is **not** a one-command full rerun bundle. Large files are intentionally exc
 - `code/trimole_ept_swap_v1/tools/run_common_pool_fair_comparison_v1.py`: primary nine-family, eight-method, five-seed strict common-pool comparison used for Supplementary Tables S24g-S24j.
 - `code/trimole_ept_swap_v1/tools/run_paired_bootstrap_v1.py`: hierarchical seed-and-sample bootstrap with BH-FDR correction.
 - `code/trimole_ept_swap_v1/tools/audit_common_pool_compute_budget_v1.py`: meta-model fit-count audit for the common-pool reanalysis (Table S24k). The selector and AutoML each evaluate six options, but require 550 versus 3,300 cross-validation meta fits; historical base-family wall times are unavailable, so compute is not matched end to end.
+- `code/trimole_ept_swap_v1/tools/run_nested_validation_selection_v1.py`: validation-only nested outer-fold audit for selection stability and recipe generalization (Table S25). It never opens official test predictions or labels.
 - `tools/export_revision_prediction_bundle_v1.py`: constructs a companion label-free ZIP containing all strict-pool candidate and method predictions, with row counts and source SHA-256 checksums. This 2,860-file companion is separate from the code archive because the repository does not redistribute benchmark labels or large arrays.
 
 ## Model Families
@@ -73,6 +74,7 @@ Included in this public-upload package:
 - Validation-only numerical-stability audits for all 15 complete candidate families and the strict nine-family common-pool controls reported in Tables S24g-S24j.
 - Target-wide exact-identity, Bemis-Murcko scaffold and Morgan-Tanimoto sensitivity audits in Tables S20b-S20d, plus test-blind target-only primary scores in S20e.
 - A compute-budget audit (S24k) and independent recalculation of all 880 common-pool scores from a label-free prediction bundle (S24l). Candidate-pool parity does not imply matched compute.
+- A nested validation selection audit (S25) with 550 outer-fold records, inner-fold OOF stacking and fold-level selection frequency. The result is descriptive evidence for task dependence, not a universal-superiority claim.
 
 Excluded:
 
