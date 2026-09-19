@@ -78,6 +78,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--out-root", type=Path)
     parser.add_argument("--selection-stat", choices=("valid_mean", "valid_adjusted"), default="valid_mean")
     parser.add_argument(
+        "--source-policy",
+        choices=("target_universe", "target_only"),
+        default="target_universe",
+        help="target_only excludes all cross-task source rows without consulting target holdout identities",
+    )
+    parser.add_argument(
         "--cross-task-tanimoto-threshold",
         type=float,
         default=0.90,
@@ -261,19 +267,43 @@ def pooled_stage(
     feature_set: str,
     stage: str,
     cross_task_masks: dict[tuple[str, str, str], list[bool]] | None = None,
+    source_policy: str = "target_universe",
 ) -> tuple[np.ndarray, np.ndarray, list[dict[str, object]]]:
+    if source_policy not in {"target_universe", "target_only"}:
+        raise ValueError(f"unknown source policy: {source_policy}")
     split_index = {"train": 0, "valid": 1}
     included_splits = ("train",) if stage == "selection" else ("train", "valid")
-    target_universe = presplit_target_universe_keys(
-        identities[target]["train"],
-        identities[target]["valid"],
-        identities[target]["test"],
+    target_universe = (
+        presplit_target_universe_keys(
+            identities[target]["train"],
+            identities[target]["valid"],
+            identities[target]["test"],
+        )
+        if source_policy == "target_universe"
+        else set()
     )
     cross_task_masks = cross_task_masks or {}
     pooled_x: list[np.ndarray] = []
     pooled_y: list[np.ndarray] = []
     audit: list[dict[str, object]] = []
     for source in tasks:
+        if source_policy == "target_only" and source != target:
+            for split in included_splits:
+                audit.append(
+                    {
+                        "target_task": target,
+                        "stage": stage,
+                        "source_task": source,
+                        "source_split": split,
+                        "rows_before": len(labels[source][split]),
+                        "rows_removed_exact_target_universe": 0,
+                        "rows_removed_high_tanimoto": 0,
+                        "rows_removed_total": len(labels[source][split]),
+                        "rows_after": 0,
+                        "filter_policy": "target_only: cross-task source excluded without target holdout identity",
+                    }
+                )
+            continue
         blocked = set() if source == target else target_universe
         for split in included_splits:
             exact_mask = np.asarray(keep_mask(identities[source][split], blocked), dtype=bool)
@@ -296,7 +326,7 @@ def pooled_stage(
                     "rows_removed_total": int(np.sum(~mask)),
                     "rows_after": int(np.sum(mask)),
                     "filter_policy": (
-                        "target endpoint retains its designated development split"
+                        f"target endpoint retains its designated development split ({source_policy})"
                         if source == target
                         else "cross-task rows filtered against the pre-split target identity universe and high-similarity threshold"
                     ),
@@ -542,21 +572,24 @@ def main() -> None:
     selected_rows: list[dict[str, object]] = []
     removal_audit: list[dict[str, object]] = []
     best_iterations: dict[tuple[str, str, int, int], int] = {}
-    similarity_audit = build_cross_task_similarity_audit(
-        identities,
-        smiles_by_task,
-        tasks,
-        targets,
-        threshold=args.cross_task_tanimoto_threshold,
-    )
-    write_csv(out_root / "cross_task_similarity_audit.csv", similarity_audit)
-    cross_task_masks = build_cross_task_similarity_masks(
-        identities,
-        smiles_by_task,
-        tasks,
-        targets,
-        args.cross_task_tanimoto_threshold,
-    )
+    if args.source_policy == "target_universe":
+        similarity_audit = build_cross_task_similarity_audit(
+            identities,
+            smiles_by_task,
+            tasks,
+            targets,
+            threshold=args.cross_task_tanimoto_threshold,
+        )
+        write_csv(out_root / "cross_task_similarity_audit.csv", similarity_audit)
+        cross_task_masks = build_cross_task_similarity_masks(
+            identities,
+            smiles_by_task,
+            tasks,
+            targets,
+            args.cross_task_tanimoto_threshold,
+        )
+    else:
+        cross_task_masks = {}
 
     for target in targets:
         metric = metrics[target]
@@ -575,6 +608,7 @@ def main() -> None:
                 feature_set,
                 "selection",
                 cross_task_masks,
+                args.source_policy,
             )
             if feature_set == feature_sets[0]:
                 removal_audit.extend(audit)
@@ -647,6 +681,7 @@ def main() -> None:
             feature_set,
             "final",
             cross_task_masks,
+            args.source_policy,
         )
         removal_audit.extend(audit)
         test_x = features[target][feature_set][2]
@@ -709,8 +744,13 @@ def main() -> None:
         "family": args.family,
         "targets": targets,
         "selection_rule": args.selection_stat,
+        "source_policy": args.source_policy,
         "test_policy": "one frozen candidate per target; no test-based candidate ranking",
-        "cross_task_filter_policy": "one target-wide connectivity identity universe assembled from train+valid+test before split-specific model stages, followed by a target-wide Morgan-similarity exclusion; the same cross-task masks are used for selection and final refit",
+        "cross_task_filter_policy": (
+            "all cross-task source rows excluded; target test identity is not consulted for training-row selection"
+            if args.source_policy == "target_only"
+            else "one target-wide connectivity identity universe assembled from train+valid+test before split-specific model stages, followed by a target-wide Morgan-similarity exclusion; the same cross-task masks are used for selection and final refit"
+        ),
         "molecule_identity": "RDKit connectivity-level InChIKey first block",
         "similarity_audit": f"Bemis-Murcko scaffold overlap and Morgan radius-2 2048-bit Tanimoto >= {args.cross_task_tanimoto_threshold:.2f} after exact target-universe exclusion",
         "cross_task_tanimoto_filter_threshold": args.cross_task_tanimoto_threshold,
