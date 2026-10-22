@@ -1,3 +1,11 @@
+## October 2026 revision release
+
+The updated revision source code and analysis archive is available at **[Zenodo DOI 10.5281/zenodo.23558674](https://doi.org/10.5281/zenodo.23558674)** and as `Trimole_Hybrid_revision_20261022.zip` on the [2026.10.22 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/revision-2026.10.22).
+
+The release ZIP contains the updated experiment scripts, corrected FLAML run ledgers, aggregate results, the 20-page Supplementary Information and a SHA-256 manifest. The `revision/` folder within that ZIP is the current revision material. Existing files in this repository retain historical source and results. Dataset, checkpoint and saved-prediction requirements are documented in the release; it is not a self-contained training bundle.
+
+---
+
 # Trimole-Hybrid ADMET
 
 Source code and audit artifacts for the manuscript:

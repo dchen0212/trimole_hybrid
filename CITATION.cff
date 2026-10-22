@@ -1,18 +1,20 @@
 cff-version: 1.2.0
-message: "If you use this code or audit package, please cite the associated manuscript."
-title: "A multimodal representation learning platform for accurate molecular ADMET prediction"
+message: "Please cite this versioned source and analysis archive."
+title: "Trimole-Hybrid: revision code and analysis archive"
 authors:
-  - family-names: "Luo"
-    given-names: "Zhensheng"
-  - family-names: "Huang"
-    given-names: "Dachen"
-  - family-names: "Shao"
-    given-names: "Yanruisheng"
-  - family-names: "Yu"
-    given-names: "Qinze"
-  - family-names: "Li"
-    given-names: "Yu"
-year: 2026
-repository-code: "https://github.com/dchen0212/trimole_hybrid"
+  - family-names: Luo
+    given-names: Zhensheng
+  - family-names: Huang
+    given-names: Dachen
+  - family-names: Shao
+    given-names: Yanruisheng
+  - family-names: Yu
+    given-names: Qinze
+  - family-names: Li
+    given-names: Yu
 type: software
-license: "NOASSERTION"
+version: "2026.10.22"
+date-released: 2026-10-22
+doi: "10.5281/zenodo.23558674"
+repository-code: "https://github.com/dchen0212/trimole_hybrid"
+license: Apache-2.0

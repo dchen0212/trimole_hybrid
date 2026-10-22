@@ -1,29 +1,7 @@
-# Code and Artifact Availability
+# Code availability
 
-This repository contains the source code, Supplementary Information files, supplementary tables and lightweight audit material supporting the Trimole-Hybrid ADMET manuscript.
+Revision archive (2026.10.22): https://doi.org/10.5281/zenodo.23558674
 
-## Public repository
+Repository: https://github.com/dchen0212/trimole_hybrid
 
-Planned public repository:
-
-- `https://github.com/dchen0212/trimole_hybrid`
-
-The repository is currently private and can be made public after license and artifact-release decisions are finalized.
-
-## Included artifacts
-
-- Source code for molecular representation wrappers, fusion models, endpoint heads, prediction-level ensembles and audit scripts.
-- Supplementary tables and summary-level formal benchmark, ablation, endpoint-selection and case-study audits.
-- Supplementary Information source/PDF, supplementary figures and supplementary tables used by the manuscript.
-
-## External dependencies
-
-Official TDC benchmark data should be obtained from Therapeutics Data Commons. Large trained weights, cached features and serialized estimators are not included in the Git repository. Split-level prediction audits may contain labels and should be distributed only when compatible with the relevant data-use terms.
-
-## Release artifact
-
-For reviewer inspection, attach the full lightweight server-audit package to a GitHub Release:
-
-- `trimole_hybrid_server_code_pull_20260524.zip`
-
-Before public release, upload the local release asset with this filename to a GitHub Release.
+Download the versioned source and results ZIP from Zenodo or the GitHub release. See the archive README, RESULT_CODE_MAP.csv, EXTERNAL_DEPENDENCIES.md and MANIFEST_SHA256.json for entry points, dependencies and exact bytes. Existing repository files retain historical provenance; current revision additions are in the release ZIP's revision directory. Official data, model weights and row-level prediction inputs are external dependencies. No full historical rerun is claimed by publication of this archive.
