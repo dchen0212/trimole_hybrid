@@ -1,6 +1,6 @@
 # Code availability
 
-Revision archive (2026.10.22): https://doi.org/10.5281/zenodo.23558674
+Revision archive (2026.10.24): https://doi.org/10.5281/zenodo.23602309
 
 Repository: https://github.com/dchen0212/trimole_hybrid
 

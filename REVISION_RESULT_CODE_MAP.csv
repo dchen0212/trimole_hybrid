@@ -1,9 +1,10 @@
 result,data,code,dependency
-S1–S2,revision/Supplementary_Data.zip,historical_repository/code,Dataset/configuration records; historical training inputs external
-"S3, S5; external benchmarks",revision/Supplementary_Data.zip,revision/code/chemprop22_20261015_v01; revision/code/minimol_kpgt_benchmark22_20261014_v01,Official data/checkpoints; HIA and half-life follow-up scripts included
-S4; same-pool controls,revision/flaml_evidence; revision/Supplementary_Data.zip,revision/code/original_pool_matched_controls22_20261015_v01,Saved prediction matrices required; upstream OOF not regenerated
+S1–S2,revision/Supplementary_Data_v92.zip,historical_repository/code,Dataset/configuration records; historical training inputs external
+"S3, S5; external benchmarks",revision/Supplementary_Data_v92.zip,revision/code/chemprop22_20261015_v01; revision/code/minimol_kpgt_benchmark22_20261014_v01,Official data/checkpoints; HIA and half-life follow-up scripts included
+S4; same-pool controls,revision/flaml_evidence; revision/Supplementary_Data_v92.zip,revision/code/original_pool_matched_controls22_20261015_v01,Saved prediction matrices required; upstream OOF not regenerated
 S6–S7; paired intervals,revision/statistics/WHOLE_TASK_CI.csv,revision/statistics/analyze.py,Saved row-level inputs required
-S8–S9; Figure 3,revision/Supplementary_Data.zip,revision/code/figure3_abcd_labels_right_20261021_v12,Saved ablation tables; path adaptation required
-S10–S11,revision/Supplementary_Data.zip,Companion protocols/results from earlier controlled studies,Separate experiments; not a unified 22-task end-to-end fit
+S8–S9; Figure 3,revision/Supplementary_Data_v92.zip,revision/code/figure3_abcd_labels_right_20261021_v12,Saved ablation tables; path adaptation required
+S10–S11,revision/Supplementary_Data_v92.zip,Companion protocols/results from earlier controlled studies,Separate experiments; not a unified 22-task end-to-end fit
 S12–S13; target-only replacements,revision/target_only_evidence,revision/code/target_only_expanded_20261013_v02; revision/code/target_only_kernel_refine_20261014_v01; revision/code/hepatocyte_final,"Target-task data, upstream encoders and final checkpoints external"
-S14; subgroups,revision/Supplementary_Data.zip,revision/code/subgroup_four_recovery_20261020_v01; revision/code/subgroups_publication_style_20261020_v11,Saved matched row-level predictions external
+S14; subgroups,revision/Supplementary_Data_v92.zip,revision/code/subgroup_four_recovery_20261020_v01; revision/code/subgroups_publication_style_20261020_v11,Saved matched row-level predictions external
+Figure 4; historical case-study Table S7,revision/case_studies/Table_S7_Figure4_two_case_sensitivity_audit.csv; revision/case_studies/revision_20260926_ames_case_identity_v1.json,revision/case_studies/ames_official_case_matched_replacement_sweep_v1.py,"Official AMES data, archived predictions and original environment external; recovered script unchanged"

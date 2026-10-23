@@ -13,8 +13,8 @@ authors:
   - family-names: Li
     given-names: Yu
 type: software
-version: "2026.10.22"
-date-released: 2026-10-22
-doi: "10.5281/zenodo.23558674"
+version: "2026.10.24"
+date-released: 2026-10-24
+doi: "10.5281/zenodo.23602309"
 repository-code: "https://github.com/dchen0212/trimole_hybrid"
 license: Apache-2.0

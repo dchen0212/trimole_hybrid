@@ -1,8 +1,8 @@
 ## October 2026 revision release
 
-The updated revision source code and analysis archive is available at **[Zenodo DOI 10.5281/zenodo.23558674](https://doi.org/10.5281/zenodo.23558674)** and as `Trimole_Hybrid_revision_20261022.zip` on the [2026.10.22 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/revision-2026.10.22).
+The updated revision source code and analysis archive is available at **[Zenodo DOI 10.5281/zenodo.23602309](https://doi.org/10.5281/zenodo.23602309)** and as `Trimole_Hybrid_revision_20261024.zip` on the [2026.10.24 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.24).
 
-The release ZIP contains the updated experiment scripts, corrected FLAML run ledgers, aggregate results, the 20-page Supplementary Information and a SHA-256 manifest. The `revision/` folder within that ZIP is the current revision material. Existing files in this repository retain historical source and results. Dataset, checkpoint and saved-prediction requirements are documented in the release; it is not a self-contained training bundle.
+The 2026.10.24 release ZIP includes the completed 180-s FLAML budget records and AMES replay script, together with the updated experiment scripts, corrected FLAML run ledgers, aggregate results, the 20-page Supplementary Information and a SHA-256 manifest. The `revision/` folder within that ZIP is the current revision material. Existing files in this repository retain historical source and results. Dataset, checkpoint and saved-prediction requirements are documented in the release; it is not a self-contained training bundle.
 
 ---
 
@@ -12,7 +12,7 @@ Source code and audit artifacts for the manuscript:
 
 **A multimodal representation learning platform for accurate molecular ADMET prediction**
 
-Trimole-Hybrid is a task-adaptive ADMET prediction framework that combines sequence, graph, 3D/EPT and chemistry-prior molecular evidence streams. Endpoint configurations are selected using training/validation evidence or scaffold cross-validation only; official TDC test labels are reserved for final reporting.
+Trimole-Hybrid is a task-adaptive ADMET prediction framework that combines sequence, graph, 3D/EPT and chemistry-prior molecular evidence streams. Historical workflows used validation-based local searches and test-informed endpoint adoption. The current revision distinguishes historical results from the controlled revision experiments.
 
 ## Repository Scope
 
@@ -87,4 +87,4 @@ Citation details will be updated after publication.
 
 ## License
 
-License terms should be finalized before public release. See `LICENSE_PENDING.md`.
+Original code and revision workflows are released under Apache-2.0; the complete terms are in `LICENSE`. Third-party components retain their own licenses and notices (see `NOTICE`).
