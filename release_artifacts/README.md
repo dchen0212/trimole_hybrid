@@ -1,11 +1,7 @@
-# Release Artifacts
+# Published release downloads
 
-The full lightweight server-audit package should be uploaded to GitHub Releases rather than committed to the repository.
+The [v2026.10.28 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.28) contains the current configuration/code package, checkpoint manifest, complete supporting data, current 20-page supplement and its Overleaf source package.
 
-Recommended release asset:
+Earlier supplementary material is preserved as [Legacy_supplement_materials_20261028.zip](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Legacy_supplement_materials_20261028.zip). The original [2026.10.22 ZIP](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Trimole_Hybrid_revision_20261022.zip) is a release attachment. Current file names and hashes are listed by GitHub on the release page.
 
-- `trimole_hybrid_server_code_pull_20260524.zip`
-
-Before public release, upload the local release asset with this filename to a GitHub Release.
-
-This artifact contains a broader lightweight pull of server-side source and audit summaries. It excludes datasets, trained weights, cached arrays and serialized models.
+The [2026.10.24 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.24) and [Zenodo archive](https://doi.org/10.5281/zenodo.23602309) retain the earlier immutable research archive.
