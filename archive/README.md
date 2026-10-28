@@ -1,7 +1,9 @@
-# Archived release documentation
+# Archived research records
 
-These files preserve the original release notes, result-to-code mapping and source snapshot from earlier project packaging. Their file names, path conventions and numerical records are retained. They are archival records.
+The code and analysis indexes in this directory describe the earlier research archive. For current submission numbering, use the [supplementary-data index](../supplementary_data/) and [result-to-code guide](../docs/RESULT_CODE_MAP.md).
 
-For current installation, model configuration downloads and manuscript citation, use the [project README](../README.md). Supporting analysis data are indexed under [Supplementary data](../supplementary_data/).
+- [Original 2026.10.22 ZIP](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Trimole_Hybrid_revision_20261022.zip)
+- [Earlier supplement, tables and figure](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Legacy_supplement_materials_20261028.zip)
+- [2026.10.24 code and analysis archive](https://doi.org/10.5281/zenodo.23602309)
 
-The previous repository layout remains available at commit `0546557c86e36a3c0f297ebd0439b3d2a31b4196`. The published research archive is https://doi.org/10.5281/zenodo.23602309.
+These downloads preserve their original contents. They are distinct from the current 20-page supplement and current table files.
