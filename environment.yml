@@ -1,0 +1,21 @@
+name: trimole-hybrid
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+dependencies:
+  - python=3.10.20
+  - pytorch=2.5.1
+  - pytorch-cuda=12.1
+  - pip
+  - pip:
+      - numpy==2.2.6
+      - pandas==2.3.3
+      - scikit-learn==1.7.2
+      - xgboost==3.2.0
+      - rdkit==2026.3.1
+      - scipy
+      - optuna
+      - tqdm
+      - transformers
+      - joblib

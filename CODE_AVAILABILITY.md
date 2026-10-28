@@ -1,7 +1,8 @@
-# Code availability
+# Code and data
 
-Revision archive (2026.10.24): https://doi.org/10.5281/zenodo.23602309
+- Source code and model documentation: https://github.com/dchen0212/trimole_hybrid
+- Current configuration package and supporting data: https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.28
+- Supplementary table and figure index: https://github.com/dchen0212/trimole_hybrid/tree/main/supplementary_data
+- Versioned 2026.10.24 code and analysis archive: https://doi.org/10.5281/zenodo.23602309
 
-Repository: https://github.com/dchen0212/trimole_hybrid
-
-Download the versioned source and results ZIP from Zenodo or the GitHub release. See the archive README, RESULT_CODE_MAP.csv, EXTERNAL_DEPENDENCIES.md and MANIFEST_SHA256.json for entry points, dependencies and exact bytes. Existing repository files retain historical provenance; current revision additions are in the release ZIP's revision directory. Official data, model weights and row-level prediction inputs are external dependencies. No full historical rerun is claimed by publication of this archive.
+The manuscript citation is in `CITATION.bib` and the README. The archive DOI identifies software and analysis records.
