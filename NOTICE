@@ -9,7 +9,9 @@ Some KPGT descriptor utilities retain copyright notices from the Novartis
 Institutes for BioMedical Research and RDKit contributors in their source
 headers. Those notices and applicable upstream terms are preserved unchanged.
 
-Official TDC datasets, trained weights, cached embeddings and unrestricted
-sample-level labels are not redistributed in this repository or release
-archive. Users must obtain datasets and third-party model assets from their
-respective sources under the applicable terms.
+Selected sample-level records, including molecular structures and labels,
+are included in the supplementary analysis files and earlier case-study
+records. Complete official datasets, trained model weights and cached
+embeddings are not provided as a complete asset collection. Dataset and
+third-party model use is subject to the corresponding source terms.
+Attribution and source identifiers accompany the records.

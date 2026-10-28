@@ -1,6 +1,10 @@
 # Trimole-Hybrid
 
-This repository contains code and final model configurations for the manuscript **Task-wise model selection for heterogeneous ADMET prediction**.
+This repository provides source code, task configurations and result records for the manuscript **Task-wise model selection for heterogeneous ADMET prediction**.
+
+## Release status
+
+This release provides source code, final task configurations and published result records. Checkpoint weights are not attached to the release. The 155-entry manifest describes located artifacts, including partial component sets; eight tasks have no saved original estimator. The package is not a complete set of assets for end-to-end reproduction of all 22 reported systems.
 
 Trimole-Hybrid uses SMILES, graph, geometry-sensitive and chemical-feature predictors for 22 TDC ADMET tasks. Each task has a fixed predictor or prediction combination.
 
@@ -36,10 +40,12 @@ See [environment and input details](docs/USAGE.md) for the task-specific depende
 
 ## Data preparation
 
-The benchmark comprises the 22 tasks in the [TDC ADMET benchmark group](https://tdcommons.ai/benchmark/admet_group/). Use the task identifiers and split definitions in Supplementary Table S1.
+The benchmark comprises the 22 tasks in the [TDC ADMET benchmark group](https://tdcommons.ai/benchmark/admet_group/). Use the task identifiers and split definitions in the [current Supplementary Table S1](supplementary_tables/Table_S1_dataset_provenance.csv). For fixed-component retraining, use training rows for fitting, validation rows for the documented stopping and setting choices, and official test rows for final scoring. Experiment-specific data roles are described in Supplementary Notes 3A–3B.
 
 - [Complete supplementary data](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Supplementary_Data.zip)
-- [Table and figure index](supplementary_data/)
+- [Current 20-page supplement](supplementary/supplementary.pdf)
+- [Current tables](supplementary_tables/) and [Figures S1–S3](supplementary_figures/)
+- [Table and figure source-data index](supplementary_data/)
 
 The data download includes run scores, row identifiers, model settings and analysis protocols. The matched solubility comparison uses the same 1,995 rows for all three molecular models.
 
@@ -51,7 +57,7 @@ For molecular features, the repository contains [ChemBERTa](code/trimole_ept_swa
 - [Checkpoint manifest](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Checkpoint_Manifest.json)
 - [Model download and configuration guide](models/)
 
-The configuration package contains one JSON record per task, with model components, training settings, seeds and fixed combination weights. The manifest identifies 155 located fitted artifacts by task, seed, size and SHA256. Weight downloads will be added after transfer and verification.
+The configuration package contains one JSON record per task, with model components, training settings, seeds and fixed combination weights. The manifest identifies 155 located fitted artifacts by task, seed, size and SHA256. Weight files are not included in this release.
 
 ## Usage
 
@@ -87,11 +93,22 @@ PY
 
 This fits the named component. The task JSON records the other components and final prediction transformation. Classical endpoints and target-only models use the implementations and settings linked in the [model guide](models/) and [training documentation](docs/USAGE.md).
 
+## Results and code
+
+The [result-to-code guide](docs/RESULT_CODE_MAP.md) maps paper sections, tables and figures to implementation entry points and archived analysis scripts.
+
 ## Supplementary results
 
 The [supplementary-data index](supplementary_data/) maps manuscript Figure 4 and Supplementary Tables S1–S14 and Figures S1–S3 to their source records. It includes the external-model comparisons, FLAML budget comparisons, ablations and subgroup analyses.
 
-The versioned [code and analysis archive](https://doi.org/10.5281/zenodo.23602309) remains available for the published 2026.10.24 release.
+### Release correspondence
+
+| Resource | Role |
+|---|---|
+| [GitHub v2026.10.28](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.28) | Current data, configuration package and 20-page supplement aligned to the author-selected v130 submission supplement |
+| [Zenodo 2026.10.24](https://doi.org/10.5281/zenodo.23602309) | Immutable earlier code and analysis archive, including source scripts used by the current result-to-code guide |
+
+The current supplementary package includes completed 180-s FLAML records. S4 compares the task-wise configuration with five fixed-pool controls and two FLAML budgets; S4a reports 32 trials, 60 s, 120 s and 180 s in the separate nine-predictor pool. The earlier three-setting records predate the 180-s extension.
 
 ## Citation
 
