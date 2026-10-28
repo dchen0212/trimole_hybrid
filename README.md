@@ -105,7 +105,8 @@ The [supplementary-data index](supplementary_data/) maps manuscript Figure 4 and
 
 | Resource | Role |
 |---|---|
-| [GitHub v2026.10.28](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.28) | Current data, configuration package and 20-page supplement aligned to the author-selected v130 submission supplement |
+| [GitHub v2026.10.29](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.29) | Repository source snapshot aligned to the current supplement and table/figure numbering |
+| [GitHub v2026.10.28 attachments](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.28) | Current data, configuration package and 20-page supplement aligned to the author-selected v130 submission supplement |
 | [Zenodo 2026.10.24](https://doi.org/10.5281/zenodo.23602309) | Immutable earlier code and analysis archive, including source scripts used by the current result-to-code guide |
 
 The current supplementary package includes completed 180-s FLAML records. S4 compares the task-wise configuration with five fixed-pool controls and two FLAML budgets; S4a reports 32 trials, 60 s, 120 s and 180 s in the separate nine-predictor pool. The earlier three-setting records predate the 180-s extension.
