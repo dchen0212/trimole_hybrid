@@ -1,5 +1,9 @@
 # Supplementary data
 
+**Submission reference:** [current 20-page supplement](../supplementary/supplementary.pdf), byte-identical to the author-selected v130. [Current table files](../supplementary_tables/) and [Figures S1–S3](../supplementary_figures/) use this PDF's numbering.
+
+S4 contains eight result columns: task-wise selection, five controls and FLAML at 120 s and 180 s. S4a contains four search settings: 32 trials, 60 s, 120 s and 180 s. Both 180-s extensions have 110 run records. Earlier three-setting QA records describe a prior stage of the study.
+
 [Download the complete supplementary data](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Supplementary_Data.zip). This download contains all 203 supporting files, including run scores, model settings, row identifiers, protocols and the integrity manifest.
 
 The paper uses descriptive references to these records. After extracting the download, use this index to find the source files. Original filenames and experiment identifiers are retained within the download.
@@ -43,3 +47,7 @@ Run `python3 verify_manifest.py .` in the extracted directory. The manifest chec
 ## Model records and archived release
 
 [Final model configurations and checkpoints](../models/) are indexed separately. The immutable [2026.10.24 research archive](https://doi.org/10.5281/zenodo.23602309) remains available; this GitHub release supplies the current supplementary-data package.
+
+## Earlier material
+
+The earlier 9-page supplement and its S1–S18 numbering are preserved only in the [earlier-materials archive](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Legacy_supplement_materials_20261028.zip). The legacy selection-procedure ledger is a record of stated procedures and configuration descriptions; its assertions are not independent run-level validation evidence.
