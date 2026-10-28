@@ -1,6 +1,7 @@
 cff-version: 1.2.0
-message: "Please cite this versioned source and analysis archive."
-title: "Trimole-Hybrid: revision code and analysis archive"
+message: "If you use Trimole-Hybrid, please cite the manuscript below."
+type: software
+title: "Trimole-Hybrid"
 authors:
   - family-names: Luo
     given-names: Zhensheng
@@ -12,9 +13,40 @@ authors:
     given-names: Qinze
   - family-names: Li
     given-names: Yu
-type: software
-version: "2026.10.24"
-date-released: 2026-10-24
-doi: "10.5281/zenodo.23602309"
 repository-code: "https://github.com/dchen0212/trimole_hybrid"
+url: "https://github.com/dchen0212/trimole_hybrid"
 license: Apache-2.0
+preferred-citation:
+  type: unpublished
+  title: "Task-wise model selection for heterogeneous ADMET prediction"
+  authors:
+    - family-names: Luo
+      given-names: Zhensheng
+    - family-names: Huang
+      given-names: Dachen
+    - family-names: Shao
+      given-names: Yanruisheng
+    - family-names: Yu
+      given-names: Qinze
+    - family-names: Li
+      given-names: Yu
+  year: 2026
+  notes: "Manuscript"
+  url: "https://github.com/dchen0212/trimole_hybrid"
+references:
+  - type: software
+    title: "Trimole-Hybrid code and analysis archive"
+    authors:
+      - family-names: Luo
+        given-names: Zhensheng
+      - family-names: Huang
+        given-names: Dachen
+      - family-names: Shao
+        given-names: Yanruisheng
+      - family-names: Yu
+        given-names: Qinze
+      - family-names: Li
+        given-names: Yu
+    version: "2026.10.24"
+    date-released: "2026-10-24"
+    doi: "10.5281/zenodo.23602309"
