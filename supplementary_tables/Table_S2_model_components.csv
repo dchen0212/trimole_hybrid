@@ -1,0 +1,23 @@
+task,metric,model,Chem,Seq,Graph,3D,Blend,Bag,result_role,ablation_original_model
+TDC.Bioav,AUROC,Fixed chem ExtraTrees,True,False,True,False,False,True,original endpoint,Fixed chem ExtraTrees
+TDC.Caco2,MAE,Fixed chem ExtraTrees,True,True,True,False,False,True,original endpoint,Fixed chem ExtraTrees
+TDC.HIA,AUROC,Task-specific chem blend,True,False,False,False,True,True,original endpoint,Task-specific chem blend
+TDC.Lipo,MAE,XL/chem hybrid blend,True,True,True,True,True,True,original endpoint,XL/chem hybrid blend
+TDC.Pgp,AUROC,KPGT/EPT logit blend,False,True,True,True,True,False,original endpoint,KPGT/EPT logit blend
+TDC.AqSol,MAE,FP-XGB/KPGT-EPT/XL blend,True,True,True,True,True,False,original endpoint,FP-XGB/KPGT-EPT/XL blend
+TDC.BBB,AUROC,Descriptor ExtraTrees,True,False,False,False,False,False,original endpoint,Descriptor ExtraTrees
+TDC.PPBR,MAE,KPGT/fingerprint blend,True,False,True,False,True,True,original endpoint,KPGT/fingerprint blend
+TDC.VD,Spearman,KPGT/EPT rank blend,True,False,True,True,True,True,original endpoint,KPGT/EPT rank blend
+TDC.CYP2C9-S,AUPRC,Fixed chem XGBoost,True,True,True,True,False,True,original endpoint,Fixed chem XGBoost
+TDC.CYP2C9-I,AUPRC,Fixed chem XGBoost,True,False,True,True,False,True,original endpoint,Fixed chem XGBoost
+TDC.CYP2D6-S,AUPRC,AP/XL/descriptor blend,True,True,False,True,True,True,original endpoint,AP/XL/descriptor blend
+TDC.CYP2D6-I,AUPRC,KPGT/EPT/FP rank blend,True,False,True,True,True,True,original endpoint,KPGT/EPT/FP rank blend
+TDC.CYP3A4-S,AUROC,Target-only C/K RBF-SVM blend,False,True,True,False,True,False,target-only replacement,Related-task fingerprint XGBoost
+TDC.CYP3A4-I,AUPRC,XL/KPGT-EPT logit blend,True,True,True,True,True,True,original endpoint,XL/KPGT-EPT logit blend
+TDC.CL-Hepa,Spearman,Target-only C/K/KPGT/Uni-Mol blend,False,True,True,True,True,False,target-only replacement,Related-task fingerprint XGBoost
+TDC.CL-Micro,Spearman,KPGT/EPT seedbag,False,False,True,True,True,True,original endpoint,KPGT/EPT seedbag
+TDC.Half_Life,Spearman,C+K descriptor/z-score blend,True,True,True,False,True,True,original endpoint,C+K descriptor/z-score blend
+TDC.AMES,AUROC,Repeated fingerprint XGBoost,True,False,False,False,False,True,original endpoint,Repeated fingerprint XGBoost
+TDC.DILI,AUROC,XL/KPGT-EPT raw blend,True,True,True,True,True,True,original endpoint,XL/KPGT-EPT raw blend
+TDC.hERG,AUROC,Fixed chem ExtraTrees,True,True,False,True,False,True,original endpoint,Fixed chem ExtraTrees
+TDC.LD50,MAE,Fixed chem XGBoost,True,True,True,True,False,True,original endpoint,Fixed chem XGBoost

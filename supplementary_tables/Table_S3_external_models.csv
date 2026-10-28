@@ -1,0 +1,67 @@
+task,metric,method,mean,sd,sd_basis,test_rows,note
+bioavailability_ma,AUROC,Trimole-Hybrid,0.722248,0.0040480000000000004,as reported in main table,128,historical20 + target-only2
+bioavailability_ma,AUROC,MiniMol,0.69670768207515787,0.018194261826222101,"population SD (ddof=0), five runs",128,archived MiniMol22 reproduction
+bioavailability_ma,AUROC,Chemprop,0.60016627868307282,0.0214073972801581,"population SD (ddof=0), five runs",128,original unified Chemprop protocol
+caco2_wang,MAE,Trimole-Hybrid,0.28364699999999998,0.0022899999999999999,as reported in main table,182,historical20 + target-only2
+caco2_wang,MAE,MiniMol,0.3581915363613859,0.0200797847122808,"population SD (ddof=0), five runs",182,archived MiniMol22 reproduction
+caco2_wang,MAE,Chemprop,0.33389979296703298,0.018930588336271401,"population SD (ddof=0), five runs",182,original unified Chemprop protocol
+hia_hou,AUROC,Trimole-Hybrid,0.99428000000000005,0.0017359999999999999,as reported in main table,117,historical20 + target-only2
+hia_hou,AUROC,MiniMol,0.99506172839506157,0.00090160091770400005,"population SD (ddof=0), five runs",117,archived MiniMol22 reproduction
+hia_hou,AUROC,Chemprop,0.98181069958847722,0.013394160899712505,"population SD (ddof=0), five runs",117,Validation-only lexicographic checkpoint tie-break correction; all five seeds retained.
+lipophilicity_astrazeneca,MAE,Trimole-Hybrid,0.47289500000000001,0.0064989999999999996,as reported in main table,840,historical20 + target-only2
+lipophilicity_astrazeneca,MAE,MiniMol,0.4482851052549634,0.0051192918088314001,"population SD (ddof=0), five runs",840,archived MiniMol22 reproduction
+lipophilicity_astrazeneca,MAE,Chemprop,0.43281380736135711,0.0077293889937696996,"population SD (ddof=0), five runs",840,original unified Chemprop protocol
+pgp_broccatelli,AUROC,Trimole-Hybrid,0.93836299999999995,0.003565,as reported in main table,245,historical20 + target-only2
+pgp_broccatelli,AUROC,MiniMol,0.94424153559050905,0.0025628557919555998,"population SD (ddof=0), five runs",245,archived MiniMol22 reproduction
+pgp_broccatelli,AUROC,Chemprop,0.90463876299653401,0.0053047495304342001,"population SD (ddof=0), five runs",245,original unified Chemprop protocol
+bbb_martins,AUROC,Trimole-Hybrid,0.92777900000000002,0.00047699999999999999,as reported in main table,406,historical20 + target-only2
+bbb_martins,AUROC,MiniMol,0.92347560975609755,0.0032908687638397,"population SD (ddof=0), five runs",406,archived MiniMol22 reproduction
+bbb_martins,AUROC,Chemprop,0.88633911819887445,0.0093714807417380995,"population SD (ddof=0), five runs",406,original unified Chemprop protocol
+ppbr_az,MAE,Trimole-Hybrid,7.3306170000000002,0.098555000000000004,as reported in main table,559,historical20 + target-only2
+ppbr_az,MAE,MiniMol,7.8773787631067265,0.077225513650778094,"population SD (ddof=0), five runs",559,archived MiniMol22 reproduction
+ppbr_az,MAE,Chemprop,7.8901217384615396,0.129681244415013,"population SD (ddof=0), five runs",559,original unified Chemprop protocol
+vdss_lombardo,Spearman,Trimole-Hybrid,0.660995,0.0046680000000000003,as reported in main table,226,historical20 + target-only2
+vdss_lombardo,Spearman,MiniMol,0.55923059291698207,0.019135134554626201,"population SD (ddof=0), five runs",226,archived MiniMol22 reproduction
+vdss_lombardo,Spearman,Chemprop,0.53388267174940407,0.0253538254209425,"population SD (ddof=0), five runs",226,original unified Chemprop protocol
+cyp2c9_substrate_carbonmangels,AUPRC,Trimole-Hybrid,0.44336999999999999,0.023358,as reported in main table,135,historical20 + target-only2
+cyp2c9_substrate_carbonmangels,AUPRC,MiniMol,0.46993980241104549,0.024152669698024501,"population SD (ddof=0), five runs",135,archived MiniMol22 reproduction
+cyp2c9_substrate_carbonmangels,AUPRC,Chemprop,0.40037976169452422,0.033530786455533201,"population SD (ddof=0), five runs",135,original unified Chemprop protocol
+cyp2c9_veith,AUPRC,Trimole-Hybrid,0.79058600000000001,0.0026080000000000001,as reported in main table,2419,historical20 + target-only2
+cyp2c9_veith,AUPRC,MiniMol,0.82737169437322033,0.0031902678643014998,"population SD (ddof=0), five runs",2419,archived MiniMol22 reproduction
+cyp2c9_veith,AUPRC,Chemprop,0.76444213093577107,0.0082346035057344006,"population SD (ddof=0), five runs",2419,original unified Chemprop protocol
+cyp2d6_substrate_carbonmangels,AUPRC,Trimole-Hybrid,0.74753099999999995,0.0096100000000000005,as reported in main table,135,historical20 + target-only2
+cyp2d6_substrate_carbonmangels,AUPRC,MiniMol,0.70463864253529318,0.026486571987956401,"population SD (ddof=0), five runs",135,archived MiniMol22 reproduction
+cyp2d6_substrate_carbonmangels,AUPRC,Chemprop,0.6080875790734821,0.048064852877028698,"population SD (ddof=0), five runs",135,original unified Chemprop protocol
+cyp2d6_veith,AUPRC,Trimole-Hybrid,0.71917200000000003,0.0055139999999999998,as reported in main table,2626,historical20 + target-only2
+cyp2d6_veith,AUPRC,MiniMol,0.72132802327250845,0.0033231175453804999,"population SD (ddof=0), five runs",2626,archived MiniMol22 reproduction
+cyp2d6_veith,AUPRC,Chemprop,0.67284445598473175,0.0060684841041030004,"population SD (ddof=0), five runs",2626,original unified Chemprop protocol
+cyp3a4_substrate_carbonmangels,AUROC,Trimole-Hybrid,0.67362115732368899,0.0011490293876256,as reported in main table,135,historical20 + target-only2
+cyp3a4_substrate_carbonmangels,AUROC,MiniMol,0.64706148282097653,0.0107511326487919,"population SD (ddof=0), five runs",135,archived MiniMol22 reproduction
+cyp3a4_substrate_carbonmangels,AUROC,Chemprop,0.5985985533453887,0.025246286119023,"population SD (ddof=0), five runs",135,original unified Chemprop protocol
+cyp3a4_veith,AUPRC,Trimole-Hybrid,0.88412100000000005,0.0032060000000000001,as reported in main table,2467,historical20 + target-only2
+cyp3a4_veith,AUPRC,MiniMol,0.87826808734797268,0.00089936323761199998,"population SD (ddof=0), five runs",2467,archived MiniMol22 reproduction
+cyp3a4_veith,AUPRC,Chemprop,0.86835768728020069,0.0052556081223866999,"population SD (ddof=0), five runs",2467,original unified Chemprop protocol
+clearance_hepatocyte_az,Spearman,Trimole-Hybrid,0.53783387838694008,0.0058491432232392997,as reported in main table,243,historical20 + target-only2
+clearance_hepatocyte_az,Spearman,MiniMol,0.46736554403761987,0.015701714501219901,"population SD (ddof=0), five runs",243,archived MiniMol22 reproduction
+clearance_hepatocyte_az,Spearman,Chemprop,0.2926192833232884,0.050848677749961498,"population SD (ddof=0), five runs",243,original unified Chemprop protocol
+clearance_microsome_az,Spearman,Trimole-Hybrid,0.642814,0.0057730000000000004,as reported in main table,221,historical20 + target-only2
+clearance_microsome_az,Spearman,MiniMol,0.62581426724583411,0.0058481114993162997,"population SD (ddof=0), five runs",221,archived MiniMol22 reproduction
+clearance_microsome_az,Spearman,Chemprop,0.53694205447936028,0.044187095870465203,"population SD (ddof=0), five runs",221,original unified Chemprop protocol
+half_life_obach,Spearman,Trimole-Hybrid,0.49138999999999999,0.0097850000000000003,as reported in main table,135,historical20 + target-only2
+half_life_obach,Spearman,MiniMol,0.51081628530606271,0.012317321560399899,"population SD (ddof=0), five runs",135,archived MiniMol22 reproduction
+half_life_obach,Spearman,Chemprop,0.44815857112730229,0.15487138161382091,"population SD (ddof=0), five runs",135,log-target MSE; three-split validation selection; all five seeds including505
+ames,AUROC,Trimole-Hybrid,0.87194499999999997,0.00058299999999999997,as reported in main table,1457,historical20 + target-only2
+ames,AUROC,MiniMol,0.85618202823630774,0.0039859297699121003,"population SD (ddof=0), five runs",1457,archived MiniMol22 reproduction
+ames,AUROC,Chemprop,0.82360179365172625,0.0058704273411677001,"population SD (ddof=0), five runs",1457,original unified Chemprop protocol
+dili,AUROC,Trimole-Hybrid,0.908609,0.0055199999999999997,as reported in main table,96,historical20 + target-only2
+dili,AUROC,MiniMol,0.95008695652173925,0.0098010454285949993,"population SD (ddof=0), five runs",96,archived MiniMol22 reproduction
+dili,AUROC,Chemprop,0.89078260869565218,0.0096533489296540993,"population SD (ddof=0), five runs",96,original unified Chemprop protocol
+herg,AUROC,Trimole-Hybrid,0.86335799999999996,0.0023340000000000001,as reported in main table,132,historical20 + target-only2
+herg,AUROC,MiniMol,0.84318114874815908,0.016054343218691602,"population SD (ddof=0), five runs",132,archived MiniMol22 reproduction
+herg,AUROC,Chemprop,0.80229749631811509,0.015558194975669201,"population SD (ddof=0), five runs",132,original unified Chemprop protocol
+ld50_zhu,MAE,Trimole-Hybrid,0.60307100000000002,0.0038370000000000001,as reported in main table,1478,historical20 + target-only2
+ld50_zhu,MAE,MiniMol,0.58867872311717284,0.010788806468007599,"population SD (ddof=0), five runs",1478,archived MiniMol22 reproduction
+ld50_zhu,MAE,Chemprop,0.6115990733288228,0.011353205716868099,"population SD (ddof=0), five runs",1478,original unified Chemprop protocol
+solubility_aqsoldb,MAE,Trimole-Hybrid,0.7384429302165938,0.00045619064232291446,as reported in main table,1995,Rescored on common 1995 test rows; original full1997 baseline scores retained under historical_source_snapshots
+solubility_aqsoldb,MAE,MiniMol,0.73905512391266104,0.0099273106790452714,"population SD (ddof=0), five runs",1995,Rescored on common 1995 test rows; original full1997 baseline scores retained under historical_source_snapshots
+solubility_aqsoldb,MAE,Chemprop,0.76486057038749922,0.014943651399455356,"population SD (ddof=0), five runs",1995,Rescored on common 1995 test rows; original full1997 baseline scores retained under historical_source_snapshots
