@@ -21,6 +21,4 @@ The code paths identify the implementations and packaging entry points. The rele
 
 The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
 
-The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
-
-The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
+Fixed final combinations and chemical feature generation are available through [prepare_features.py](../prepare_features.py) and [predict.py](../predict.py). Their original function hashes and fixed-rule bindings are in [FIXED_PIPELINE_SOURCES.json](FIXED_PIPELINE_SOURCES.json). The 22 task configuration files and reported score tables are unchanged.
