@@ -7,3 +7,5 @@ Earlier supplementary material is preserved as [Legacy_supplement_materials_2026
 The [2026.10.24 release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.24) and [Zenodo archive](https://doi.org/10.5281/zenodo.23602309) retain the earlier immutable research archive.
 
 The [v2026.10.29 source release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.29) captures the cleaned repository, including the current supplement, tables and figures. Its release notes link the downloads listed above. Source snapshots attached automatically to older tags preserve those tags and are not updated by later repository changes.
+
+The [model-focused release](https://github.com/dchen0212/trimole_hybrid/releases/tag/v2026.10.29-models) adds the simplified fixed-model source, the unchanged 22 final task records and train/predict entry points. Earlier assets above retain their original bytes.
