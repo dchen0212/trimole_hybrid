@@ -1,0 +1,231 @@
+{
+  "task_id": "clearance_hepatocyte_az",
+  "table_name": "TDC.CL-Hepa",
+  "metric": "Spearman",
+  "model": "Target-only C/K/KPGT/Uni-Mol blend",
+  "components": {
+    "Chem": false,
+    "Seq": true,
+    "Graph": true,
+    "3D": true,
+    "Blend": true,
+    "Bag": false
+  },
+  "final_setup_record": "Staged rank blend of frozen feature heads, two target-only KPGT branches and target-only Uni-Mol.",
+  "run_definition": "5 formal run(s) reported",
+  "parameter_status": "encoder settings and final checkpoint hashes bound; full staged blend recorded in source archive",
+  "checkpoint_ids": [
+    "clearance_hepatocyte_az/seed101/frozen_feature_heads.pkl",
+    "clearance_hepatocyte_az/seed101/kpgt_finetuned.pt",
+    "clearance_hepatocyte_az/seed101/kpgt_staged.pt",
+    "clearance_hepatocyte_az/seed101/unimol.pt",
+    "clearance_hepatocyte_az/seed202/frozen_feature_heads.pkl",
+    "clearance_hepatocyte_az/seed202/kpgt_finetuned.pt",
+    "clearance_hepatocyte_az/seed202/kpgt_staged.pt",
+    "clearance_hepatocyte_az/seed202/unimol.pt",
+    "clearance_hepatocyte_az/seed303/frozen_feature_heads.pkl",
+    "clearance_hepatocyte_az/seed303/kpgt_finetuned.pt",
+    "clearance_hepatocyte_az/seed303/kpgt_staged.pt",
+    "clearance_hepatocyte_az/seed303/unimol.pt",
+    "clearance_hepatocyte_az/seed404/frozen_feature_heads.pkl",
+    "clearance_hepatocyte_az/seed404/kpgt_finetuned.pt",
+    "clearance_hepatocyte_az/seed404/kpgt_staged.pt",
+    "clearance_hepatocyte_az/seed404/unimol.pt",
+    "clearance_hepatocyte_az/seed505/frozen_feature_heads.pkl",
+    "clearance_hepatocyte_az/seed505/kpgt_finetuned.pt",
+    "clearance_hepatocyte_az/seed505/kpgt_staged.pt",
+    "clearance_hepatocyte_az/seed505/unimol.pt"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "target-only final fitted-artifact lineage and selected Uni-Mol/blend settings",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "training_parameters": {
+    "development_rows": 970,
+    "folds": 3,
+    "fold_grouping": "standardized molecular identity",
+    "formal_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "feature_head_members": [
+      "c060",
+      "c070",
+      "c008"
+    ],
+    "fine_tuned_encoders": [
+      {
+        "component": "kpgt_finetuned",
+        "config": {
+          "id": "k4",
+          "scope": "all",
+          "lr": 1e-05,
+          "loss": "pair"
+        },
+        "epochs": 16
+      },
+      {
+        "component": "kpgt_staged",
+        "config": {
+          "id": "s3",
+          "scope": "all",
+          "lr": 1e-05,
+          "loss": "log",
+          "l2sp": 0.0
+        },
+        "epochs": 16
+      },
+      {
+        "component": "unimol",
+        "config": {
+          "id": "u0",
+          "scope": "all",
+          "loss": "log",
+          "lr": 1e-05
+        },
+        "epochs": 16
+      }
+    ],
+    "final_combination": {
+      "anchor": "staged KPGT combination",
+      "anchor_weight": 0.75,
+      "unimol_weight": 0.25,
+      "ordering": "rank within each branch before the recorded staged blends; do not flatten nested ranks"
+    },
+    "unimol": {
+      "head_learning_rate": 0.0005,
+      "encoder_learning_rate": 1e-05,
+      "target_transform": "log1p",
+      "loss": "SmoothL1",
+      "epochs": 16,
+      "update_scope": "all layers"
+    }
+  },
+  "components_bound": [
+    {
+      "id": "frozen_feature_heads",
+      "seed": 101,
+      "checkpoint_id": "clearance_hepatocyte_az/seed101/frozen_feature_heads.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_finetuned",
+      "seed": 101,
+      "checkpoint_id": "clearance_hepatocyte_az/seed101/kpgt_finetuned.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_staged",
+      "seed": 101,
+      "checkpoint_id": "clearance_hepatocyte_az/seed101/kpgt_staged.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "unimol",
+      "seed": 101,
+      "checkpoint_id": "clearance_hepatocyte_az/seed101/unimol.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "frozen_feature_heads",
+      "seed": 202,
+      "checkpoint_id": "clearance_hepatocyte_az/seed202/frozen_feature_heads.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_finetuned",
+      "seed": 202,
+      "checkpoint_id": "clearance_hepatocyte_az/seed202/kpgt_finetuned.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_staged",
+      "seed": 202,
+      "checkpoint_id": "clearance_hepatocyte_az/seed202/kpgt_staged.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "unimol",
+      "seed": 202,
+      "checkpoint_id": "clearance_hepatocyte_az/seed202/unimol.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "frozen_feature_heads",
+      "seed": 303,
+      "checkpoint_id": "clearance_hepatocyte_az/seed303/frozen_feature_heads.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_finetuned",
+      "seed": 303,
+      "checkpoint_id": "clearance_hepatocyte_az/seed303/kpgt_finetuned.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_staged",
+      "seed": 303,
+      "checkpoint_id": "clearance_hepatocyte_az/seed303/kpgt_staged.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "unimol",
+      "seed": 303,
+      "checkpoint_id": "clearance_hepatocyte_az/seed303/unimol.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "frozen_feature_heads",
+      "seed": 404,
+      "checkpoint_id": "clearance_hepatocyte_az/seed404/frozen_feature_heads.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_finetuned",
+      "seed": 404,
+      "checkpoint_id": "clearance_hepatocyte_az/seed404/kpgt_finetuned.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_staged",
+      "seed": 404,
+      "checkpoint_id": "clearance_hepatocyte_az/seed404/kpgt_staged.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "unimol",
+      "seed": 404,
+      "checkpoint_id": "clearance_hepatocyte_az/seed404/unimol.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "frozen_feature_heads",
+      "seed": 505,
+      "checkpoint_id": "clearance_hepatocyte_az/seed505/frozen_feature_heads.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_finetuned",
+      "seed": 505,
+      "checkpoint_id": "clearance_hepatocyte_az/seed505/kpgt_finetuned.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "kpgt_staged",
+      "seed": 505,
+      "checkpoint_id": "clearance_hepatocyte_az/seed505/kpgt_staged.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "unimol",
+      "seed": 505,
+      "checkpoint_id": "clearance_hepatocyte_az/seed505/unimol.pt",
+      "checkpoint_status": "located; rehash verification requested"
+    }
+  ]
+}

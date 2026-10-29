@@ -1,0 +1,96 @@
+{
+  "task_id": "cyp2c9_veith",
+  "table_name": "TDC.CYP2C9-I",
+  "metric": "AUPRC",
+  "model": "Fixed chem XGBoost",
+  "components": {
+    "Chem": true,
+    "Seq": false,
+    "Graph": true,
+    "3D": true,
+    "Blend": false,
+    "Bag": true
+  },
+  "final_setup_record": "Canonical backup uses chem fixed chemical endpoint: kpgt_ept/chem_wide_chem/xgb/topk=all; formal seeds=101,202,303,404,505.",
+  "run_definition": "formal seeds 101, 202, 303, 404, 505",
+  "parameter_status": "fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance",
+  "checkpoint_ids": [],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "fixed_chemical_model",
+      "parameters": {
+        "backend": "xgb",
+        "feature_family": "kpgt_ept",
+        "feature_block": "chem_wide_chem",
+        "top_k": "all",
+        "formal_seeds": [
+          101,
+          202,
+          303,
+          404,
+          505
+        ],
+        "folds": 3,
+        "fold_grouping": "scaffold",
+        "seed_per_fold": "formal_seed + zero_based_fold_index",
+        "prediction_averaging": "mean across fitted fold models",
+        "source_default_estimator_counts": {
+          "xgb": 600,
+          "extratrees": 900,
+          "catboost": 700
+        },
+        "default_count_binding": "source defaults; original launch overrides not serialized in this summary",
+        "backend_implementation": "standard",
+        "backend_fixed_parameters": {
+          "max_depth": 4,
+          "learning_rate": 0.04,
+          "subsample": 0.85,
+          "colsample_bytree": 0.85,
+          "min_child_weight": 2
+        }
+      },
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "fixed_chemical_endpoint_5run_v1/top1_method_transfer_chem_lite_v1/cyp2c9_veith/summary.json"
+      },
+      "checkpoint_status": "original script saved prediction outputs; fitted estimators not serialized"
+    }
+  ],
+  "training_parameters": {
+    "backend": "xgb",
+    "feature_family": "kpgt_ept",
+    "feature_block": "chem_wide_chem",
+    "top_k": "all",
+    "formal_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "folds": 3,
+    "fold_grouping": "scaffold",
+    "seed_per_fold": "formal_seed + zero_based_fold_index",
+    "prediction_averaging": "mean across fitted fold models",
+    "source_default_estimator_counts": {
+      "xgb": 600,
+      "extratrees": 900,
+      "catboost": 700
+    },
+    "default_count_binding": "source defaults; original launch overrides not serialized in this summary",
+    "backend_implementation": "standard",
+    "backend_fixed_parameters": {
+      "max_depth": 4,
+      "learning_rate": 0.04,
+      "subsample": 0.85,
+      "colsample_bytree": 0.85,
+      "min_child_weight": 2
+    }
+  }
+}

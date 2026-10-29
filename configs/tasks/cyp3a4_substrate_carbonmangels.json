@@ -1,0 +1,118 @@
+{
+  "task_id": "cyp3a4_substrate_carbonmangels",
+  "table_name": "TDC.CYP3A4-S",
+  "metric": "AUROC",
+  "model": "Target-only C/K RBF-SVM blend",
+  "components": {
+    "Chem": false,
+    "Seq": true,
+    "Graph": true,
+    "3D": false,
+    "Blend": true,
+    "Bag": false
+  },
+  "final_setup_record": "Equal-weight mean of three RBF-SVM prediction ranks on frozen ChemBERTa/KPGT features.",
+  "run_definition": "5 formal run(s) reported",
+  "parameter_status": "selected kernel settings and checkpoint hashes bound",
+  "checkpoint_ids": [
+    "cyp3a4_substrate_carbonmangels/seed101/models.pkl",
+    "cyp3a4_substrate_carbonmangels/seed202/models.pkl",
+    "cyp3a4_substrate_carbonmangels/seed303/models.pkl",
+    "cyp3a4_substrate_carbonmangels/seed404/models.pkl",
+    "cyp3a4_substrate_carbonmangels/seed505/models.pkl"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "target-only kernel selection freeze, selected members only",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "training_parameters": {
+    "development_rows": 535,
+    "folds": 3,
+    "fold_grouping": "scaffold",
+    "formal_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505
+    ],
+    "members": [
+      {
+        "id": "r171",
+        "task": "cyp3a4_substrate_carbonmangels",
+        "kind": "rbf",
+        "feature": "K",
+        "preprocess": "pca64",
+        "target_transform": "raw",
+        "class_weight": "balanced",
+        "C": 1.0,
+        "gamma_factor": 0.1
+      },
+      {
+        "id": "r207",
+        "task": "cyp3a4_substrate_carbonmangels",
+        "kind": "rbf",
+        "feature": "CK",
+        "preprocess": "pca64",
+        "target_transform": "raw",
+        "class_weight": "balanced",
+        "C": 1.0,
+        "gamma_factor": 0.1
+      },
+      {
+        "id": "r182",
+        "task": "cyp3a4_substrate_carbonmangels",
+        "kind": "rbf",
+        "feature": "CK",
+        "preprocess": "standard",
+        "target_transform": "raw",
+        "class_weight": null,
+        "C": 1.0,
+        "gamma_factor": 3.0
+      }
+    ],
+    "combination": {
+      "operation": "equal mean of prediction ranks",
+      "weights": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    "preprocessing_fit_scope": "corresponding fitting rows only"
+  },
+  "components_bound": [
+    {
+      "id": "three_svm_heads",
+      "seed": 101,
+      "checkpoint_id": "cyp3a4_substrate_carbonmangels/seed101/models.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "three_svm_heads",
+      "seed": 202,
+      "checkpoint_id": "cyp3a4_substrate_carbonmangels/seed202/models.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "three_svm_heads",
+      "seed": 303,
+      "checkpoint_id": "cyp3a4_substrate_carbonmangels/seed303/models.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "three_svm_heads",
+      "seed": 404,
+      "checkpoint_id": "cyp3a4_substrate_carbonmangels/seed404/models.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    },
+    {
+      "id": "three_svm_heads",
+      "seed": 505,
+      "checkpoint_id": "cyp3a4_substrate_carbonmangels/seed505/models.pkl",
+      "checkpoint_status": "located; rehash verification requested"
+    }
+  ]
+}

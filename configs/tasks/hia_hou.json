@@ -1,0 +1,349 @@
+{
+  "task_id": "hia_hou",
+  "table_name": "TDC.HIA",
+  "metric": "AUROC",
+  "model": "Task-specific chem blend",
+  "components": {
+    "Chem": true,
+    "Seq": false,
+    "Graph": false,
+    "3D": false,
+    "Blend": true,
+    "Bag": true
+  },
+  "final_setup_record": "rank(0.1*selected_gated_5seed + 0.5*official_sidecar_bagged + 0.4*chem_logreg_trainonly); valid-only saturated-valid tie-break; true seed-varying 5-run final scores",
+  "run_definition": "true seed-varying five-run endpoint",
+  "parameter_status": "fixed blend, neural metadata and logistic parameters bound; chemical binaries not serialized",
+  "checkpoint_ids": [
+    "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_4/run_20260423_0919/hia_hou/best_model.pth",
+    "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_5/run_20260423_0920/hia_hou/best_model.pth",
+    "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_3/run_20260423_0919/hia_hou/best_model.pth",
+    "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_2/run_20260423_0919/hia_hou/best_model.pth",
+    "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_1/run_20260423_0918/hia_hou/best_model.pth"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "gated_5seed",
+      "fitted_runs": [
+        {
+          "task": "hia_hou",
+          "task_type": "classification",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 1,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 3.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "hia_hou",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.7965260744094849
+          ],
+          "best_epoch": 35,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_1/run_20260423_0918/hia_hou/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_1/run_20260423_0918/hia_hou/meta.json"
+          }
+        },
+        {
+          "task": "hia_hou",
+          "task_type": "classification",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 2,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 3.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "hia_hou",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.7965260744094849
+          ],
+          "best_epoch": 60,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_2/run_20260423_0919/hia_hou/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_2/run_20260423_0919/hia_hou/meta.json"
+          }
+        },
+        {
+          "task": "hia_hou",
+          "task_type": "classification",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 3,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 3.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "hia_hou",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.7965260744094849
+          ],
+          "best_epoch": 15,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_3/run_20260423_0919/hia_hou/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_3/run_20260423_0919/hia_hou/meta.json"
+          }
+        },
+        {
+          "task": "hia_hou",
+          "task_type": "classification",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 4,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 3.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "hia_hou",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.7965260744094849
+          ],
+          "best_epoch": 55,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_4/run_20260423_0919/hia_hou/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_4/run_20260423_0919/hia_hou/meta.json"
+          }
+        },
+        {
+          "task": "hia_hou",
+          "task_type": "classification",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 5,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 3.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "hia_hou",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.7965260744094849
+          ],
+          "best_epoch": 28,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_5/run_20260423_0920/hia_hou/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_selected_5seed_materialize_v1/hia_hou__chemberta_kpgt_ept_gated__seed_5/run_20260423_0920/hia_hou/meta.json"
+          }
+        }
+      ],
+      "checkpoint_status": "serialized neural heads located"
+    },
+    {
+      "id": "chemical_foldbag",
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "official_sidecar_bagged_blend_v1/hia_hou"
+      },
+      "checkpoint_status": "prediction record present; original estimators not serialized"
+    },
+    {
+      "id": "chemical_logistic_trainonly",
+      "parameters": {
+        "model": "LogisticRegression",
+        "max_iter": 4000,
+        "C": 1.0,
+        "class_weight": "balanced",
+        "random_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "n_jobs": 1,
+        "preprocessing": "StandardScaler(with_mean=False)",
+        "fit_partition": "official training rows"
+      },
+      "checkpoint_status": "fixed source training function located; original estimators not serialized"
+    }
+  ],
+  "fixed_combination": {
+    "mode": "rank",
+    "weights": [
+      0.1,
+      0.5,
+      0.4
+    ],
+    "component_order": [
+      "gated_5seed",
+      "chemical_foldbag",
+      "chemical_logistic_trainonly"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "task_id": "bbb_martins",
+  "table_name": "TDC.BBB",
+  "metric": "AUROC",
+  "model": "Descriptor ExtraTrees",
+  "components": {
+    "Chem": true,
+    "Seq": false,
+    "Graph": false,
+    "3D": false,
+    "Blend": false,
+    "Bag": false
+  },
+  "final_setup_record": "ExtraTrees over chemical descriptors/fingerprints",
+  "run_definition": "5 formal run(s) reported",
+  "parameter_status": "selected backend and fixed source parameters bound",
+  "checkpoint_ids": [],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "descriptor_extratrees",
+      "parameters": {
+        "model": "ExtraTreesClassifier",
+        "n_estimators": 800,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt",
+        "class_weight": "balanced_subsample",
+        "random_seeds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "n_jobs": 8,
+        "fit_partition": "combined train and validation rows",
+        "features": "Avalon1024 + MorganCounts1024/radius2 + ErG + recorded RDKit descriptors"
+      },
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "pure_chem_multibackend_endpoint_v1/bbb_martins/result.json"
+      },
+      "checkpoint_status": "original estimators not serialized; later BBB reconstruction is a distinct artifact"
+    }
+  ],
+  "training_parameters": {
+    "model": "ExtraTreesClassifier",
+    "n_estimators": 800,
+    "min_samples_leaf": 1,
+    "max_features": "sqrt",
+    "class_weight": "balanced_subsample",
+    "random_seeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "n_jobs": 8,
+    "fit_partition": "combined train and validation rows",
+    "features": "Avalon1024 + MorganCounts1024/radius2 + ErG + recorded RDKit descriptors"
+  }
+}

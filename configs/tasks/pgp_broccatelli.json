@@ -1,0 +1,893 @@
+{
+  "task_id": "pgp_broccatelli",
+  "table_name": "TDC.Pgp",
+  "metric": "AUROC",
+  "model": "KPGT/EPT logit blend",
+  "components": {
+    "Chem": false,
+    "Seq": true,
+    "Graph": true,
+    "3D": true,
+    "Blend": true,
+    "Bag": false
+  },
+  "final_setup_record": "logit(0.65*layerwise_selected_gated + 0.25*aux_K+E + 0.10*aux_K)",
+  "run_definition": "5 formal run(s) reported",
+  "parameter_status": "fixed blend and per-run neural metadata bound",
+  "checkpoint_ids": [
+    "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_5/run_20260423_0841/pgp_broccatelli/best_model.pth",
+    "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_1/run_20260423_0840/pgp_broccatelli/best_model.pth",
+    "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_3/run_20260423_0841/pgp_broccatelli/best_model.pth",
+    "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_2/run_20260423_0840/pgp_broccatelli/best_model.pth",
+    "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_4/run_20260423_0841/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_4/run_20260424_0307/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_5/run_20260424_0307/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_2/run_20260424_0306/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_1/run_20260424_0305/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_3/run_20260424_0307/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_5/run_20260424_0309/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_1/run_20260424_0308/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_3/run_20260424_0308/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_2/run_20260424_0308/pgp_broccatelli/best_model.pth",
+    "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_4/run_20260424_0309/pgp_broccatelli/best_model.pth"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "layerwise",
+      "fitted_runs": [
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 1,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated_3d_downweight",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 9,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_1/run_20260423_0840/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_1/run_20260423_0840/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 2,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated_3d_downweight",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 18,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_2/run_20260423_0840/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_2/run_20260423_0840/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 3,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated_3d_downweight",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 28,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_3/run_20260423_0841/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_3/run_20260423_0841/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 4,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated_3d_downweight",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 10,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_4/run_20260423_0841/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_4/run_20260423_0841/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 5,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "all",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "gated_3d_downweight",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "all",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 10,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_5/run_20260423_0841/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_layerwise_selected_5seed_v1/pgp_broccatelli__chemberta_kpgt_ept_gated__final__seed_5/run_20260423_0841/pgp_broccatelli/meta.json"
+          }
+        }
+      ],
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "pgp_frozen_blend_audit_v1/summary.json"
+      }
+    },
+    {
+      "id": "kpgt_ept",
+      "fitted_runs": [
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 1,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 32,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_1/run_20260424_0305/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_1/run_20260424_0305/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 2,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 17,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_2/run_20260424_0306/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_2/run_20260424_0306/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 3,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 36,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_3/run_20260424_0307/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_3/run_20260424_0307/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 4,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 18,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_4/run_20260424_0307/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_4/run_20260424_0307/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 5,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 11,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_5/run_20260424_0307/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt_ept__seed_5/run_20260424_0307/pgp_broccatelli/meta.json"
+          }
+        }
+      ],
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "pgp_frozen_blend_audit_v1/summary.json"
+      }
+    },
+    {
+      "id": "kpgt",
+      "fitted_runs": [
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 1,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 6,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_1/run_20260424_0308/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_1/run_20260424_0308/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 2,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 11,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_2/run_20260424_0308/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_2/run_20260424_0308/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 3,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 16,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_3/run_20260424_0308/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_3/run_20260424_0308/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 4,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 24,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_4/run_20260424_0309/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_4/run_20260424_0309/pgp_broccatelli/meta.json"
+          }
+        },
+        {
+          "task": "pgp_broccatelli",
+          "task_type": "classification",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 32,
+            "lr": 0.0001,
+            "max_epochs": 100,
+            "max_patience": 20,
+            "seed": 5,
+            "weight_decay": 0.05,
+            "dropout_proj": 0.35,
+            "dropout_head": 0.4,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "pgp_broccatelli",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.09283196181058884
+          ],
+          "best_epoch": 12,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_5/run_20260424_0309/pgp_broccatelli/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "pgp_auxiliary_5seed_routes_v1/pgp_broccatelli__kpgt__seed_5/run_20260424_0309/pgp_broccatelli/meta.json"
+          }
+        }
+      ],
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "pgp_frozen_blend_audit_v1/summary.json"
+      }
+    }
+  ],
+  "fixed_combination": {
+    "mode": "logit",
+    "weights": [
+      0.65,
+      0.25,
+      0.1
+    ],
+    "component_order": [
+      "layerwise",
+      "kpgt_ept",
+      "kpgt"
+    ],
+    "output_transform": "sigmoid"
+  }
+}

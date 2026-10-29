@@ -1,0 +1,423 @@
+{
+  "task_id": "half_life_obach",
+  "table_name": "TDC.Half_Life",
+  "metric": "Spearman",
+  "model": "C+K descriptor/z-score blend",
+  "components": {
+    "Chem": true,
+    "Seq": true,
+    "Graph": true,
+    "3D": false,
+    "Blend": true,
+    "Bag": true
+  },
+  "final_setup_record": "zscore(0.5*C+K metric_auto + 0.1*C+K Spearman seedbag + 0.4*C+K descriptor sidecar)",
+  "run_definition": "seed-bagged endpoint; exact seed grouping in S2",
+  "parameter_status": "fixed combination and component source bindings recorded; per-component artifact status listed",
+  "checkpoint_ids": [
+    "heads/official_metric_loss_push_all22_v1_spearman_fix/half_life_obach__metric_auto__seed_42/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_4/run_20260422_2303/half_life_obach/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_5/run_20260422_2303/half_life_obach/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_2/run_20260422_2302/half_life_obach/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_1/run_20260422_2302/half_life_obach/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_3/run_20260422_2302/half_life_obach/best_model.pth"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "component_1",
+      "source_selector": "chemberta_kpgt/metric_auto",
+      "weight": 0.5,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "official_metric_loss_push_all22_v1_spearman_fix/summary.csv"
+      },
+      "fitted_runs": [
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 42,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 42,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "regression",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": false,
+            "sampler_pos_weight": 1.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.0
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 26,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/official_metric_loss_push_all22_v1_spearman_fix/half_life_obach__metric_auto__seed_42/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "official_metric_loss_push_all22_v1_spearman_fix/half_life_obach__metric_auto__seed_42/meta.json"
+          }
+        }
+      ],
+      "checkpoint_status": "serialized neural heads located"
+    },
+    {
+      "id": "component_2",
+      "source_selector": "chemberta_kpgt/mlp/SpearmanLoss",
+      "weight": 0.1,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "ept_family_official_v1_5seed_runs/summary.csv"
+      },
+      "fitted_runs": [
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 1,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 23,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_1/run_20260422_2302/half_life_obach/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_1/run_20260422_2302/half_life_obach/meta.json"
+          }
+        },
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 2,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 31,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_2/run_20260422_2302/half_life_obach/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_2/run_20260422_2302/half_life_obach/meta.json"
+          }
+        },
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 3,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 16,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_3/run_20260422_2302/half_life_obach/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_3/run_20260422_2302/half_life_obach/meta.json"
+          }
+        },
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 4,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 23,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_4/run_20260422_2303/half_life_obach/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_4/run_20260422_2303/half_life_obach/meta.json"
+          }
+        },
+        {
+          "task": "half_life_obach",
+          "task_type": "regression",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 5,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "Spearman",
+            "modalities": "chemberta_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "half_life_obach",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "chemberta_kpgt",
+          "task_context_vector": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "best_epoch": 28,
+          "loss_type": "SpearmanLoss",
+          "ept_clip_value": 50.0,
+          "label_mean": 17.78902244567871,
+          "label_std": 82.95116425560546,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_5/run_20260422_2303/half_life_obach/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/half_life_obach__chemberta_kpgt__seed_5/run_20260422_2303/half_life_obach/meta.json"
+          }
+        }
+      ],
+      "checkpoint_status": "serialized neural heads located"
+    },
+    {
+      "id": "component_3",
+      "source_selector": "chemberta_kpgt/winner_embedding_plus_rdkit_fp",
+      "weight": 0.4,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "descriptor_sidecar_official_v1/summary.csv"
+      },
+      "fixed_record": [
+        {
+          "candidate": "chemberta_kpgt",
+          "backend": "xgboost",
+          "feature_type": "winner_embedding_plus_rdkit_fp"
+        }
+      ],
+      "checkpoint_status": "prediction/source settings located; no matching serialized component identified"
+    }
+  ],
+  "fixed_combination": {
+    "mode": "zscore",
+    "weights": [
+      0.5,
+      0.1,
+      0.4
+    ],
+    "component_order": [
+      "component_1",
+      "component_2",
+      "component_3"
+    ]
+  }
+}

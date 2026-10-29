@@ -1,0 +1,146 @@
+{
+  "task_id": "ames",
+  "table_name": "TDC.AMES",
+  "metric": "AUROC",
+  "model": "Repeated fingerprint XGBoost",
+  "components": {
+    "Chem": true,
+    "Seq": false,
+    "Graph": false,
+    "3D": false,
+    "Blend": false,
+    "Bag": true
+  },
+  "final_setup_record": "repeated tabular ensemble; xgboost_500; 5 formal seeds with internal repeated scaffold fold-bag",
+  "run_definition": "five formal seeds with internal repeated scaffold fold-bag",
+  "parameter_status": "fixed model parameters, fold seeds and formal groups bound",
+  "checkpoint_ids": [],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "fingerprint_xgboost_foldbag",
+      "parameters": {
+        "model": "XGBClassifier",
+        "n_estimators": 500,
+        "max_depth": 5,
+        "learning_rate": 0.04,
+        "subsample": 0.85,
+        "colsample_bytree": 0.85,
+        "min_child_weight": 2,
+        "objective": "binary:logistic",
+        "eval_metric": "logloss",
+        "tree_method": "hist",
+        "device": "cpu",
+        "n_jobs": 1,
+        "scale_pos_weight": "max(1, negative_training_rows / max(positive_training_rows,1))",
+        "folds": 3,
+        "seed_groups": [
+          [
+            11,
+            22,
+            33,
+            44,
+            55
+          ],
+          [
+            111,
+            122,
+            133,
+            144,
+            155
+          ],
+          [
+            211,
+            222,
+            233,
+            244,
+            255
+          ],
+          [
+            311,
+            322,
+            333,
+            344,
+            355
+          ],
+          [
+            411,
+            422,
+            433,
+            444,
+            455
+          ]
+        ],
+        "model_seed": "inner_seed * 100 + zero_based_fold_index",
+        "features": "Avalon1024 + MorganCounts1024/radius2 + ErG + recorded RDKit descriptors",
+        "averaging": "mean of 3 folds, then mean of 5 inner repeats per formal run"
+      },
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "ames_repeated_tabular_ensemble5seed_audit_v1/summary.json"
+      },
+      "checkpoint_status": "original fold models not serialized"
+    }
+  ],
+  "training_parameters": {
+    "model": "XGBClassifier",
+    "n_estimators": 500,
+    "max_depth": 5,
+    "learning_rate": 0.04,
+    "subsample": 0.85,
+    "colsample_bytree": 0.85,
+    "min_child_weight": 2,
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "device": "cpu",
+    "n_jobs": 1,
+    "scale_pos_weight": "max(1, negative_training_rows / max(positive_training_rows,1))",
+    "folds": 3,
+    "seed_groups": [
+      [
+        11,
+        22,
+        33,
+        44,
+        55
+      ],
+      [
+        111,
+        122,
+        133,
+        144,
+        155
+      ],
+      [
+        211,
+        222,
+        233,
+        244,
+        255
+      ],
+      [
+        311,
+        322,
+        333,
+        344,
+        355
+      ],
+      [
+        411,
+        422,
+        433,
+        444,
+        455
+      ]
+    ],
+    "model_seed": "inner_seed * 100 + zero_based_fold_index",
+    "features": "Avalon1024 + MorganCounts1024/radius2 + ErG + recorded RDKit descriptors",
+    "averaging": "mean of 3 folds, then mean of 5 inner repeats per formal run"
+  }
+}

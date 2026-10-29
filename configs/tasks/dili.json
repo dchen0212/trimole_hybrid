@@ -1,0 +1,363 @@
+{
+  "task_id": "dili",
+  "table_name": "TDC.DILI",
+  "metric": "AUROC",
+  "model": "XL/KPGT-EPT raw blend",
+  "components": {
+    "Chem": true,
+    "Seq": true,
+    "Graph": true,
+    "3D": true,
+    "Blend": true,
+    "Bag": true
+  },
+  "final_setup_record": "raw(0.6*XL_K+E + 0.2*K+E CE seedbag + 0.2*K+E descriptor sidecar)",
+  "run_definition": "seed-bagged endpoint; exact seed grouping in S2",
+  "parameter_status": "fixed combination and component source bindings recorded; per-component artifact status listed",
+  "checkpoint_ids": [
+    "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_5/run_20260422_2301/dili/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_2/run_20260422_2301/dili/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_3/run_20260422_2301/dili/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_4/run_20260422_2301/dili/best_model.pth",
+    "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_1/run_20260422_2300/dili/best_model.pth"
+  ],
+  "source": {
+    "table": "current_tables/Table_S2_task_configurations.csv",
+    "original_parameter_record": "historical_tables/Table_S2c_final_endpoint_summary.csv",
+    "source_commit": "e8f429d904c22bc532fffa39e4c4d1d4c50d012b",
+    "archive": "https://doi.org/10.5281/zenodo.23602309"
+  },
+  "components_bound": [
+    {
+      "id": "component_1",
+      "source_selector": "xl_v4_kpgt_ept/chem_xl_morgan_family/w1.0",
+      "weight": 0.6,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "paper_main_chemical_prior_xl_v4_all22_32core/summary.csv"
+      },
+      "fixed_record": [
+        {
+          "candidate": "xl_v4_kpgt_ept",
+          "selected_variant": "chem_xl_morgan_family",
+          "selected_topk": "512",
+          "selected_backend": "extratrees",
+          "weight_sidecar": "1.0"
+        }
+      ],
+      "checkpoint_status": "prediction/source settings located; no matching serialized component identified"
+    },
+    {
+      "id": "component_2",
+      "source_selector": "kpgt_ept/mlp/CrossEntropyLoss",
+      "weight": 0.2,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "ept_family_official_v1_5seed_runs/summary.csv"
+      },
+      "fitted_runs": [
+        {
+          "task": "dili",
+          "task_type": "classification",
+          "seed": 1,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 1,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "dili",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.04531722143292427
+          ],
+          "best_epoch": 41,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_1/run_20260422_2300/dili/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_1/run_20260422_2300/dili/meta.json"
+          }
+        },
+        {
+          "task": "dili",
+          "task_type": "classification",
+          "seed": 2,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 2,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "dili",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.04531722143292427
+          ],
+          "best_epoch": 18,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_2/run_20260422_2301/dili/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_2/run_20260422_2301/dili/meta.json"
+          }
+        },
+        {
+          "task": "dili",
+          "task_type": "classification",
+          "seed": 3,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 3,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "dili",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.04531722143292427
+          ],
+          "best_epoch": 39,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_3/run_20260422_2301/dili/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_3/run_20260422_2301/dili/meta.json"
+          }
+        },
+        {
+          "task": "dili",
+          "task_type": "classification",
+          "seed": 4,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 4,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "dili",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.04531722143292427
+          ],
+          "best_epoch": 23,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_4/run_20260422_2301/dili/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_4/run_20260422_2301/dili/meta.json"
+          }
+        },
+        {
+          "task": "dili",
+          "task_type": "classification",
+          "seed": 5,
+          "dims": {
+            "chemberta": 768,
+            "ept": 512,
+            "kpgt": 2304
+          },
+          "config": {
+            "hidden_dim": 64,
+            "batch_size": 16,
+            "lr": 5e-05,
+            "max_epochs": 150,
+            "max_patience": 25,
+            "seed": 5,
+            "weight_decay": 0.1,
+            "dropout_proj": 0.4,
+            "dropout_head": 0.5,
+            "task_type": "auto",
+            "primary_metric_name": "AUROC",
+            "modalities": "ept_kpgt",
+            "focal_gamma": 2.0,
+            "label_smoothing": 0.1,
+            "spearman_reg": 0.1,
+            "loss_type": "auto",
+            "pos_weight": null,
+            "neg_weight": null,
+            "fusion_type": "mlp",
+            "use_weighted_sampler": true,
+            "sampler_pos_weight": 2.0,
+            "task_name": "dili",
+            "task_context_dim": 3,
+            "save_aux_predictions": false,
+            "aux_loss_weight": 0.15,
+            "diversity_loss_weight": 0.0,
+            "modality_dropout_prob": 0.1
+          },
+          "modalities": "ept_kpgt",
+          "task_context_vector": [
+            1.0,
+            0.0,
+            0.04531722143292427
+          ],
+          "best_epoch": 46,
+          "loss_type": "CrossEntropyLoss",
+          "ept_clip_value": 50.0,
+          "checkpoint_id": "heads/ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_5/run_20260422_2301/dili/best_model.pth",
+          "checkpoint_present": true,
+          "source": {
+            "archive": "https://doi.org/10.5281/zenodo.23602309",
+            "record": "ept_family_official_v1_5seed_runs/dili__kpgt_ept__seed_5/run_20260422_2301/dili/meta.json"
+          }
+        }
+      ],
+      "checkpoint_status": "serialized neural heads located"
+    },
+    {
+      "id": "component_3",
+      "source_selector": "kpgt_ept/winner_embedding_plus_rdkit_fp",
+      "weight": 0.2,
+      "source": {
+        "archive": "https://doi.org/10.5281/zenodo.23602309",
+        "record": "descriptor_sidecar_official_v2/summary.csv"
+      },
+      "fixed_record": [
+        {
+          "candidate": "kpgt_ept",
+          "backend": "xgboost",
+          "feature_type": "winner_embedding_plus_rdkit_fp"
+        }
+      ],
+      "checkpoint_status": "prediction/source settings located; no matching serialized component identified"
+    }
+  ],
+  "fixed_combination": {
+    "mode": "raw",
+    "weights": [
+      0.6,
+      0.2,
+      0.2
+    ],
+    "component_order": [
+      "component_1",
+      "component_2",
+      "component_3"
+    ]
+  }
+}
