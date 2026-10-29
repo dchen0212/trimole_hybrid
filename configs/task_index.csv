@@ -1,0 +1,23 @@
+task,metric,model,configuration,checkpoint_records,parameter_status
+bioavailability_ma,AUROC,Fixed chem ExtraTrees,configs/tasks/bioavailability_ma.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance
+caco2_wang,MAE,Fixed chem ExtraTrees,configs/tasks/caco2_wang.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance
+hia_hou,AUROC,Task-specific chem blend,configs/tasks/hia_hou.json,5,"fixed blend, neural metadata and logistic parameters bound; chemical binaries not serialized"
+lipophilicity_astrazeneca,MAE,XL/chem hybrid blend,configs/tasks/lipophilicity_astrazeneca.json,6,fixed combination and component source bindings recorded; per-component artifact status listed
+pgp_broccatelli,AUROC,KPGT/EPT logit blend,configs/tasks/pgp_broccatelli.json,15,fixed blend and per-run neural metadata bound
+solubility_aqsoldb,MAE,FP-XGB/KPGT-EPT/XL blend,configs/tasks/solubility_aqsoldb.json,1,fixed weights and component source records bound; chemical-model binaries not recovered
+bbb_martins,AUROC,Descriptor ExtraTrees,configs/tasks/bbb_martins.json,0,selected backend and fixed source parameters bound
+ppbr_az,MAE,KPGT/fingerprint blend,configs/tasks/ppbr_az.json,25,fixed combination and available seedbag head metadata bound; shared components retain source references
+vdss_lombardo,Spearman,KPGT/EPT rank blend,configs/tasks/vdss_lombardo.json,5,fixed combination and component source bindings recorded; per-component artifact status listed
+cyp2c9_substrate_carbonmangels,AUPRC,Fixed chem XGBoost,configs/tasks/cyp2c9_substrate_carbonmangels.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance
+cyp2c9_veith,AUPRC,Fixed chem XGBoost,configs/tasks/cyp2c9_veith.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance
+cyp2d6_substrate_carbonmangels,AUPRC,AP/XL/descriptor blend,configs/tasks/cyp2d6_substrate_carbonmangels.json,25,fixed combination and available seedbag head metadata bound; shared components retain source references
+cyp2d6_veith,AUPRC,KPGT/EPT/FP rank blend,configs/tasks/cyp2d6_veith.json,6,fixed combination and component source bindings recorded; per-component artifact status listed
+cyp3a4_substrate_carbonmangels,AUROC,Target-only C/K RBF-SVM blend,configs/tasks/cyp3a4_substrate_carbonmangels.json,5,selected kernel settings and checkpoint hashes bound
+cyp3a4_veith,AUPRC,XL/KPGT-EPT logit blend,configs/tasks/cyp3a4_veith.json,6,fixed combination and component source bindings recorded; per-component artifact status listed
+clearance_hepatocyte_az,Spearman,Target-only C/K/KPGT/Uni-Mol blend,configs/tasks/clearance_hepatocyte_az.json,20,encoder settings and final checkpoint hashes bound; full staged blend recorded in source archive
+clearance_microsome_az,Spearman,KPGT/EPT seedbag,configs/tasks/clearance_microsome_az.json,25,fixed combination and available seedbag head metadata bound; shared components retain source references
+half_life_obach,Spearman,C+K descriptor/z-score blend,configs/tasks/half_life_obach.json,6,fixed combination and component source bindings recorded; per-component artifact status listed
+ames,AUROC,Repeated fingerprint XGBoost,configs/tasks/ames.json,0,"fixed model parameters, fold seeds and formal groups bound"
+dili,AUROC,XL/KPGT-EPT raw blend,configs/tasks/dili.json,5,fixed combination and component source bindings recorded; per-component artifact status listed
+herg,AUROC,Fixed chem ExtraTrees,configs/tasks/herg.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance
+ld50_zhu,MAE,Fixed chem XGBoost,configs/tasks/ld50_zhu.json,0,fixed feature/backend/top-k/fold/seed record bound; estimator counts retain source-default provenance

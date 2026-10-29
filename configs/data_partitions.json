@@ -1,0 +1,23 @@
+{
+  "dataset": "TDC ADMET",
+  "source": "https://tdcommons.ai/benchmark/admet_group/",
+  "row_record": "Supplementary_Data.zip/historical_tables/Table_S19_dataset_provenance.csv",
+  "solubility": {
+    "official_test_rows": 1997,
+    "matched_evaluation_rows": 1995,
+    "excluded_zero_based_positions": [
+      1159,
+      1160
+    ]
+  },
+  "target_only": {
+    "clearance_hepatocyte_az": {
+      "development_rows": 970,
+      "test_rows": 243
+    },
+    "cyp3a4_substrate_carbonmangels": {
+      "development_rows": 535,
+      "test_rows": 135
+    }
+  }
+}
