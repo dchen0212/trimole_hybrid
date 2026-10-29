@@ -28,6 +28,12 @@ Each CSV contains a `label` column. ChemBERTa and KPGT arrays concatenate train,
 
 For feature-head prediction, provide an NPZ with `C`, `K` and `E_normalized`. The last block must use the fitted training normalization. Query-batch statistics must not replace those training statistics. Use `--metadata path/to/meta.json` with `--sha256 HASH`, or a registered `--artifact-id` to read bound metadata. A checkpoint hash alone does not provide missing preprocessing assets.
 
+## Fingerprints and descriptors
+
+`prepare_features.py --task TASK` reads the existing task record. It generates the original chemical basis in fixed column order: Morgan radius-2 count fingerprint (1,024), Avalon count fingerprint (1,024), ErG, then the recorded RDKit descriptor list. The expanded blocks retain MACCS's 167 columns and the recorded 2,048-column fingerprint families. The command writes an `X` matrix and a `.features.json` sidecar with the ordered column names, RDKit version and hashes. Use the pinned environment; descriptor definitions can vary with RDKit versions.
+
+The six fixed chemical endpoints keep their task-specific profiles. For an embedding-plus-chemical profile, supply `--embeddings embeddings.npz` containing its recorded `C`, `K` or `E` blocks. These chemical models use the original embedding blocks; the feature-head `E_normalized` interface is a different input. If both inputs provide row identifiers, they must match. `--block PROFILE` exposes the recorded component bases for other composite models. Invalid SMILES cause an error; rows are not silently dropped, reordered or canonicalized. Feature scaling and feature selection remain inside the original fitting pipelines.
+
 ## Classical fitting and prediction
 
 A classical fitting NPZ contains `X` and `y`, plus `smiles` for scaffold fold-bag models. `X` must be on the feature basis and column order named in the task configuration. Supply only the rows belonging to the recorded fitting partition. A query NPZ contains `X` on the same basis.
@@ -42,7 +48,32 @@ Other composite models use the recorded feature-head components and task-specifi
 
 `--component-predictions` takes an NPZ with keys from the task JSON's `fixed_combination.component_order`. Each array is one-dimensional and uses the same rows and order. Apply the operation per recorded formal run before summarizing runs. Rank and z-score combinations use the complete requested prediction batch, following the recorded implementation, and their scores need not be calibrated probabilities.
 
-For tasks with nested or seed-bag procedures, use the recorded component implementation and order from the configuration and archive. The command rejects an incomplete combination rather than treating unrelated components as a simple average. `prediction` can contain an already-completed task output for export.
+The four additional fixed procedures use these NPZ inputs:
+
+| Task | Input keys | Fixed operation |
+|---|---|---|
+| Microsome clearance | `seedbag_heads` with shape `(5, n_rows)` | Mean of the five raw predictions in one formal run |
+| PPBR | `seedbag_heads`, `fp_only` | 0.7 times the five-head raw mean plus 0.3 times the fixed fingerprint stream |
+| CYP2D6 substrate | `seedbag_heads`, `xl`, `descriptor_sidecar_v2` | Z-score each AP seed separately; combine with z-scored XL and descriptor streams at 0.8/0.1/0.1; then average the five combined vectors |
+| Hepatocyte clearance | `c060`, `c070`, `c008`, `kpgt_finetuned`, `kpgt_staged`, `unimol` | Average the ranks of the three frozen heads, then apply the recorded successive 0.5, 0.25 and 0.25 ranking blends |
+
+For the first three tasks, `--run-index 1` through `5` selects formal seed groups `[1–5]`, `[11–15]`, `[21–25]`, `[31–35]` and `[41–45]`. Optional `seed_ids` must match that group. Individual vectors named `seed_1`, etc. can replace `seedbag_heads`. Microsome and PPBR also accept an already-completed `seedbag_mean` vector. CYP2D6 requires the five raw AP vectors because normalization precedes averaging. Hepatocyte also accepts `frozen_feature_heads` as the three-row matrix or its completed rank mean. Each ranking stage is retained; the nested blends are not flattened.
+
+```bash
+python predict.py --task cyp2d6_substrate_carbonmangels --run-index 1 \
+  --component-predictions outputs/cyp2d6_run1_components.npz \
+  --output outputs/cyp2d6_run1_final.npy
+```
+
+All component vectors must refer to identical rows in identical order. The command checks dimensions, finite values and any supplied seed IDs. It cannot infer molecular identity from scores alone. A lone `prediction` array remains available for exporting an already-completed task output. [Source bindings](FIXED_PIPELINE_SOURCES.json) record the original functions and fixed settings.
+
+Run the source-derived regression fixtures with:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The fixtures cover chemical column order and all four final combinations. They do not refit benchmark models or replace reported scores.
 
 ## Checkpoints
 
