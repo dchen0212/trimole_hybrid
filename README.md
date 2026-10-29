@@ -82,7 +82,7 @@ For that example, the NPZ keys are `layerwise`, `kpgt_ept` and `kpgt`, with one 
 - [Dataset definitions and splits](supplementary_tables/Table_S1_dataset_provenance.csv)
 - [20-page supplement](supplementary/supplementary.pdf), [tables](supplementary_tables/) and [Figures S1–S3](supplementary_figures/)
 - [Complete supporting data](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Supplementary_Data.zip) and [table/figure source index](supplementary_data/)
-- [Final model code/configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-fixed-pipeline/Final_Model_Configuration_and_Code.zip) and [checkpoint manifest](checkpoints/manifest.json)
+- [Final model code/configuration package](https://github.com/dchen0212/trimole_hybrid/archive/refs/tags/v2026.10.29-fixed-pipeline.zip) and [checkpoint manifest](checkpoints/manifest.json)
 - [Paper-to-code guide](docs/RESULT_CODE_MAP.md)
 
 ## Research archive
