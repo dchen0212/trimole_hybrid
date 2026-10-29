@@ -24,7 +24,7 @@ Each of the 22 tasks has one JSON file under [configs/tasks](configs/tasks/). St
 | [code/trimole](code/trimole/) | Molecular feature interfaces, feature-head architecture, losses and training implementation |
 | [code/trimole_hybrid](code/trimole_hybrid/) | Fixed classical fitting, component prediction and recorded prediction combinations |
 | [configs/tasks](configs/tasks/) | Final configuration records for all 22 tasks |
-| [train.py](train.py) / [predict.py](predict.py) | Training and prediction entry points |
+| [prepare_features.py](prepare_features.py) / [train.py](train.py) / [predict.py](predict.py) | Fixed chemical feature generation, training and prediction |
 | [checkpoints/manifest.json](checkpoints/manifest.json) | Checkpoint identifiers, task/seed bindings, sizes and SHA256 hashes |
 
 Checkpoint weights are not attached yet. The manifest lists located artifacts, including partial component sets; [model availability](models/) records which files are available and which original estimators were not saved.
@@ -43,6 +43,16 @@ Train one recorded feature-head component:
 python train.py --task pgp_broccatelli --component layerwise --seed 1 \
   --data-dir data/pgp_broccatelli --output outputs/pgp_layerwise_seed1
 ```
+
+Generate the recorded chemical basis from a CSV without changing row order:
+
+```bash
+python prepare_features.py --task bbb_martins --input data/bbb_martins/fit.csv \
+  --smiles-column smiles --label-column label --id-column row_id \
+  --output data/bbb_martins/fit_features.npz
+```
+
+Use the same task profile for query rows, omitting `--label-column`.
 
 Fit a recorded classical model on prepared fitting features:
 
@@ -65,14 +75,14 @@ python predict.py --task pgp_broccatelli \
   --component-predictions outputs/pgp_components.npz --output outputs/pgp_final.npy
 ```
 
-For that example, the NPZ keys are `layerwise`, `kpgt_ept` and `kpgt`, with one prediction vector per component in identical row order. The fixed weights and transformation come from the task JSON. These commands do not search configurations. See [input formats and task-specific training](docs/USAGE.md).
+For that example, the NPZ keys are `layerwise`, `kpgt_ept` and `kpgt`, with one prediction vector per component in identical row order. The fixed weights and transformation come from the task records. Microsome, PPBR, CYP2D6 substrate and hepatocyte final combinations are implemented in [final_combinations.py](code/trimole_hybrid/final_combinations.py); their input keys and formal seed groups are listed in the usage guide. These commands do not search configurations. See [input formats and task-specific training](docs/USAGE.md).
 
 ## Data and supplementary results
 
 - [Dataset definitions and splits](supplementary_tables/Table_S1_dataset_provenance.csv)
 - [20-page supplement](supplementary/supplementary.pdf), [tables](supplementary_tables/) and [Figures S1–S3](supplementary_figures/)
 - [Complete supporting data](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Supplementary_Data.zip) and [table/figure source index](supplementary_data/)
-- [Final model code/configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-models/Final_Model_Configuration_and_Code.zip) and [checkpoint manifest](checkpoints/manifest.json)
+- [Final model code/configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-fixed-pipeline/Final_Model_Configuration_and_Code.zip) and [checkpoint manifest](checkpoints/manifest.json)
 - [Paper-to-code guide](docs/RESULT_CODE_MAP.md)
 
 ## Research archive

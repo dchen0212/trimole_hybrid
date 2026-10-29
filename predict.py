@@ -15,6 +15,7 @@ def main():
     mode.add_argument("--checkpoint", type=Path)
     mode.add_argument("--component-predictions", type=Path, help="NPZ of aligned, per-run component predictions.")
     p.add_argument("--features", type=Path)
+    p.add_argument("--run-index", type=int, choices=range(1, 6), default=1, help="Recorded five-seed formal group, 1 through 5.")
     p.add_argument("--metadata", type=Path, help="Feature-head meta.json, when not bound by --artifact-id.")
     p.add_argument("--artifact-id", help="Artifact ID in checkpoints/manifest.json for this task.")
     p.add_argument("--sha256", help="Expected checksum for a checkpoint without a training sidecar.")
@@ -31,7 +32,7 @@ def main():
             p.error("Output already exists; choose a new path.")
         if args.component_predictions:
             with np.load(args.component_predictions, allow_pickle=False) as inputs:
-                result = task_prediction(config, inputs)
+                result = task_prediction(config, inputs, args.run_index)
         else:
             if args.features is None:
                 p.error("Checkpoint prediction requires --features.")
