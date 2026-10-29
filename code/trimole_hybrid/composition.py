@@ -33,7 +33,15 @@ def apply_graph(node,predictions):
         return transform(predictions[node],'raw')
     return combine([apply_graph(n,predictions) for n in node['inputs']],node['weights'],node['mode'])
 
-def task_prediction(config,predictions):
+def task_prediction(config,predictions,run_index=1):
+    from .registry import fixed_combinations
+    from .final_combinations import fixed_prediction
+    rules=fixed_combinations()
+    task=config['task_id']
+    if set(predictions).issubset({'prediction','row_ids'}) and 'prediction' in predictions:
+        return transform(predictions['prediction'],'raw')
+    if task in rules:
+        return fixed_prediction(task,predictions,rules[task],run_index)
     if 'combination_graph' in config:return apply_graph(config['combination_graph'],predictions)
     rule=config.get('fixed_combination')
     if rule:

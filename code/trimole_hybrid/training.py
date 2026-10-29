@@ -75,7 +75,7 @@ def train(config,features,output,seed,run_index):
                     models.append(dict(model=model,columns=columns))
             bundle=dict(format='trimole-classical-v1',kind='fold_mean',classification=classification,members=models)
         else:
-            raise ValueError('This task combines independently fitted components. Use the recorded component metadata and neural training entry point; `combine` applies its final weights.')
+            raise ValueError('This task combines independently fitted components. Use the recorded component metadata and neural training entry point; predict.py --component-predictions applies its final weights.')
         _save(output,bundle,config)
 
 def train_neural(config,component,seed,data_dir,output):
@@ -83,7 +83,7 @@ def train_neural(config,component,seed,data_dir,output):
     from dataclasses import fields
     from trimole.training.trainer import TrainConfig,fit_on_task
     matches=[r for c in config['components_bound'] if c['id']==component for r in c.get('fitted_runs',[]) if r['seed']==seed]
-    if len(matches)!=1:raise ValueError('Choose an explicitly bound component and seed from `inspect`.')
+    if len(matches)!=1:raise ValueError('Choose an explicitly bound component and seed from train.py --task TASK --inspect.')
     values=matches[0]['config'];known={f.name for f in fields(TrainConfig)}
     unknown=set(values)-known
     if unknown:raise ValueError('Recorded trainer configuration needs its original implementation: '+str(sorted(unknown)))

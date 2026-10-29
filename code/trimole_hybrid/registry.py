@@ -12,3 +12,6 @@ def load_task(task):
     return json.loads((ROOT/'configs/tasks'/(task+'.json')).read_text())
 def checkpoint_manifest():
     return json.loads((ROOT/'checkpoints/manifest.json').read_text())
+
+def fixed_combinations():
+    return json.loads((ROOT/'configs/fixed_combinations.json').read_text())
