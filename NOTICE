@@ -1,13 +1,15 @@
 Trimole-Hybrid
 Copyright 2026 Trimole-Hybrid authors
 
-This distribution includes KPGT source components under the Apache License,
-Version 2.0. The bundled KPGT license and attribution are retained in
-`code/KPGT/LICENSE_KPGT` and `code/KPGT/README_KPGT.md`.
+The KPGT interface uses upstream components under the Apache License,
+Version 2.0. The upstream license is retained in
+`code/trimole/embeddings/LICENSE_KPGT`.
 
-Some KPGT descriptor utilities retain copyright notices from the Novartis
-Institutes for BioMedical Research and RDKit contributors in their source
-headers. Those notices and applicable upstream terms are preserved unchanged.
+The original KPGT implementation, README and source-header notices are
+preserved at:
+https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233/code/KPGT
+Upstream descriptor utilities retain their original Novartis and RDKit
+attribution in that archived source.
 
 Selected sample-level records, including molecular structures and labels,
 are included in the supplementary analysis files and earlier case-study
