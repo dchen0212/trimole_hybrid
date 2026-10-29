@@ -1,0 +1,157 @@
+{
+  "chemical_functions": [
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "count_to_array",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "f272a7ba99d2658c150e4e55dbfa81589c42124c71bc30ae86c6ddbc5ee2bc45"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_avalon_fingerprints",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "e4e713810ca07f65032acf35443fadfaefada983fa76da93ca209f40f1d40051"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_morgan_fingerprints",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "c630497616394a2e1a3a492bd5932ad6fec280a6bc24e664ef6c6c0c3a9e1213"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_erg_fingerprints",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "74dc3a913f94b8501cebbf2d0c6cc826acecb621a94bad769f5743fb949e974e"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_chosen_descriptors",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "7e0ff1b4b39217fc6a3ada611a89973a8ccce402ccf39a98d9dae340914eb6b5"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_rdkit_features",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "92f3627391c3967950d908b753aca34adc5100f48b7102d82d8132b8d22f5583"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "sanitize_features",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "cb9b3d6bc87ad4b3e6b92d3edebe5a300b7ccc0f041fb13cc7bb3be8fd19397e"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/core.py",
+      "function": "get_fingerprints",
+      "archive_file": "code/trimole_ept_swap_v1/descriptor_sidecar_official_v1.py",
+      "source_sha256": "764ea147d5eac18398158ca74ee1160e957aca8caa9e0c7c30a9f434c8197dc2",
+      "function_sha256": "b2cfa2a9c168f716a0a25bf1326826570173061c97e5456e5ce199f84b23dbb8"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/standard.py",
+      "function": "fp_to_array",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_v2.py",
+      "source_sha256": "198edc7f1414bb2f54d3df153fd0dc2ea5d30a1d385f257b42db55f9781f054b",
+      "function_sha256": "38523682f691b29506dc2683d1a6fee5fc411cc0e43306c1ba5f95a71a39c642"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/standard.py",
+      "function": "mols_from_smiles",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_v2.py",
+      "source_sha256": "198edc7f1414bb2f54d3df153fd0dc2ea5d30a1d385f257b42db55f9781f054b",
+      "function_sha256": "e9a22714c8b8829eb4f3b795c894ddea309f61d2d7e18fb8aa3b036a20ed0a15"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/standard.py",
+      "function": "stack_fps",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_v2.py",
+      "source_sha256": "198edc7f1414bb2f54d3df153fd0dc2ea5d30a1d385f257b42db55f9781f054b",
+      "function_sha256": "dbc585c97b3c412b065d5eb015a8ac3a746cbef15bead4339e4498e12ea7431e"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/standard.py",
+      "function": "extra_chemical_blocks",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_v2.py",
+      "source_sha256": "198edc7f1414bb2f54d3df153fd0dc2ea5d30a1d385f257b42db55f9781f054b",
+      "function_sha256": "9fb82a43d1ad445f57558d54633e8d18097b998678ae03431cc27df0b734e137"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/expanded.py",
+      "function": "fp_to_array",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_xl_v4.py",
+      "source_sha256": "8b921495b216c4e604e0f0dc032f6493d5bb263e5a017a4a2ae3b3e725714c9b",
+      "function_sha256": "17b4ce65ec58be405bdf1f234238e8ba68bdf261e10780cd05afebfbff7f40ed"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/expanded.py",
+      "function": "mols_from_smiles",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_xl_v4.py",
+      "source_sha256": "8b921495b216c4e604e0f0dc032f6493d5bb263e5a017a4a2ae3b3e725714c9b",
+      "function_sha256": "e9a22714c8b8829eb4f3b795c894ddea309f61d2d7e18fb8aa3b036a20ed0a15"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/expanded.py",
+      "function": "stack_fps",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_xl_v4.py",
+      "source_sha256": "8b921495b216c4e604e0f0dc032f6493d5bb263e5a017a4a2ae3b3e725714c9b",
+      "function_sha256": "dbc585c97b3c412b065d5eb015a8ac3a746cbef15bead4339e4498e12ea7431e"
+    },
+    {
+      "current_file": "code/trimole_hybrid/chemical/expanded.py",
+      "function": "extra_chemical_blocks_xl",
+      "archive_file": "code/trimole_ept_swap_v1/paper_main_chemical_prior_xl_v4.py",
+      "source_sha256": "8b921495b216c4e604e0f0dc032f6493d5bb263e5a017a4a2ae3b3e725714c9b",
+      "function_sha256": "7e058b05f869ac806e5090269958bb70e3b56c9fd80ecf3a14efe3bc7ce80d34"
+    }
+  ],
+  "fixed_combinations": {
+    "hepatic_archives": [
+      {
+        "file": "revision/code/hepatocyte_final/package_primary_v01/blend.py",
+        "sha256": "ca8d1c2cbc3de4c166d93cbb18fab406deca7139da6dc67c7467811bcc374e7c"
+      },
+      {
+        "file": "revision/code/hepatocyte_final/package_primary_v01/BLEND_SELECTION_FREEZE.json",
+        "sha256": "34532f29ee978f03893b10fa1a159ee40d0efdf9d8353a16240ef7add48cb5c7"
+      },
+      {
+        "file": "revision/code/hepatocyte_final/package_staged_v01/blend.py",
+        "sha256": "51b09303eb3184456a5fdb48d419fa23ade30e807afa09ecbc9acaa84d2b39f3"
+      },
+      {
+        "file": "revision/code/hepatocyte_final/package_staged_v01/BLEND_SELECTION_FREEZE.json",
+        "sha256": "13b4e0e1a6c78756b73d8d306af37bbe5450f8c53cb1b2f4dfd992b104907f58"
+      },
+      {
+        "file": "revision/code/hepatocyte_final/package_unimol_refined_v01/blend.py",
+        "sha256": "c79d5bf5687c1cae93b993f827daf21f2d698f0bd416ee7213b96117f6d2d9bf"
+      },
+      {
+        "file": "revision/code/hepatocyte_final/package_unimol_refined_v01/BLEND_SELECTION_FREEZE.json",
+        "sha256": "1d8503820ed12db9b704fa853e59da4faa04573a35afa52e30b36a3c266d9988"
+      }
+    ],
+    "cyp2d6_seedbag_source": {
+      "file": "build_cyp2d6_ap_xl_descriptor_seedbag_endpoint_v1.py",
+      "sha256": "44b4494e567950be878830d87627245ce60f95ff7b58d8b0f9060b6ad552db83"
+    },
+    "microsome_and_ppbr_source": {
+      "record": "materialize_v36_full_case_predictions.py",
+      "functions": [
+        "materialize_microsome",
+        "materialize_ppbr"
+      ]
+    },
+    "hepatic_archive_doi": "10.5281/zenodo.23602309"
+  },
+  "archive_source_snapshot": "6c263364f79b8c8f21fbf482812636fb801ec233"
+}
