@@ -1,0 +1,74 @@
+[
+  {
+    "current_path": "code/trimole/__init__.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/__init__.py",
+    "original_sha256": "5573e6e8dae2ca14cc2c138069aac95566553287ccef7e86daa0d132c0331647",
+    "byte_identical": false
+  },
+  {
+    "current_path": "code/trimole/embeddings/kpgt.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/embeddings/kpgt.py",
+    "original_sha256": "a73c80472a33c4f1162a853e7dcad9dff121859ee159c73ed7cafaaffa2239c5",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/embeddings/__init__.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/embeddings/__init__.py",
+    "original_sha256": "c71904a495fe7c48096de90152582991425fa18c87c3aaa0e35c2f8618e4936b",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/embeddings/chemberta.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/embeddings/chemberta.py",
+    "original_sha256": "48d77b9d233d7a1bca79460d8b98d7b1447f1167f0f3c0872f4a6b9f465fe07a",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/embeddings/unimol.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/embeddings/unimol.py",
+    "original_sha256": "03e9f8b8e69f1d054156bcff1a19ca813867b7303b6ba610a6c713b4305e6996",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/training/__init__.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/training/__init__.py",
+    "original_sha256": "c8a2dbcba422c612df5a0775299b487ee9416378864d92a0be7eb916daadd131",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/training/optuna_utils.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/training/optuna_utils.py",
+    "original_sha256": "bdb07e54cb40edf308012d1a54f96027a4d9ec8a02b699c3db7eb8a9796f2f79",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/training/losses.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/training/losses.py",
+    "original_sha256": "5d4f8b98b091480d634ca1f4550dee21a46a78ed9698cfa32a85b83265a87c26",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/training/trainer.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/training/trainer.py",
+    "original_sha256": "f201ced1ab9c06de13703ac5828ef2dd673eb03c8c9389b7592003384c358900",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/models/fusion_blocks.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/models/fusion_blocks.py",
+    "original_sha256": "fedf1fffc6c35b0ed9edc94bddb9a03d85e01a65685db8807d2fe522a5be76db",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/models/__init__.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/models/__init__.py",
+    "original_sha256": "e9eb827d916917c717b1a8ab2097ccaad2e193a965f5344b2e228aef3fc9c564",
+    "byte_identical": true
+  },
+  {
+    "current_path": "code/trimole/models/model.py",
+    "original_path": "code/trimole_ept_swap_v1/trimole/models/model.py",
+    "original_sha256": "9bd2efbe4fbfc57cfa7d887fcc830537af7470f1520d6f7f078c07ed282a6c0b",
+    "byte_identical": true
+  }
+]

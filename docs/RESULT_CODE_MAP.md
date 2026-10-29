@@ -4,7 +4,7 @@ Current tables and figures refer to the [20-page submission supplement](../suppl
 
 | Paper item | Implementation or source | Inputs |
 |---|---|---|
-| Model architecture and component fitting | [Feature-head model](../code/trimole_ept_swap_v1/trimole/models/model.py), [trainer](../code/trimole_ept_swap_v1/trimole/training/trainer.py), final task JSONs in the configuration package | Prepared task features and the recorded component configuration |
+| Model architecture and component fitting | [Feature-head model](../code/trimole/models/model.py), [trainer](../code/trimole/training/trainer.py), [final task JSONs](../configs/tasks/) | Prepared task features and the recorded component configuration |
 | S1–S2: datasets and task components | [Current table files](../supplementary_tables/); final task configuration package | Saved split and component records |
 | S3/S5: MiniMol and Chemprop | `revision/code/minimol_kpgt_benchmark22_20261014_v01/`, `revision/code/chemprop22_20261015_v01/` | Official task splits, upstream encoders and documented fit settings |
 | S4: shared-pool controls, FLAML 120 s | `revision/code/original_pool_matched_controls22_20261015_v01/` | Saved candidate prediction columns and matched rows |
@@ -17,4 +17,10 @@ Current tables and figures refer to the [20-page submission supplement](../suppl
 | S14: subgroups | `revision/code/subgroup_four_recovery_20261020_v01/`, `subgroups_publication_style_20261020_v11/` | Saved matched predictions and molecular subgroup records |
 | Figure 4: molecule-level examples | `revision/case_studies/`; manuscript Figure 4 source records in the current data index | Archived predictions and case-specific reconstruction records |
 
-The code paths identify the implementations and packaging entry points. The release scope and fitted-artifact availability are stated in [Code availability](../CODE_AVAILABILITY.md). Earlier [model-family](../archive/MODEL_FAMILY_INDEX.md) and [result-to-code](../archive/REVISION_RESULT_CODE_MAP.csv) records retain the original source-path conventions.
+The code paths identify the implementations and packaging entry points. The release scope and fitted-artifact availability are stated in [Code availability](../CODE_AVAILABILITY.md). Earlier [model-family](https://github.com/dchen0212/trimole_hybrid/blob/6c263364f79b8c8f21fbf482812636fb801ec233/archive/MODEL_FAMILY_INDEX.md) and [result-to-code](https://github.com/dchen0212/trimole_hybrid/blob/6c263364f79b8c8f21fbf482812636fb801ec233/archive/REVISION_RESULT_CODE_MAP.csv) records retain the original source-path conventions.
+
+The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
+
+The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
+
+The complete original source tree is retained in the [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233). The current fixed model commands are [train.py](../train.py) and [predict.py](../predict.py). Their [source bindings](MODEL_SOURCE_MAP.json) identify the retained original implementations.
