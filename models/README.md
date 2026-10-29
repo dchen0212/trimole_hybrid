@@ -1,9 +1,11 @@
-# Final model configurations
+# Model configurations and checkpoints
 
-This release provides source code, final task configurations and published result records. Checkpoint weights are not attached to the release. The 155-entry manifest describes located artifacts, including partial component sets; eight tasks have no saved original estimator. The package is not a complete set of assets for end-to-end reproduction of all 22 reported systems.
+The [22 task configurations](../configs/tasks/) and [task index](../configs/task_index.csv) specify the fixed models, training parameters, formal seeds and prediction combinations. Use the root [training](../train.py) and [prediction](../predict.py) entry points; [input formats](../docs/USAGE.md) describe the prepared feature inputs.
 
-[Download the configuration and source-code package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Final_Model_Configuration_and_Code.zip). It contains the final configuration records for all 22 TDC ADMET tasks, recorded training settings, fixed combinations, and original model/training implementation dependencies. Start with `configs/task_index.csv` in the download.
+- [Current final model code and configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-models/Final_Model_Configuration_and_Code.zip)
+- [Checkpoint manifest](../checkpoints/manifest.json)
+- [Original configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Final_Model_Configuration_and_Code.zip), retained unchanged
 
-[Download the checkpoint manifest](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Checkpoint_Manifest.json). It binds 155 located fitted artifacts to task, seed, component, size and SHA256. Checkpoint weights are not attached to this release. Some composite configurations have only part of their original fitted artifacts; eight tasks have no saved original estimator. These statuses are explicit in the task records.
+Checkpoint weights are not attached to these releases. The manifest describes 155 located fitted artifacts, including partial component sets. Eight tasks have no saved original estimator. Source defaults and fitted settings are distinguished in the per-task records. The package is not a complete set of fitted assets for end-to-end reproduction of all 22 reported systems.
 
-The [original implementation](../code/) and [archived research release](https://doi.org/10.5281/zenodo.23602309) remain available. [Supplementary data](../supplementary_data/) provides source records by paper table and figure.
+Task-specific encoder training and the full research source remain accessible through the [paper-to-code guide](../docs/RESULT_CODE_MAP.md) and [pinned pre-cleanup snapshot](https://github.com/dchen0212/trimole_hybrid/tree/6c263364f79b8c8f21fbf482812636fb801ec233).
