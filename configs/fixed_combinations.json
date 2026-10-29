@@ -1,0 +1,148 @@
+{
+  "clearance_hepatocyte_az": {
+    "operation": "nested_rank_blend",
+    "base_members": [
+      "c060",
+      "c070",
+      "c008"
+    ],
+    "prior_fine_tune_weight": 0.5,
+    "staged_weight": 0.25,
+    "unimol_weight": 0.25,
+    "rank_definition": "average ranks / number of rows"
+  },
+  "clearance_microsome_az": {
+    "operation": "mean_of_five_raw_predictions",
+    "formal_seed_groups": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      [
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      [
+        41,
+        42,
+        43,
+        44,
+        45
+      ]
+    ]
+  },
+  "ppbr_az": {
+    "operation": "raw_seedbag_fp_blend",
+    "seedbag_weight": 0.7,
+    "fp_only_weight": 0.3,
+    "formal_seed_groups": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      [
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      [
+        41,
+        42,
+        43,
+        44,
+        45
+      ]
+    ]
+  },
+  "cyp2d6_substrate_carbonmangels": {
+    "operation": "mean_of_seedwise_zscore_blends",
+    "weights": [
+      0.8,
+      0.1,
+      0.1
+    ],
+    "component_order": [
+      "AP",
+      "XL",
+      "descriptor_sidecar_v2"
+    ],
+    "formal_seed_groups": [
+      [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      [
+        21,
+        22,
+        23,
+        24,
+        25
+      ],
+      [
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      [
+        41,
+        42,
+        43,
+        44,
+        45
+      ]
+    ],
+    "normalization_dtype": "float64",
+    "order": "z-score each AP seed separately, blend each seed with fixed XL/descriptor streams, then mean within the formal group"
+  }
+}
