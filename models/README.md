@@ -2,7 +2,7 @@
 
 The [22 task configurations](../configs/tasks/) and [task index](../configs/task_index.csv) specify the fixed models, training parameters, formal seeds and prediction combinations. Use the root [training](../train.py) and [prediction](../predict.py) entry points; [input formats](../docs/USAGE.md) describe the prepared feature inputs.
 
-- [Current final model code and configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-models/Final_Model_Configuration_and_Code.zip)
+- [Current final model code and configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.29-fixed-pipeline/Final_Model_Configuration_and_Code.zip)
 - [Checkpoint manifest](../checkpoints/manifest.json)
 - [Original configuration package](https://github.com/dchen0212/trimole_hybrid/releases/download/v2026.10.28/Final_Model_Configuration_and_Code.zip), retained unchanged
 
